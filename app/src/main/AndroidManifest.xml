@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateByT"></activity>
+        <activity android:name=".lock_setting"></activity>
+        <activity android:name=".my_class_list" />
+        <activity android:name=".personal_schedule" />
+        <activity android:name=".personal_info" />
+        <activity android:name=".personal_page" />
+        <activity android:name=".CreateByT" />
         <activity android:name=".CreateByStu" />
         <activity android:name=".MainActivity">
             <intent-filter>
