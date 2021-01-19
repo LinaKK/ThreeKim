@@ -4,6 +4,68 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="클래스 만들기"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="2"
+            android:stretchColumns="2">
+
+            <TextView
+                android:text="클래스 이름"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="text"/>
+
+            <TextView
+                android:text="과목"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="text"/>
+
+            <TextView
+                android:text="목표"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="text"/>
+
+            <TextView
+                android:text="클래스 공개 여부"
+                android:layout_gravity="center"/>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:text="공개"
+                    android:id="@+id/open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:text="비공개"
+                    android:id="@+id/secret"/>
+                <TextView
+                    android:id="@+id/spw"
+                    android:text=""/>
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="만들기"
+            android:id="@+id/create"/>
+
+    </LinearLayout>
 
 </LinearLayout>
