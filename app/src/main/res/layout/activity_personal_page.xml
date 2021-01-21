@@ -50,14 +50,20 @@
             android:layout_height="150dp"
             android:layout_marginRight="5dp"
             android:layout_column="0"
-            android:layout_row="0"/> // android:src="@drawable/person"
+            android:layout_row="0"
+            android:src="@drawable/person"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
         <ImageButton
             android:id="@+id/schedule"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="5dp"
             android:layout_column="1"
-            android:layout_row="0"/> //android:src="@drawable/shedule"
+            android:layout_row="0"
+            android:src="@drawable/schedule"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
         <ImageButton
             android:id="@+id/userclasses"
             android:layout_width="150dp"
@@ -66,7 +72,9 @@
             android:layout_marginTop="3dp"
             android:layout_row="1"
             android:layout_column="0"
-            /> //android:src="@drawable/fix"
+            android:src="@drawable/classes"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
         <ImageButton
             android:id="@+id/lock"
             android:layout_width="150dp"
@@ -74,7 +82,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="3dp"
             android:layout_row="1"
-            android:layout_column="1"/> //android:src="@drawable/lock"
+            android:layout_column="1"
+            android:src="@drawable/lock"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
     </GridLayout>
 
     <Button
@@ -84,6 +95,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="나가기" />
-    //ImageButton의 그림은 변경가능...
 
 </LinearLayout>
