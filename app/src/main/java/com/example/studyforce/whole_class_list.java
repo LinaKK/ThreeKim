@@ -36,6 +36,7 @@ public class whole_class_list extends AppCompatActivity {
         addClass = (ImageButton)findViewById(R.id.addClass);
         wholeClass = (ListView)findViewById(R.id.wholeClass);
 
+        //클래스찾기버튼
         fClass.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -44,7 +45,7 @@ public class whole_class_list extends AppCompatActivity {
             }
         });
 
-
+        //클래스 추가버튼
         addClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +66,7 @@ public class whole_class_list extends AppCompatActivity {
                 .setNegativeButton("취소",null)
                 .create();
 
-        //리스트뷰 초기화
+        //리스트뷰 초기화(클래스 리스트)
         cList = (ListView)findViewById(R.id.wholeClass);
         cLAdapter1 = new ClassLIstAdapter1(this, cJobsData);
         cList.setAdapter(cLAdapter1);
