@@ -43,17 +43,23 @@
 
         <Button
             android:id="@+id/btn_lo"
+            android:onClick="btn_lo"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그인"/>
+            android:text="로그인"
+            tools:ignore="OnClick"/>
         <view
             android:layout_width="10dp"
             android:layout_height="0dp"/>
         <Button
             android:id="@+id/btn_sign"
+            android:onClick="btn_sign"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입"/>
+            android:text="회원가입"
+            tools:ignore="OnClick" />
 
     </LinearLayout>
 
