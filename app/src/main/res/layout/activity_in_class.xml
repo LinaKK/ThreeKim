@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/InClassName"
+            android:text="className"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
+    <GridLayout
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:text="과목: "/>
+        <TextView
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:text="과목내용"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:text="목표: "/>
+        <TextView
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:text="목표내용"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_rowSpan="1"
+            android:text="공지사항"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_columnSpan="1"
+            android:layout_rowSpan="1"
+            android:text="다음 이벤트"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_rowSpan="2"
+            android:text="공지사항내용"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_columnSpan="1"
+            android:layout_rowSpan="1"
+            android:text="다음 이벤트 내용"/>
+
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:layout_rowSpan="2"
+            android:text="달력"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_rowSpan="1"
+            android:text="체크리스트"/>
+
+
+        <ListView
+            android:layout_gravity="center"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_rowSpan="2"
+            android:text="체크리스트 내용"/>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="팀원"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="목표달성 그래프"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="QnA"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="폰잠금"/>
+
+    </LinearLayout>
+
+</LinearLayout>
