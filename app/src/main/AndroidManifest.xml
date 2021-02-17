@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InClass"></activity>
+        <activity android:name=".addNotice"></activity>
+        <activity android:name=".addEvent" />
+        <activity android:name=".nextEvent" />
+        <activity android:name=".notice" />
+        <activity android:name=".InClass" />
         <activity android:name=".Sign_Request" />
         <activity android:name=".Login_Request" />
-        <activity android:name=".SearchClass" />
         <activity android:name=".whole_class_list" />
         <activity android:name=".Sign" />
         <activity android:name=".Login" />
