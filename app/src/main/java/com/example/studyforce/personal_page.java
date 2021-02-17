@@ -1,3 +1,5 @@
+//개인페이지(로그인 후 보여질 페이지)
+
 package com.example.studyforce;
 
 import androidx.appcompat.app.AppCompatActivity;
