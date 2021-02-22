@@ -15,12 +15,19 @@
         android:layout_gravity="center"
         android:textSize="30dp"/>
 
-    <CalendarView
-        android:id="@+id/calendar"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
+    //커스텀 캘린더 적용(왜 오류나냐...ㅠㅠ)
+   //<com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendar1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        app:mcv_selectionColor="#a9dbf0cb"
+        app:mcv_showOtherDates="defaults" />
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendar"/>
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -43,7 +50,13 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="날짜"/>
+            android:text="  "/>
+        <Button
+            android:id="@+id/date_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일정 추가"
+            android:onClick="date_add"/>
     </GridLayout>
 
     <ScrollView
