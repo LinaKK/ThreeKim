@@ -16,11 +16,13 @@
         android:textSize="30dp"/>
 
 
-
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/calendar"/>
+        android:layout_weight="1"
+        app:mcv_selectionColor="#00F"
+        app:mcv_showOtherDates="all" />
 
     <GridLayout
         android:layout_width="wrap_content"

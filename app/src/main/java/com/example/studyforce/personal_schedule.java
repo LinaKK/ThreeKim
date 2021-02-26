@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
 public class personal_schedule extends AppCompatActivity {
 
     @Override
@@ -16,6 +19,10 @@ public class personal_schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_schedule);
 
+        MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
+        materialCalendarView.setSelectedDate(CalendarDay.today());
+        materialCalendarView.addDecorators(
+                new SundayDecorator(), new SaturdayDecorator());
 
         final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);
