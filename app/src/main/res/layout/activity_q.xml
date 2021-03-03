@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:layout_margin="15dp"
+        android:text="질문 하기"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목: "/>
+
+        <EditText
+            android:id="@+id/nTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="제목을 입력하세요."/>
+
+    </LinearLayout>
+    //사진파일 추가버튼?
+
+    <EditText
+        android:id="@+id/nCont"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:hint="내용을 입력하세요."/>
+
+    <Button
+        android:id="@+id/updateN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="확인"/>
+
+</LinearLayout>
