@@ -15,7 +15,15 @@ public class personal_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_page); }
+        setContentView(R.layout.activity_personal_page);
+
+        //로그인 성공시 받아올 학번
+        int userid2 = ((Login_Request)Login_Request.context_login).userid1;
+
+        //학번->이름으로 연결(data연결)
+
+    }
+
     //개인정보
     void onButton_info(View view){
         Intent intent = new Intent(this, personal_info.class);
