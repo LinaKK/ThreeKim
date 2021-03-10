@@ -16,13 +16,14 @@
         android:textSize="30dp"/>
 
 
+    //캘린더
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        app:mcv_selectionColor="#00F"
-        app:mcv_showOtherDates="all" />
+        app:mcv_selectionColor="#FF9800"
+        app:mcv_showOtherDates="all"/>
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -54,14 +55,17 @@
             android:onClick="date_add"/>
     </GridLayout>
 
+    //일정
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:overScrollMode="never">
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/today_todo">
 
         </ListView>
     </ScrollView>
