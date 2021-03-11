@@ -62,3 +62,5 @@ public class SeachClassAdapter<ViewHolder> extends BaseAdapter {
     }
 
 }
+
+//참고사이트 - https://sharp57dev.tistory.com/11
