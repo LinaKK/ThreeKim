@@ -19,6 +19,9 @@ public class whole_class_list extends AppCompatActivity {
 
     private String[] mClass = {"학생", "교수"};
     private AlertDialog mClassSelectDialog;
+    private SeachClassAdapter adapter1;
+    private ListView listView1;  //검색과 관련된 리스트뷰
+
 
     //리스트뷰 아이템
     private ClassJob[] cJobsData ={
@@ -49,7 +52,7 @@ public class whole_class_list extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                //
             }
         });
 
