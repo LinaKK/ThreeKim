@@ -43,7 +43,7 @@ public class SeachClassAdapter<ViewHolder> extends BaseAdapter {
         public TextView label;
     }
 
-    //왜 오류가 날까??
+    //왜 오류가 날까?? - 알수없음.....
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
