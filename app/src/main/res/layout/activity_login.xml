@@ -5,17 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:background="@color/logincolor"
     android:padding="10dp"
     tools:context=".Login">
 
     <ImageView
-        android:layout_width="203dp"
-        android:layout_height="267dp"
+        android:layout_width="336dp"
+        android:layout_height="363dp"
         android:layout_gravity="center"
-        android:padding="30dp"
-        android:src="@drawable/notebook" />
+        android:src="@drawable/login_study" />
 
 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
     <EditText
         android:layout_gravity="center"
         android:id="@+id/et_id"
@@ -23,8 +26,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="학번/사번"
-        android:inputType="textPersonName"
-        android:padding="10dp" />
+        android:textColorHint="@color/white"
+        android:inputType="textPersonName" />
 
     <EditText
         android:layout_gravity="center"
@@ -33,6 +36,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="PW"
+        android:textColorHint="@color/white"
         android:inputType="textPassword"
         />
     <LinearLayout
