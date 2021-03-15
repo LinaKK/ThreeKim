@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class SeachClassAdapter<ViewHolder> extends BaseAdapter {
+public class SeachClassAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> list;
@@ -40,10 +40,9 @@ public class SeachClassAdapter<ViewHolder> extends BaseAdapter {
     }
 
     class ViewHolder{
-        public TextView label;
+        public TextView search_class;
     }
 
-    //왜 오류가 날까?? - 알수없음.....
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
@@ -51,13 +50,13 @@ public class SeachClassAdapter<ViewHolder> extends BaseAdapter {
             convertView = inflate.inflate(R.layout.search_class_list,null);
 
             viewHolder = new ViewHolder();
-            viewHolder.label = (TextView)convertView.findViewById(R.id.search_class);
+            viewHolder.search_class = (TextView)convertView.findViewById(R.id.search_class);
 
             convertView.setTag(viewHolder);
         }else{
             viewHolder=(ViewHolder)convertView.getTag();
         }
-        viewHolder.label.setText(list.get(position));
+        viewHolder.search_class.setText(list.get(position));
         return convertView;
     }
 

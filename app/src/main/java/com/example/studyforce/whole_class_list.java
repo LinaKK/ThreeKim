@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -19,7 +20,8 @@ public class whole_class_list extends AppCompatActivity {
 
     private String[] mClass = {"학생", "교수"};
     private AlertDialog mClassSelectDialog;
-    private SeachClassAdapter adapter1;
+    private SeachClassAdapter adapter1; //리스트뷰와 연결할 어댑터
+    private EditText classSearch; //검색어를 입력할 창
     private ListView listView1;  //검색과 관련된 리스트뷰
 
 
@@ -45,6 +47,8 @@ public class whole_class_list extends AppCompatActivity {
         fClass = (ImageButton)findViewById(R.id.findClass);
         addClass = (ImageButton)findViewById(R.id.addClass);
         wholeClass = (ListView)findViewById(R.id.wholeClass);
+        classSearch = (EditText)findViewById(R.id.fClassname);
+        //listView1 = (ListView)findViewById(R.id.);
 
 
         //클래스찾기버튼

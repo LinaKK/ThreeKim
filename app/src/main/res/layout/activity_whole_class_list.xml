@@ -23,7 +23,8 @@
             android:id="@+id/fClassname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="14"/>
+            android:ems="14"
+            android:hint="클래스명을 입력하시오."/>
         <ImageButton
             android:id="@+id/findClass"
             android:layout_width="50dp"
