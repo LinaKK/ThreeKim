@@ -56,18 +56,23 @@
     </GridLayout>
 
     //일정
-    <ScrollView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:overScrollMode="never">
-
-        <ListView
+        android:layout_height="wrap_content">
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/today_todo">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:overScrollMode="never">
 
-        </ListView>
-    </ScrollView>
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/today_todo">
+
+            </ListView>
+        </ScrollView>
+    </LinearLayout>
+
 
 </LinearLayout>
