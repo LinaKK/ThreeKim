@@ -5,16 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 public class InClass extends AppCompatActivity {
+    private TextView classname;
+    private TextView subject;
+    private TextView goal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class);
+        classname = (TextView) findViewById(R.id.InClassName);
+        sendRequest();
 
     }
 
@@ -50,10 +60,27 @@ public class InClass extends AppCompatActivity {
 
     }
 
-   /* public void sendRequest(){
+    private void sendRequest(){
         StringRequest request = new StringRequest(
                 Request.Method.GET,
-                url,
+                AppHelper.url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        classname.setText(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println();
+                    }
+                }
+
         );
-    }*/
+    }
+
+    public void println(){
+        Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
+    }
 }
