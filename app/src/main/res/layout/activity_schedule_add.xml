@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScheduleAdd"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="60dp"
+        android:text="일정 추가"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="일정 시작"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="일정 종료"/>
+
+        </LinearLayout>
+
+   </LinearLayout>
+
+    <EditText
+        android:id="@+id/scheduleTitle"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_marginLeft="5dp"
+        android:hint="일정 제목을 입력하시오."/>
+    <EditText
+        android:id="@+id/scheduleContents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="일정 내용을 입력하시오."
+        android:layout_marginLeft="5dp"
+        android:textSize="15dp"
+        android:isScrollContainer="true"
+        android:inputType="textMultiLine"
+        android:maxHeight="100dp"/>
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/scheduleAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가하기"/>
+
+
+</LinearLayout>

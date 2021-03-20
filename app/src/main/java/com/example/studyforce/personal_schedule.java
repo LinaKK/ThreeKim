@@ -3,6 +3,7 @@ package com.example.studyforce;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class personal_schedule extends AppCompatActivity {
 
     //일정 추가이벤트
     public void date_add(View view) {
-
+        Intent intent = new Intent(this, ScheduleAdd.class);
+        startActivity(intent);
     }
 }
