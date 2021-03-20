@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".personal_page"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/orange">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,8 +54,8 @@
             android:layout_column="0"
             android:layout_row="0"
             android:src="@drawable/person"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
             android:onClick="onButton_info"/>
         <ImageButton
             android:id="@+id/schedule"
@@ -63,8 +65,8 @@
             android:layout_column="1"
             android:layout_row="0"
             android:src="@drawable/schedule"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
             android:onClick="onButton_schedule"/>
         <ImageButton
             android:id="@+id/userclasses"
@@ -75,21 +77,21 @@
             android:layout_row="1"
             android:layout_column="0"
             android:src="@drawable/classes"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
             android:onClick="onButton_uclass"/>
         <ImageButton
-            android:id="@+id/lock"
+            android:id="@+id/function"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="3dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:src="@drawable/lock"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:onClick="onButton_lock"/>
+            android:src="@drawable/studytime"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            android:onClick="onButton_function"/>
     </GridLayout>
 
     <Button

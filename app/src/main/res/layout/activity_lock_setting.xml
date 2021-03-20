@@ -66,4 +66,6 @@
         android:text="나가기"
         android:textSize="15dp"/>
 
+    //곧 없어질 레이아웃(lock_setting)
 </LinearLayout>
+

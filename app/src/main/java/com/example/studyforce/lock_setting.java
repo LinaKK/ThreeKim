@@ -21,4 +21,6 @@ public class lock_setting extends AppCompatActivity {
 
 
     }
+
+    //곧 없어질 액티비티
 }

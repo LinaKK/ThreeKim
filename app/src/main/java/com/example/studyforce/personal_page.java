@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class personal_page extends AppCompatActivity {
 
@@ -29,9 +30,9 @@ public class personal_page extends AppCompatActivity {
         Intent intent = new Intent(this, personal_info.class);
         startActivity(intent);
     }
-    //잠금설정
-    void onButton_lock(View v){
-        Intent intent = new Intent(this, lock_setting.class);
+    //기능추가용
+    void onButton_function(View v){
+        Intent intent = new Intent(this, Study_function.class);
         startActivity(intent);
     }
     //스케줄러
@@ -50,5 +51,15 @@ public class personal_page extends AppCompatActivity {
     void app_exit(View v){
         ActivityCompat.finishAffinity(this);
         System.exit(0);
+    }
+    //뒤로 가기 두번 -> 앱종료
+    long pressTime;
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - pressTime < 2000){
+            finishAffinity();
+            return;
+        }
+        Toast.makeText(this, "한 번 더 누르시면 앱이 종료됩니다", Toast.LENGTH_LONG).show();
+        pressTime=System.currentTimeMillis();
     }
 }

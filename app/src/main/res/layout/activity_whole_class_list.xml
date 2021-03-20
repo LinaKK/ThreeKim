@@ -24,20 +24,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="14"
-            android:hint="클래스명을 입력하시오."/>
+            android:hint=" 클래스명을 입력하시오."/>
         <ImageButton
             android:id="@+id/findClass"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
             android:src="@drawable/search"/>
         <ImageButton
             android:id="@+id/addClass"
+            android:layout_marginLeft="10dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
             android:src="@drawable/add"/>
     </LinearLayout>
     <TextView
