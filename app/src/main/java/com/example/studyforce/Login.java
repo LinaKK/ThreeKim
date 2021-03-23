@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.studyforce.R;
 
+
 public class Login extends AppCompatActivity {
     EditText et_id,et_pw;
     String aId,aPw;
@@ -37,7 +38,7 @@ public class Login extends AppCompatActivity {
         btn_lo=findViewById(R.id.btn_lo);
         btn_sign=findViewById(R.id.btn1_sign);
 
-        btn_sign.setOnClickListener(new View.OnClickListner() {
+        btn_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View v){
                 Intent intent =new Intent(Login.this, Sign.class); //회원가입페이지로 이동
