@@ -2,7 +2,9 @@ package com.example.studyforce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class personal_info extends AppCompatActivity {
@@ -20,5 +22,9 @@ public class personal_info extends AppCompatActivity {
         TextView uid = findViewById(R.id.uid);
 
 
+    }
+    void onButton_exit(View view){
+        Intent intent = new Intent(this, personal_page.class);
+        startActivity(intent);
     }
 }

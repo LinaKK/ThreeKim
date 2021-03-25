@@ -30,7 +30,7 @@ public class personal_page extends AppCompatActivity {
         Intent intent = new Intent(this, personal_info.class);
         startActivity(intent);
     }
-    //기능추가용
+    //기능추가용->지금은 타이머를 생각 중...
     void onButton_function(View v){
         Intent intent = new Intent(this, Study_function.class);
         startActivity(intent);
