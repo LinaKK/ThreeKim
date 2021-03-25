@@ -41,7 +41,7 @@ public class Study_function extends AppCompatActivity {
     }
 
     //타이머페이지 나가기 버튼튼
-    void onButton_xit2(View view){
+    void onButton_exit2(View view){
         Intent intent = new Intent(this, personal_page.class);
         startActivity(intent);
     }
