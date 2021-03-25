@@ -52,8 +52,8 @@
                         android:id="@+id/timer_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textoff="시작"
-                        android:texton="중단"
+                        android:textOff="시작"
+                        android:textOn="중단"
                         android:onClick="timerStart"/>
                     <Button
                         android:id="@+id/timer_finish"
