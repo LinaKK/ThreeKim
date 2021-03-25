@@ -5,75 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".personal_schedule"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="6">
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="Calendar"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:layout_weight="0.5"/>
 
 
     //캘린더
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_weight="4"
         app:mcv_selectionColor="#FF9800"
         app:mcv_showOtherDates="all" />
 
 
 
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:layout_marginLeft="30dp">
-        <TextView
-            android:layout_column="0"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:text="오늘의 할 일"
-            android:textSize="15dp" />
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text=" - "
-            android:textSize="15dp"/>
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  "/>
-        <Button
-            android:id="@+id/date_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="일정 추가"
-            android:onClick="date_add"/>
-    </GridLayout>
-
-    //일정
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:overScrollMode="never">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-            <ListView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:text="오늘의 할 일"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text=" 2021년 3월 00일 "
+                    android:textSize="15dp"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/date_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/today_todo">
+                android:text="일정 추가"
+                android:onClick="date_add"/>
+        </LinearLayout>
 
-            </ListView>
-        </ScrollView>
+        //일정
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:overScrollMode="never">
+
+                <ListView
+                    android:id="@+id/today_todo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+            </ScrollView>
+        </LinearLayout>
+
     </LinearLayout>
 
 

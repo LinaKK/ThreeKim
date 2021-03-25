@@ -20,6 +20,8 @@ public class personal_schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_schedule);
 
+
+
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
         materialCalendarView.setSelectedDate(CalendarDay.today());
         materialCalendarView.addDecorators(

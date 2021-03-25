@@ -5,19 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleAdd"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="6">
     <TextView
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:textSize="60dp"
-        android:text="일정 추가"/>
+        android:textSize="45dp"
+        android:text="일정 추가"
+        android:layout_weight="1"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_weight="1">
         <LinearLayout
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
@@ -44,29 +48,37 @@
 
    </LinearLayout>
 
-    <EditText
-        android:id="@+id/scheduleTitle"
-        android:layout_marginTop="30dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="5dp"
-        android:hint="일정 제목을 입력하시오."/>
-    <EditText
-        android:id="@+id/scheduleContents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="일정 내용을 입력하시오."
-        android:layout_marginLeft="5dp"
-        android:textSize="15dp"
-        android:isScrollContainer="true"
-        android:inputType="textMultiLine"
-        android:maxHeight="100dp"/>
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3">
+        <EditText
+            android:id="@+id/scheduleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_marginLeft="5dp"
+            android:hint="일정 제목을 입력하시오."/>
+        <EditText
+            android:id="@+id/scheduleContents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="일정 내용을 입력하시오."
+            android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:isScrollContainer="true"
+            android:inputType="textMultiLine"
+            android:maxHeight="100dp"/>
+    </LinearLayout>
+
+
     <Button
         android:layout_gravity="center"
         android:id="@+id/scheduleAdd"
+        android:layout_weight="0.5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="추가하기"/>
 
 
