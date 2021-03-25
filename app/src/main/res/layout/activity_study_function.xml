@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:textOff="시작"
                         android:textOn="중단"
-                        android:onClick="timerStart"/>
+                        android:onClick="timerStart"/> //togglebutton 자꾸 오류남...
                     <Button
                         android:id="@+id/timer_finish"
                         android:layout_width="wrap_content"
