@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 public class Study_function extends AppCompatActivity {
 
     ImageView StudyState;
-    Button TimerStart;
-    private int num;
+    ToggleButton TimerStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,14 @@ public class Study_function extends AppCompatActivity {
     //타이머시작 버튼
     void timerStart(View view){
         StudyState = (ImageView)findViewById(R.id.study_state);
-        StudyState.setImageResource(R.drawable.study_on);
-        TimerStart =(Button)findViewById(R.id.timer_start);
-        num=1;
-
-
+        TimerStart = (ToggleButton)findViewById(R.id.timer_start);
+        if (TimerStart.isChecked()){
+            StudyState.setImageResource(R.drawable.study_off);
+        }else{
+            StudyState.setImageResource(R.drawable.study_on);
+        }
     }
+
     //타이머종료 버튼
     void timerFinish(View view){
         StudyState = (ImageView)findViewById(R.id.study_state);

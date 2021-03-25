@@ -48,11 +48,12 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1">
-                    <Button
+                    <ToggleButton
                         android:id="@+id/timer_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="시작"
+                        android:textoff="시작"
+                        android:texton="중단"
                         android:onClick="timerStart"/>
                     <Button
                         android:id="@+id/timer_finish"
