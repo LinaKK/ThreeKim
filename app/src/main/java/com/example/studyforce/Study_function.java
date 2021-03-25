@@ -29,14 +29,7 @@ public class Study_function extends AppCompatActivity {
         StudyState.setImageResource(R.drawable.study_on);
         TimerStart =(Button)findViewById(R.id.timer_start);
         num=1;
-        if(num%2==1){
-            TimerStart.setText("중지");
-            num++;
-        }
-        else{
-            TimerStart.setText("시작");
-            num++;
-        }
+
 
     }
     //타이머종료 버튼
