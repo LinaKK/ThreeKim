@@ -24,7 +24,7 @@ import com.example.studyforce.R;
 
 
 public class Login extends AppCompatActivity {
-    EditText et_id,et_pw;
+   /* EditText et_id,et_pw;
     String aId,aPw;
     Button btn_lo,btn_sign;
 
@@ -83,6 +83,6 @@ public class Login extends AppCompatActivity {
         });
 
     }
-
+*/
 
 }

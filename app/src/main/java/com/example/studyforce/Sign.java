@@ -19,7 +19,7 @@ import org.json.JSONException;
 import java.text.BreakIterator;
 
 
-public class Sign extends AppCompatActivity {
+/*public class Sign extends AppCompatActivity {
 
     private EditText si_n, si_id, si_pw, si_pwc;
     private Button btn1_sign, btn1_idc;
@@ -136,5 +136,5 @@ public class Sign extends AppCompatActivity {
 
         //추가할 것: 중복체크 보안v, 서버 연동 후 이름 체크, 회원가입누르면 화면전환(로그인)
 
-    }
+    }*/
 

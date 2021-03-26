@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (AppHelper.requestQueue == null) {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
-            /* 실행 확인용
+            // 실행 확인용
             Intent intent;
             intent = new Intent(this, InClass.class);
-            startActivity(intent);*/
+            startActivity(intent);
         }
 
     }
