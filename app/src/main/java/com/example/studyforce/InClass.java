@@ -19,6 +19,7 @@ public class InClass extends AppCompatActivity {
     private TextView goal;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class InClass extends AppCompatActivity {
 
     }
 
-    public void BtnClick(View v){
+    public void btnClick(View v){
         Intent intent;
         switch (v.getId()){
             case R.id.notice:
@@ -80,7 +81,7 @@ public class InClass extends AppCompatActivity {
         );
     }
 
-    public void println(){
+    private void println(){
         Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
     }
 }
