@@ -64,7 +64,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:text="나가기"
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:onClick="onButton_info2"/>
 
     //곧 없어질 레이아웃(lock_setting)
 </LinearLayout>
