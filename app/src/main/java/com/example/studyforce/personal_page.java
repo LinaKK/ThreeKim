@@ -6,12 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class personal_page extends AppCompatActivity {
+
+
+    ImageButton info;
+    ImageButton timer;
+    ImageButton schedule;
+    ImageButton myclass;
+    Button exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,28 +32,62 @@ public class personal_page extends AppCompatActivity {
 
         //학번->이름으로 연결(data연결)
 
+        info = (ImageButton)findViewById(R.id.userinfo);
+        schedule = (ImageButton)findViewById(R.id.schedule);
+        myclass = (ImageButton)findViewById(R.id.userclasses);
+        timer = (ImageButton)findViewById(R.id.timer);
+        exit = (Button)findViewById(R.id.exit);
+
+        //개인정보
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), personal_info.class);
+                startActivity(intent);
+            }
+        });
+
+        //개인 스케줄러
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), personal_schedule.class);
+                startActivity(intent);
+            }
+        });
+
+        //개인 클래스 리스트
+        myclass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), my_class_list.class);
+                startActivity(intent);
+            }
+        });
+
+        //타이머
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Study_function.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        //앱종료
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
     }
 
-    //개인정보
-    void onButton_info(View view){
-        Intent intent = new Intent(this, personal_info.class);
-        startActivity(intent);
-    }
-    //기능추가용->지금은 타이머를 생각 중...
-    void onButton_function(View v){
-        Intent intent = new Intent(this, Study_function.class);
-        startActivity(intent);
-    }
-    //스케줄러
-    void onButton_schedule(View v){
-        Intent intent = new Intent(this, personal_schedule.class);
-        startActivity(intent);
-    }
-    //개인 클래스 리스트
-    void onButton_uclass(View v){
-        Intent intent = new Intent(this, my_class_list.class);
-        startActivity(intent);
-    }
 
 
     //앱종료

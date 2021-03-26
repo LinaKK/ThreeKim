@@ -1,25 +1,23 @@
-package com.example.studyforce;
+/*package com.example.studyforce;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.text.BreakIterator;
 
-
-/*public class Sign extends AppCompatActivity {
+public class Sign extends AppCompatActivity {
 
     private EditText si_n, si_id, si_pw, si_pwc;
     private Button btn1_sign, btn1_idc;

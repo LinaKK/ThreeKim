@@ -95,7 +95,7 @@
         android:layout_weight="0.5"
         android:layout_gravity="center"
         android:text="뒤로 나가기"
-        android:onClick="onButton_exit"/>
+        android:id="@+id/exit3"/>
 
 
 </LinearLayout>

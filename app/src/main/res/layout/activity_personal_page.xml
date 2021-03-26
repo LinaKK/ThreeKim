@@ -55,8 +55,7 @@
             android:layout_row="0"
             android:src="@drawable/person"
             android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:onClick="onButton_info"/>
+            android:scaleType="centerCrop" />
         <ImageButton
             android:id="@+id/schedule"
             android:layout_width="150dp"
@@ -66,8 +65,7 @@
             android:layout_row="0"
             android:src="@drawable/schedule"
             android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:onClick="onButton_schedule"/>
+            android:scaleType="centerCrop" />
         <ImageButton
             android:id="@+id/userclasses"
             android:layout_width="150dp"
@@ -78,10 +76,9 @@
             android:layout_column="0"
             android:src="@drawable/classes"
             android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:onClick="onButton_uclass"/>
+            android:scaleType="centerCrop" />
         <ImageButton
-            android:id="@+id/function"
+            android:id="@+id/timer"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="5dp"
@@ -90,8 +87,7 @@
             android:layout_column="1"
             android:src="@drawable/studytime"
             android:padding="0sp"
-            android:scaleType="centerCrop"
-            android:onClick="onButton_function"/>
+            android:scaleType="centerCrop" />
     </GridLayout>
 
     <Button
@@ -100,7 +96,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="나가기"
-        android:onClick="app_exit"/>
+        android:text="나가기" />
 
 </LinearLayout>
