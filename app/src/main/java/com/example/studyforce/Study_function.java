@@ -29,10 +29,11 @@ public class Study_function extends AppCompatActivity {
         TimerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StudyState.setImageResource(R.drawable.study_on);
                 if (TimerStart.isChecked()){
-                    StudyState.setImageResource(R.drawable.study_off);
-                }else{
                     StudyState.setImageResource(R.drawable.study_on);
+                }else{
+                    StudyState.setImageResource(R.drawable.study_off);
                 }
             }
         });
@@ -42,7 +43,7 @@ public class Study_function extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StudyState = (ImageView)findViewById(R.id.study_state);
-                StudyState.setImageResource(R.drawable.study_on);
+                StudyState.setImageResource(R.drawable.study_off);
             }
         });
 
