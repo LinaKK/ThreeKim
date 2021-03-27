@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-/*
+
         et_id = findViewById(R.id.et_id);
         et_pw = findViewById(R.id.et_pw);
 
@@ -41,17 +41,18 @@ public class Login extends AppCompatActivity {
         //회원가입페이지 이동
         btn_sign.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
-                Intent intent =new Intent(Login.this, Sign.class);
+            public void onClick(View view) {
+                Intent intent =new Intent(Login.this,Sign.class);
                 startActivity(intent);
             }
         });
 
 
+        /*
         //로그인버튼
         btn_lo.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 final String Uid=et_id.getText().toString();
                 String Upw=et_pw.getText().toString();
 
