@@ -20,7 +20,7 @@ public class personal_page extends AppCompatActivity {
     ImageButton timer;
     ImageButton schedule;
     ImageButton myclass;
-    Button exit;
+    Button exit, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class personal_page extends AppCompatActivity {
         myclass = (ImageButton)findViewById(R.id.userclasses);
         timer = (ImageButton)findViewById(R.id.timer);
         exit = (Button)findViewById(R.id.exit);
+        logout=(Button)findViewById(R.id.logout);
 
         //개인정보
         info.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +84,15 @@ public class personal_page extends AppCompatActivity {
 
             }
         });
+
+        //로그아웃
+         /*logout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent (personal_page.this, Login.class);
+                startActivity(intent);
+            }
+        }); */
 
 
 
