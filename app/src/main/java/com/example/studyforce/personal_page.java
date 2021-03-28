@@ -79,6 +79,14 @@ public class personal_page extends AppCompatActivity {
         });
 
 
+        //로그아웃
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+            }
+        });
 
         //앱종료
         exit.setOnClickListener(new View.OnClickListener() {
@@ -106,14 +114,6 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-        //로그아웃
-         /*logout.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent (personal_page.this, Login.class);
-                startActivity(intent);
-            }
-        }); */
 
 
 
