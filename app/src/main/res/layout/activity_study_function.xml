@@ -42,10 +42,14 @@
                 android:weightSum="3">
                 <TextView
                     android:id="@+id/studytimer_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:background="@drawable/edge"
                     android:layout_height="0dp"
-                    android:text="(시간표시)"
-                    android:layout_weight="1"/>
+                    android:text="00:00:00:00"
+                    android:layout_weight="0.9"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -57,13 +61,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="시작"
-                        android:textOn="중단" /> //togglebutton 자꾸 오류남...
+                        android:textOn="중단" />
                     <Button
                         android:id="@+id/timer_finish"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="종료"
-                        />
+                        android:text="종료" />
                 </LinearLayout>
 
                 <Button
