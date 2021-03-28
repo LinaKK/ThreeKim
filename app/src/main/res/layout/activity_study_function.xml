@@ -48,7 +48,7 @@
                     android:textSize="20dp"
                     android:background="@drawable/edge"
                     android:layout_height="0dp"
-                    android:text="00:00:00:00"
+                    android:text="00:00:00"
                     android:layout_weight="0.9"/>
 
                 <LinearLayout
@@ -56,17 +56,18 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1">
-                    <ToggleButton
+                    <Button
                         android:id="@+id/timer_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textOff="시작"
-                        android:textOn="중단" />
+                        android:text="시작"
+                        android:onClick="Timer"/>
                     <Button
                         android:id="@+id/timer_finish"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="종료" />
+                        android:text="종료"
+                        android:onClick="Timer"/>
                 </LinearLayout>
 
                 <Button
