@@ -57,12 +57,12 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text=" 2021년 3월 00일 "
+                    android:text=" \u003C2021년 3월 00일\u003E "
                     android:textSize="15dp"/>
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.2"
                     android:visibility="invisible"/>
             </LinearLayout>
 

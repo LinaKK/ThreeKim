@@ -13,7 +13,16 @@ import android.widget.TextView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class personal_schedule extends AppCompatActivity {
+
+    TextView date;
+    long Now;
+    Date Date;
+    SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
+    String getTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,12 @@ public class personal_schedule extends AppCompatActivity {
         materialCalendarView.setSelectedDate(CalendarDay.today());
         materialCalendarView.addDecorators(
                 new SundayDecorator(), new SaturdayDecorator());
+
+        date = (TextView)findViewById(R.id.date);
+        Now = System.currentTimeMillis();
+        Date = new Date(Now);
+        getTime = cDate.format(Date);
+        date.setText(getTime);
 
         /*final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);
