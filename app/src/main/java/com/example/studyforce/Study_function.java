@@ -75,19 +75,14 @@ public class Study_function extends AppCompatActivity {
                     case RUNNING:
                         //핸들러 메시지를 없애고
                         handler.removeMessages(0);
-                        //멈춘 시간을 파악
                         mPauseTime = SystemClock.elapsedRealtime();
                         TimerStart.setText("시작");
                         mStatus = PAUSE;//상태를 멈춤으로 표시
                         StudyState.setImageResource(R.drawable.study_off);
                         break;
 
-                    //멈춤이면
                     case PAUSE:
-                        //현재값 가져옴
                         long now = SystemClock.elapsedRealtime();
-                        //베이스타임 = 베이스타임 + (now - mPauseTime)
-                        //잠깐 스톱워치를 멈췄다가 다시 시작하면 기준점이 변하게 되므로..
                         mBaseTime += (now - mPauseTime);
                         handler.sendEmptyMessage(0);
                         TimerStart.setText("일시정지");
@@ -99,13 +94,17 @@ public class Study_function extends AppCompatActivity {
 
             case R.id.timer_finish:
                 switch(mStatus){
-                    //RUNNING 상태일 때.
                     case RUNNING:
                         //기존의 값을 가져온뒤 이어붙이기 위해서
                         String sSplit = studytimer_time.getText().toString();
                         //텍스트뷰의 값을 바꿔줌
                         studytimer_time.setText(sSplit);
                         StudyState.setImageResource(R.drawable.study_off);
+                        handler.removeMessages(0);
+                        TimerStart.setText("시작");
+                        studytimer_time.setText("00:00:00");
+                        mStatus = IDLE;
+
                         break;
 
                     case PAUSE://여기서는 초기화버튼이 됨
@@ -120,8 +119,7 @@ public class Study_function extends AppCompatActivity {
                 }
                 break;
         }
-    } //지금 구현이 안된게 작동중인 상태에서 정지를 누르면 바로 정지가 안 되는 점
-      //작동중인 상태에서 일시정지 누르고 정지를 눌러야만 작동됨..
+    }
 
 
     String getTime(){
