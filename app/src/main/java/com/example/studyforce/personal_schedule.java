@@ -21,13 +21,12 @@ public class personal_schedule extends AppCompatActivity {
         setContentView(R.layout.activity_personal_schedule);
 
 
-
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
         materialCalendarView.setSelectedDate(CalendarDay.today());
         materialCalendarView.addDecorators(
                 new SundayDecorator(), new SaturdayDecorator());
 
-        final TextView date = findViewById(R.id.date);
+        /*final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -35,9 +34,7 @@ public class personal_schedule extends AppCompatActivity {
                 month +=1;
                 date.setText(String.format("%d년 %d월 %d일", year, month, day));
             }
-        });
-
-
+        });*/
     }
 
     //일정 추가이벤트

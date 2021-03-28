@@ -2,9 +2,11 @@
 
 package com.example.studyforce;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -28,7 +30,7 @@ public class personal_page extends AppCompatActivity {
         setContentView(R.layout.activity_personal_page);
 
         //로그인 성공시 받아올 학번
-        int userid2 = ((Login_Request)Login_Request.context_login).userid1;
+        //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
 
         //학번->이름으로 연결(data연결)
 
@@ -57,6 +59,7 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
+
         //개인 클래스 리스트
         myclass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +84,25 @@ public class personal_page extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(personal_page.this);
+                builder.setMessage("정말로 종료하시겠습니까?");
+                builder.setTitle("종료알림창")
+                        .setCancelable(false)
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                return;
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.setTitle("종료알림창");
+                alert.show();
             }
         });
 
@@ -98,13 +119,6 @@ public class personal_page extends AppCompatActivity {
 
     }
 
-
-
-    //앱종료
-    void app_exit(View v){
-        ActivityCompat.finishAffinity(this);
-        System.exit(0);
-    }
     //뒤로 가기 두번 -> 앱종료
     long pressTime;
     public void onBackPressed(){

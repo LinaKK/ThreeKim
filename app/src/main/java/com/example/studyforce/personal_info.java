@@ -11,6 +11,8 @@ import android.widget.TextView;
 public class personal_info extends AppCompatActivity {
 
     Button exit;
+    TextView uname;
+    TextView uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +20,10 @@ public class personal_info extends AppCompatActivity {
         setContentView(R.layout.activity_personal_info);
 
         //로그인 성공시 받아올 학번
-        int userid3 = ((Login_Request)Login_Request.context_login).userid1;
+        //int userid3 = ((Login_Request)Login_Request.context_login).userid1;
 
-
-        TextView uname = findViewById(R.id.uname);
-        TextView uid = findViewById(R.id.uid);
+        uname = findViewById(R.id.uname);
+        uid = findViewById(R.id.uid);
         exit = (Button)findViewById(R.id.exit3);
 
         //메인으로 나가기
