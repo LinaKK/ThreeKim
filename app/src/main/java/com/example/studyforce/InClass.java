@@ -12,6 +12,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class InClass extends AppCompatActivity {
     private TextView classname;
@@ -62,6 +66,9 @@ public class InClass extends AppCompatActivity {
     }
 
     private void sendRequest(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 AppHelper.url,
@@ -74,14 +81,21 @@ public class InClass extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        println();
+                        println("error -> " + error.getMessage());
                     }
                 }
 
         );
+        AppHelper.requestQueue.add(request);
     }
 
-    private void println(){
-        Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
+    //오류확인
+    private void println(String data){
+        classname.append(data);
     }
+
+    private void printlnn(){
+        Toast.makeText(this, "connect success",Toast.LENGTH_SHORT).show();
+    }
+
 }

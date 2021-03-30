@@ -14,7 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/InClassName"
-            android:text="className"
             android:layout_gravity="center"/>
     </LinearLayout>
 
