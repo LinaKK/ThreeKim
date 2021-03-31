@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class personal_page extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class personal_page extends AppCompatActivity {
     ImageButton timer;
     ImageButton schedule;
     ImageButton myclass;
+    ImageView mp3;
     Button exit, logout;
 
     @Override
@@ -40,6 +42,7 @@ public class personal_page extends AppCompatActivity {
         timer = (ImageButton)findViewById(R.id.timer);
         exit = (Button)findViewById(R.id.exit);
         logout=(Button)findViewById(R.id.logout);
+        mp3=(ImageView)findViewById(R.id.mp3);
 
         //개인정보
         info.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +81,14 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-
         //로그아웃
         logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-            }
-        });
+                    @Override
+                    public void onClick(View v) {
+              Intent intent = new Intent(getApplicationContext(), Login.class);
+              startActivity(intent);
+                    }
+                });
 
         //앱종료
         exit.setOnClickListener(new View.OnClickListener() {
@@ -114,8 +116,14 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-
-
+        //음악플레이
+        mp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(), Music_p.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
