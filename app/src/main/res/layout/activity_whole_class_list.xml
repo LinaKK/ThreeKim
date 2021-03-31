@@ -18,27 +18,31 @@
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="3">
         <EditText
             android:id="@+id/fClassname"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:ems="14"
             android:hint=" 클래스명을 입력하시오."/>
         <ImageButton
             android:id="@+id/findClass"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:padding="0sp"
             android:scaleType="centerCrop"
+            android:layout_weight="0.5"
             android:src="@drawable/search"/>
         <ImageButton
             android:id="@+id/addClass"
             android:layout_marginLeft="10dp"
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:padding="0sp"
             android:scaleType="centerCrop"
+            android:layout_weight="0.5"
             android:src="@drawable/add"/>
     </LinearLayout>
     <TextView
