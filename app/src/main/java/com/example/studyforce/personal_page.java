@@ -37,9 +37,9 @@ public class personal_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_page);
 
-        getSupportActionBar().setTitle("StudyForCE");
+        getSupportActionBar().setTitle("StudyForCE"); //액션바 제목
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF339999)); //액션바배경색
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //홈버튼
 
 
 
@@ -128,7 +128,7 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-        //음악플레이
+
 
 
     }
@@ -147,11 +147,13 @@ public class personal_page extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
+        //bgm메뉴
         if(id == R.id.music1){
             Intent intent= new Intent(getApplicationContext(), Music_p.class);
             startActivity(intent);
             //return true;
         }
+        //예시용 메뉴
         if(id == R.id.studytime){
             Intent intent= new Intent(getApplicationContext(), Study_function.class);
             startActivity(intent);
