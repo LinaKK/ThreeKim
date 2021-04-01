@@ -31,7 +31,6 @@
             android:id="@+id/findClass"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:padding="0sp"
             android:scaleType="centerCrop"
             android:layout_weight="0.5"
             android:src="@drawable/search"/>
@@ -40,7 +39,6 @@
             android:layout_marginLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:padding="0sp"
             android:scaleType="centerCrop"
             android:layout_weight="0.5"
             android:src="@drawable/add"/>
@@ -61,4 +59,5 @@
             android:layout_height="wrap_content">
         </ListView>
     </LinearLayout>
+    /*android:padding="0sp"*/  //imagebutton에 넣는 부분..
 </LinearLayout>
