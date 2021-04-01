@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.widget.Toolbar;
 
 public class Study_function extends AppCompatActivity {
 
+    Toolbar myToolbar;
     ImageView StudyState;
     Button TimerStart;
     Button TimerFinish;
@@ -31,6 +33,10 @@ public class Study_function extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_function);
+
+        myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         StudyState = (ImageView)findViewById(R.id.study_state);
         TimerStart = (Button)findViewById(R.id.timer_start);
         TimerFinish = (Button)findViewById(R.id.timer_finish);
