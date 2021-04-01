@@ -2,14 +2,18 @@
 
 package com.example.studyforce;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,10 +30,19 @@ public class personal_page extends AppCompatActivity {
     ImageView mp3;
     Button exit, logout;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_page);
+
+        getSupportActionBar().setTitle("StudyForCE");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF339999)); //액션바배경색
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
 
         //로그인 성공시 받아올 학번
         //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
@@ -42,7 +55,6 @@ public class personal_page extends AppCompatActivity {
         timer = (ImageButton)findViewById(R.id.timer);
         exit = (Button)findViewById(R.id.exit);
         logout=(Button)findViewById(R.id.logout);
-        mp3=(ImageView)findViewById(R.id.mp3);
 
         //개인정보
         info.setOnClickListener(new View.OnClickListener() {
@@ -117,14 +129,34 @@ public class personal_page extends AppCompatActivity {
         });
 
         //음악플레이
-        mp3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(), Music_p.class);
-                startActivity(intent);
-            }
-        });
 
+
+    }
+
+
+    //메뉴를 액션바에 삽입
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+    //메뉴바 동작들
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.music1){
+            Intent intent= new Intent(getApplicationContext(), Music_p.class);
+            startActivity(intent);
+            //return true;
+        }
+        if(id == R.id.studytime){
+            Intent intent= new Intent(getApplicationContext(), Study_function.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //뒤로 가기 두번 -> 앱종료
