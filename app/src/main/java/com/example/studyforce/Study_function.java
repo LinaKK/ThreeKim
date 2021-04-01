@@ -34,8 +34,6 @@ public class Study_function extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_function);
 
-        myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
 
         StudyState = (ImageView)findViewById(R.id.study_state);
         TimerStart = (Button)findViewById(R.id.timer_start);
