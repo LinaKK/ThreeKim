@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".Study_time_graph"></activity>
+        <activity android:name=".study_time"></activity>
         <activity android:name=".Music_p" />
         <activity android:name=".ScheduleAdd" />
         <activity android:name=".Study_function" />

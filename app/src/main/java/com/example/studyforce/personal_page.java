@@ -88,7 +88,7 @@ public class personal_page extends AppCompatActivity {
         timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Study_function.class);
+                Intent intent = new Intent(getApplicationContext(), study_time.class);
                 startActivity(intent);
             }
         });
