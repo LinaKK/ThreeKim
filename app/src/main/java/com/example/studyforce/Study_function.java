@@ -23,7 +23,7 @@ public class Study_function extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     Fragment studyTimer;
-    Fragment studyGraph;
+   // Fragment studyGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,6 @@ public class Study_function extends AppCompatActivity {
         setContentView(R.layout.activity_study_function);
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
-        studyGraph = new Studytime_graph();
         studyTimer = new Study_timer();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,studyTimer)
@@ -48,8 +47,6 @@ public class Study_function extends AppCompatActivity {
                                 .replace(R.id.main_layout,studyTimer).commitAllowingStateLoss();
                         return true;
                     case R.id.timeresult:
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.main_layout,studyGraph).commitAllowingStateLoss();
                         return true;
                 }
                 return false;
