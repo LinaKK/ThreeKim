@@ -31,7 +31,6 @@ public class Study_function extends AppCompatActivity {
         setContentView(R.layout.activity_study_function);
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
-        studyTimer = new Study_timer();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,studyTimer)
                 .commitAllowingStateLoss();

@@ -1,4 +1,4 @@
-//클래스 리스트뷰에 쓰일 어댑터뷰
+//전체 클래스 리스트뷰에 쓰일 어댑터뷰
 
 package com.example.studyforce;
 
@@ -71,8 +71,5 @@ public class ClassLIstAdapter1 extends BaseAdapter {
         classLIstAdapter1.add(item);
 
     }
-
-
 }
 
-//참조페이지 - https://baessi.tistory.com/52 or 책

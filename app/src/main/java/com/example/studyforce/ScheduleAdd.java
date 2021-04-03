@@ -33,6 +33,7 @@ public class ScheduleAdd extends AppCompatActivity {
 
     }
 
+    //키보드
     @Override
     protected void onResume() {
         super.onResume();
