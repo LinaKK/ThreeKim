@@ -1,11 +1,13 @@
 package com.example.studyforce;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,14 +15,15 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class Study_function extends AppCompatActivity {
 
-    Toolbar myToolbar;
     ImageView StudyState;
     Button TimerStart;
     Button TimerFinish;
-    Button Exit;
     TextView studytimer_time;
+    BottomNavigationView bottomNavigationView;
 
     final static int IDLE = 0;
     final static int RUNNING = 1;
@@ -29,28 +32,47 @@ public class Study_function extends AppCompatActivity {
     long mBaseTime;
     long mPauseTime;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_function);
 
-
+        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         StudyState = (ImageView)findViewById(R.id.study_state);
         TimerStart = (Button)findViewById(R.id.timer_start);
         TimerFinish = (Button)findViewById(R.id.timer_finish);
-        Exit = (Button)findViewById(R.id.exit2);
         studytimer_time =(TextView)findViewById(R.id.studytimer_time);
 
 
-        //페이지 나가기
-        Exit.setOnClickListener(new View.OnClickListener() {
+        //bottomnavigation bar button설정
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), personal_page.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.timerpage:
+                        Intent intent = new Intent(getApplicationContext(), Study_function.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.timeresult:
+                        intent = new Intent(getApplicationContext(), Study_time_graph.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return false;
             }
         });
+
     }
+
+    //뒤로 가기 한번 시 personal_page로 이동
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+
 
     Handler handler = new Handler(){
         public void handleMessage(android.os.Message msg){

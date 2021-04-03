@@ -5,11 +5,13 @@
     <item
         android:id="@+id/timerpage"
         android:enabled="true"
-        android:title="타이머"/>
+        android:title="타이머"
+        android:icon="@drawable/ic_timer"/>
 
     <item
         android:id="@+id/timeresult"
         android:enabled="true"
-        android:title="공부시간"/>
+        android:title="공부시간"
+        android:icon="@drawable/ic_graph"/>
 
 </menu>
