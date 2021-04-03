@@ -24,6 +24,7 @@ public class study_time extends AppCompatActivity {
     int mStatus = IDLE;//처음 상태는 IDLE
     long mBaseTime;
     long mPauseTime;
+    String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class study_time extends AppCompatActivity {
                         String sSplit = studytimer_time.getText().toString();
                         //텍스트뷰의 값을 바꿔줌
                         studytimer_time.setText(sSplit);
+                        time = sSplit;
                         StudyState.setImageResource(R.drawable.study_off);
                         handler.removeMessages(0);
                         TimerStart.setText("시작");
