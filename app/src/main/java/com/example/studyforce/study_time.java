@@ -1,12 +1,20 @@
 package com.example.studyforce;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +25,8 @@ public class study_time extends AppCompatActivity {
     Button TimerStart;
     Button TimerFinish;
     TextView studytimer_time;
+    ImageButton graph;
+    Button exit;
 
     final static int IDLE = 0;
     final static int RUNNING = 1;
@@ -31,12 +41,67 @@ public class study_time extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_time);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //홈버튼
+
         StudyState = (ImageView)findViewById(R.id.study_state);
         TimerStart = (Button)findViewById(R.id.timer_start);
         TimerFinish = (Button)findViewById(R.id.timer_finish);
         studytimer_time =(TextView)findViewById(R.id.studytimer_time);
+        exit = (Button)findViewById(R.id.exit2);
+        graph = (ImageButton)findViewById(R.id.graph);
+
+        //그래프페이지로 이동
+        graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Timegraph.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //나가기
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),personal_page.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
+
+    //메뉴를 액션바에 삽입
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+    //메뉴바 동작들
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //bgm메뉴
+        if(id == R.id.music1){
+            Intent intent= new Intent(getApplicationContext(), Music_p.class);
+            startActivity(intent);
+            //return true;
+        }
+        //예시용 메뉴
+        if(id == R.id.studytime){
+            Intent intent= new Intent(getApplicationContext(), Timegraph.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     Handler handler = new Handler(){
         public void handleMessage(android.os.Message msg){

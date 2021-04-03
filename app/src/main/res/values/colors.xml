@@ -7,5 +7,8 @@
     <color name="locolor">#2B475E</color>
     <color name="white">#FFFFFF</color>
     <color name="orange">#FFC107 </color>
-    <color name="backg">#c5fcce</color>
+    <color name="backg">#FFFFFF</color>
+    <color name="skyblue">#5FD4E3</color>
+    <color name="pink">#FF5F96</color>
+    <color name="yellogreen">#9FFF30</color>
 </resources>

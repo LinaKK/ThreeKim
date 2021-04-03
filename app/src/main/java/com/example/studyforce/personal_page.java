@@ -3,6 +3,7 @@
 package com.example.studyforce;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -37,11 +38,8 @@ public class personal_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_page);
 
-        getSupportActionBar().setTitle("StudyForCE"); //액션바 제목
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF339999)); //액션바배경색
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //홈버튼
-
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
 
 
         //로그인 성공시 받아올 학번
@@ -155,7 +153,7 @@ public class personal_page extends AppCompatActivity {
         }
         //예시용 메뉴
         if(id == R.id.studytime){
-            Intent intent= new Intent(getApplicationContext(), Study_function.class);
+            Intent intent= new Intent(getApplicationContext(), Timegraph.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

@@ -31,7 +31,6 @@
         <activity android:name=".whole_class_list" />
         <activity android:name=".Sign" />
         <activity android:name=".Login" />
-        <activity android:name=".lock_setting" />
         <activity android:name=".my_class_list" />
         <activity android:name=".personal_schedule" />
         <activity android:name=".personal_info" />

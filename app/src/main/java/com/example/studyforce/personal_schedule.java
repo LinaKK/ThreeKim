@@ -1,9 +1,11 @@
 package com.example.studyforce;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,8 @@ public class personal_schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_schedule);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
         materialCalendarView.setSelectedDate(CalendarDay.today());
