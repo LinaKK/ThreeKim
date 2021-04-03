@@ -22,44 +22,52 @@ public class whole_class_list extends AppCompatActivity {
     private AlertDialog mClassSelectDialog;
     private SeachClassAdapter adapter1; //리스트뷰와 연결할 어댑터
     private EditText classSearch; //검색어를 입력할 창
-    private ListView listView1;  //검색과 관련된 리스트뷰
+    private ListView listView1;  //전체리스트뷰
+    private ClassLIstAdapter1 adapter; //전체리스트뷰어댑터
 
-
-    //리스트뷰 아이템
-    private ClassJob[] cJobsData ={
-      new ClassJob("안드로이드", 4, "학생"),
-      new ClassJob("네트워크", 7, "학생"),
-      new ClassJob("알고리즘", 2,"교수"),
-    };
 
     private ListView cList;
-    private ClassLIstAdapter1 cLAdapter1;
 
     ImageButton fClass;
-    ImageButton addClass;
-    ListView wholeClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whole_class_list);
 
+        //어댑터 생성
+        adapter = new ClassLIstAdapter1();
+
+        listView1 = (ListView)findViewById(R.id.wholeClasslist);
+        listView1.setAdapter(adapter);
+
+        adapter.addItem("알고리즘", "2", "전공");
+        adapter.addItem("정보보안", "4", "전공");
+        adapter.addItem("데이터", "0", "전공");
+        adapter.addItem("지능형", "4", "전공");
+
+        adapter.notifyDataSetChanged();;
+
+
         fClass = (ImageButton)findViewById(R.id.findClass);
-        addClass = (ImageButton)findViewById(R.id.addClass);
-        wholeClass = (ListView)findViewById(R.id.wholeClass);
         classSearch = (EditText)findViewById(R.id.fClassname);
-        //listView1 = (ListView)findViewById(R.id.);
+
 
 
         //클래스찾기버튼
 
 
-        //클래스 추가버튼
+
 
 
         //리스트뷰 초기화
 
     }
     //메시지 창 설정
+
+
+    //클래스 추가버튼 -> 클래스 클릭시 추가 여부 메시지 띄우기
+
+
 
 }

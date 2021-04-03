@@ -20,7 +20,6 @@
         <activity android:name=".Q" />
         <activity android:name=".qnaList" />
         <activity android:name=".todoC" />
-        <activity android:name=".Class_list" />
         <activity android:name=".addNotice" />
         <activity android:name=".addEvent" />
         <activity android:name=".nextEvent" />
