@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="15dp"
     tools:context=".Sign">
 
     <TextView
@@ -21,38 +21,38 @@
 
 
     <EditText
-        android:layout_gravity="center"
         android:id="@+id/si_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="이름"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="10dp"
-        />
+        android:inputType="textPersonName" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        >
-    <EditText
-        android:layout_gravity="center"
-        android:id="@+id/si_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="학번/사번"
-        android:inputType="textPersonName"
-        />
-        <Button
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/si_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:ems="10"
+            android:hint="학번/사번"
+            android:inputType="textPersonName" />
+
+        <Button
             android:id="@+id/btn1_idc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="중복체크"/>
+            android:layout_gravity="center"
+            android:text="중복체크" />
     </LinearLayout>
 
     <EditText
@@ -98,5 +98,4 @@
         android:layout_marginBottom="20dp"
         android:textColor="#808080"
         />
-
 </LinearLayout>
