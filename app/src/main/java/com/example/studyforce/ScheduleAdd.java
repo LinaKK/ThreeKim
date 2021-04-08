@@ -14,8 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class ScheduleAdd extends AppCompatActivity {
 
@@ -27,7 +29,28 @@ public class ScheduleAdd extends AppCompatActivity {
     TextView sDay;
     TextView eDay;
 
-    private int state = 0;
+    Calendar calendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            update();
+        }
+    };
+
+    Calendar calendar2 = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener myDatePicker2 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            calendar2.set(Calendar.YEAR, year);
+            calendar2.set(Calendar.MONTH, month);
+            calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            update2();
+        }
+    };
+
 
 
     @Override
@@ -49,7 +72,8 @@ public class ScheduleAdd extends AppCompatActivity {
         sDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new DatePickerDialog(ScheduleAdd.this, myDatePicker, calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -57,10 +81,10 @@ public class ScheduleAdd extends AppCompatActivity {
        eDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new DatePickerDialog(ScheduleAdd.this, myDatePicker2, calendar2.get(Calendar.YEAR),
+                        calendar2.get(Calendar.MONTH), calendar2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
 
 
         //일정 추가 눌렀을때
@@ -80,7 +104,19 @@ public class ScheduleAdd extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    void update(){
+        String myFormat = " yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+        sDay = (TextView)findViewById(R.id.startDay);
+        sDay.setText(sdf.format(calendar.getTime()));
+    }
 
+    void update2(){
+        String myFormat = " yyyy/MM/dd";
+        SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
+        eDay = (TextView)findViewById(R.id.endDay);
+        eDay.setText(sdf2.format(calendar2.getTime()));
+    }
 
 
 
