@@ -35,7 +35,13 @@
             android:id="@+id/class_num"
             android:text=" test "
             android:textSize="15dp"/>
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=" test "
+            android:id="@+id/class_open"
+            android:textSize="15dp"/>
     </LinearLayout>
 
 

@@ -51,22 +51,27 @@ public class ClassLIstAdapter1 extends BaseAdapter {
         TextView text2 = (TextView)view.findViewById(R.id.class_num);
         //클래스(학생전용 or 교수포함)
         TextView text3 = (TextView)view.findViewById(R.id.class_job);
+        //공개여부
+        TextView text4 = (TextView)view.findViewById(R.id.class_open);
 
         ClassJob class_list = classLIstAdapter1.get(i);
         text1.setText(class_list.getTitle());
         text2.setText(class_list.getNumber());
         text3.setText(class_list.getJob());
+        text4.setText(class_list.getOpen());
 
         return view;
     }
 
     //아이템 추가
-    public void addItem(String name, String num, String job){
+    public void addItem(String name, String num, String job, String open){
         ClassJob item = new ClassJob();
 
         item.setTitles(name);
         item.setJobs(job);
         item.setNumber(num);
+        item.setOpen(open);
+
 
         classLIstAdapter1.add(item);
 

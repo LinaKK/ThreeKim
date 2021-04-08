@@ -51,15 +51,15 @@ public class whole_class_list extends AppCompatActivity {
         listView1 = (ListView)findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
 
-        adapter.addItem("알고리즘", "2명", "전공");
-        adapter.addItem("정보보안", "4명", "전공");
-        adapter.addItem("데이터", "0명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
+        adapter.addItem("알고리즘", "2명", "전공", "공개");
+        adapter.addItem("정보보안", "4명", "전공","공개");
+        adapter.addItem("데이터", "0명", "전공", "비공개");
+        adapter.addItem("지능형", "4명", "전공","공개");
+        adapter.addItem("지능형", "4명", "전공"," 비공개");
+        adapter.addItem("지능형", "4명", "전공","공개");
+        adapter.addItem("지능형", "4명", "전공","공개");
 
-        adapter.notifyDataSetChanged();;
+        adapter.notifyDataSetChanged();
 
 
         fClass = (ImageButton)findViewById(R.id.findClass);

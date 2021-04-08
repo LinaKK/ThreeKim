@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -25,6 +26,9 @@ public class personal_schedule extends AppCompatActivity {
     Date Date;
     SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
     String getTime;
+
+    private ListView listView1;  //리스트뷰
+    private ScheduleAdapter adapter; //리스트뷰어댑터
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,18 @@ public class personal_schedule extends AppCompatActivity {
         Date = new Date(Now);
         getTime = cDate.format(Date);
         date.setText(getTime);
+
+        //어댑터 생성
+        adapter = new ScheduleAdapter();
+
+        listView1= (ListView)findViewById(R.id.today_todo);
+        listView1.setAdapter(adapter);
+
+        adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
+
+
+        adapter.notifyDataSetChanged();
+
 
         /*final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);

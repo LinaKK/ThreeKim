@@ -6,6 +6,7 @@ public class ClassJob {
     private String name;
     private String num;
     private String job;
+    private String open;
 
 
 
@@ -21,6 +22,8 @@ public class ClassJob {
         name= title;
     }
 
+    public void setOpen(String opened){open=opened;}
+
     public String getTitle(){
         return this.name;
     }
@@ -32,4 +35,6 @@ public class ClassJob {
     public String getJob(){
         return this.job;
     }
+
+    public String getOpen(){return this.open;}
 }
