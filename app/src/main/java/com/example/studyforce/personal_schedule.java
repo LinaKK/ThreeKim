@@ -56,12 +56,28 @@ public class personal_schedule extends AppCompatActivity {
         listView1.setAdapter(adapter);
 
         adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
-
-
         adapter.notifyDataSetChanged();
 
 
-        /*final TextView date = findViewById(R.id.date);
+        //날짜 선택 시 팝업창 띄우기
+        //materialCalendarView.setSelectedDate();
+
+
+    }
+
+    //일정 추가이벤트
+    public void date_add(View view) {
+        Intent intent = new Intent(this, ScheduleAdd.class);
+        startActivity(intent);
+    }
+
+
+}
+
+
+
+
+/*final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -70,11 +86,3 @@ public class personal_schedule extends AppCompatActivity {
                 date.setText(String.format("%d년 %d월 %d일", year, month, day));
             }
         });*/
-    }
-
-    //일정 추가이벤트
-    public void date_add(View view) {
-        Intent intent = new Intent(this, ScheduleAdd.class);
-        startActivity(intent);
-    }
-}
