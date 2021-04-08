@@ -29,6 +29,9 @@ public class ScheduleAdd extends AppCompatActivity {
     TextView sDay;
     TextView eDay;
 
+    public String title;
+    public String content;
+
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -91,6 +94,9 @@ public class ScheduleAdd extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                title = scheduleTitle.getText().toString();
+                content = scheduleCon.getText().toString();
+
 
             }
         });
