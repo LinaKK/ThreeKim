@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -28,10 +29,13 @@ public class whole_class_list extends AppCompatActivity {
     private ListView listView1;  //전체리스트뷰
     private ClassLIstAdapter1 adapter; //전체리스트뷰어댑터
 
+    private String jobs = "학생";
+
 
     private ListView cList;
 
     ImageButton fClass;
+    ImageButton aClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +58,32 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("지능형", "4명", "전공");
         adapter.addItem("지능형", "4명", "전공");
         adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
-        adapter.addItem("지능형", "4명", "전공");
 
         adapter.notifyDataSetChanged();;
 
 
         fClass = (ImageButton)findViewById(R.id.findClass);
         classSearch = (EditText)findViewById(R.id.fClassname);
-
-
+        aClass = (ImageButton)findViewById(R.id.addClass);
 
 
         //클래스찾기버튼
 
+
+        //클래스추가버튼
+        aClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(jobs == mClass[0]){ //학생일때
+                    Intent intent = new Intent(getApplicationContext(),CreateByStu.class);
+                    startActivity(intent);
+                }
+                else{//교수일때
+                    Intent intent = new Intent(getApplicationContext(),CreateByT.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
 
 
