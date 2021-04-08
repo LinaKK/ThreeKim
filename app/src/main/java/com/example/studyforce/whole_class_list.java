@@ -91,7 +91,6 @@ public class whole_class_list extends AppCompatActivity {
         //리스트뷰 초기화
 
     }
-    //메시지 창 설정
 
 
     //클래스 추가버튼 -> 클래스 클릭시 추가 여부 메시지 띄우기
