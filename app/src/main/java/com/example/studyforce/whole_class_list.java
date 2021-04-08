@@ -55,9 +55,10 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("정보보안", "4명", "전공","공개");
         adapter.addItem("데이터", "0명", "전공", "비공개");
         adapter.addItem("지능형", "4명", "전공","공개");
-        adapter.addItem("지능형", "4명", "전공"," 비공개");
-        adapter.addItem("지능형", "4명", "전공","공개");
-        adapter.addItem("지능형", "4명", "전공","공개");
+        adapter.addItem("창의", "4명", "전공"," 비공개");
+        adapter.addItem("C언어", "10명", "전공","공개");
+        adapter.addItem("java", "4명", "전공","공개");
+        adapter.addItem("C++", "45명", "전공","공개");
 
         adapter.notifyDataSetChanged();
 
