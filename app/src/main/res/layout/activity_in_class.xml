@@ -60,6 +60,7 @@
             android:text="다음 이벤트"/>
 
         <ListView
+            android:id="@+id/shortNoticeList"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_gravity="center"

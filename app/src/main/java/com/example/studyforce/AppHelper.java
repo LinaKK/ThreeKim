@@ -4,5 +4,5 @@ import com.android.volley.RequestQueue;
 
 public class AppHelper {
     public static RequestQueue requestQueue;
-    public static String url = "http://118.33.132.221/index.php"; //연결확인용
+    public static String url = "http://118.33.132.221/php/index.php"; //연결확인용
 }
