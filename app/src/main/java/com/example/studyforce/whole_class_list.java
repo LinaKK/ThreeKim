@@ -21,6 +21,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,11 +35,9 @@ import java.util.Locale;
 public class whole_class_list extends AppCompatActivity {
 
     private String[] mClass = {"학생", "교수"};
-    private AlertDialog mClassSelectDialog;
-    private SeachClassAdapter adapter1; //검색된리스트뷰와 연결할 어댑터
     private EditText classSearch; //검색어를 입력할 창
-    private ListView listView1;  //전체리스트뷰
-    private ClassLIstAdapter1 adapter; //전체리스트뷰어댑터
+    ListView listView1 = null;  //전체리스트뷰
+    ClassLIstAdapter1 adapter;
 
     private String jobs = "학생";
 
@@ -55,9 +55,10 @@ public class whole_class_list extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
+
+
         //어댑터 생성
         adapter = new ClassLIstAdapter1();
-
         listView1 = (ListView)findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
 
@@ -73,24 +74,30 @@ public class whole_class_list extends AppCompatActivity {
 
         //CreateByStu or CreateByT에서 만든 걸 db에서 받아와 목록이 될 것들
 
-
         adapter.notifyDataSetChanged();
-
 
         fClass = (ImageButton)findViewById(R.id.findClass);
         classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
 
 
-
-
-        //클래스찾기버튼
-        fClass.setOnClickListener(new View.OnClickListener() {
+        //검색
+        classSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                String searchText = classSearch.getText().toString();
-                if(searchText.length()>0){
-                    search(searchText);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String filterText = s.toString();
+                if(filterText.length()>0){
+                    listView1.setFilterText(filterText);
+                }else{
+                    listView1.clearTextFilter();
                 }
             }
         });
@@ -146,13 +153,6 @@ public class whole_class_list extends AppCompatActivity {
         super.onResume();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
-
-    //검색을 수행하는 함수
-    public void search(String charText){
-
-
-    }
-
 
 
 }

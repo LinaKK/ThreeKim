@@ -13,25 +13,26 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-public class ClassLIstAdapter1 extends BaseAdapter implements Filterable{
-    private Context ctx;
+public class ClassLIstAdapter1 extends BaseAdapter implements  Filterable{
+   // private Context ctx;
     private ArrayList<ClassJob> classLIstAdapter1 = new ArrayList<ClassJob>();
-    private ArrayList<ClassJob> list2 = classLIstAdapter1;
-    Filter filter;
-    public ClassLIstAdapter1(){
+    private ArrayList<ClassJob> filteredItemList = classLIstAdapter1;
+    Filter listFilter;
 
+    public ClassLIstAdapter1() {
     }
 
     @Override
     public int getCount() {
-        return classLIstAdapter1.size();
+        return filteredItemList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return classLIstAdapter1.get(i);
+        return filteredItemList.get(i);
     }
 
     @Override
@@ -41,34 +42,37 @@ public class ClassLIstAdapter1 extends BaseAdapter implements Filterable{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        final int pos =i;
-       final Context context = viewGroup.getContext();
+        final int pos = i;
+        final Context context = viewGroup.getContext();
 
-       if (view == null){
-           LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           view = inflater.inflate(R.layout.activity_class_list, viewGroup, false);
-       }
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.activity_class_list, viewGroup,
+                    false);
+        }
 
         //클래스 이름
-        TextView text1 = (TextView)view.findViewById(R.id.class_name);
+        TextView text1 = (TextView) view.findViewById(R.id.class_name);
         //클래스 인원 수
-        TextView text2 = (TextView)view.findViewById(R.id.class_num);
+        TextView text2 = (TextView) view.findViewById(R.id.class_num);
         //클래스(학생전용 or 교수포함)
-        TextView text3 = (TextView)view.findViewById(R.id.class_job);
+        TextView text3 = (TextView) view.findViewById(R.id.class_job);
         //공개여부
-        TextView text4 = (TextView)view.findViewById(R.id.class_open);
+        TextView text4 = (TextView) view.findViewById(R.id.class_open);
 
-        ClassJob class_list = classLIstAdapter1.get(i);
-        text1.setText(class_list.getTitle());
-        text2.setText(class_list.getNumber());
-        text3.setText(class_list.getJob());
-        text4.setText(class_list.getOpen());
+        ClassJob classJob = filteredItemList.get(i);
+
+        text1.setText(classJob.getTitle());
+        text2.setText(classJob.getNumber());
+        text3.setText(classJob.getJob());
+        text4.setText(classJob.getOpen());
 
         return view;
     }
 
     //아이템 추가
-    public void addItem(String name, String num, String job, String open){
+    public void addItem(String name, String num, String job, String open) {
         ClassJob item = new ClassJob();
 
         item.setTitles(name);
@@ -77,7 +81,14 @@ public class ClassLIstAdapter1 extends BaseAdapter implements Filterable{
         item.setOpen(open);
 
         classLIstAdapter1.add(item);
+    }
 
+    @Override
+    public Filter getFilter() {
+        if(listFilter == null){
+            listFilter = new ListFilter();
+        }
+        return listFilter;
     }
 
     private class ListFilter extends Filter{
@@ -85,37 +96,33 @@ public class ClassLIstAdapter1 extends BaseAdapter implements Filterable{
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
+
             if(constraint == null || constraint.length()==0){
-                results.values=list2;
-                results.count =list2.size();
+                results.values = classLIstAdapter1;
+                results.count = classLIstAdapter1.size();
             }else{
-                ArrayList<ClassJob> itemList = new ArrayList<>();
-                for(ClassJob item: list2){
-                    if(item.getTitle().toUpperCase().contains(constraint.toString().toUpperCase())){
+                ArrayList<ClassJob> itemList = new ArrayList<ClassJob>();
+                for(ClassJob item: classLIstAdapter1){
+                    if(item.getTitle().toUpperCase().contains
+                            (constraint.toString().toUpperCase())){
                         itemList.add(item);
                     }
-                    results.values = itemList;
-                    results.count = itemList.size();
                 }
+                results.values = itemList;
+                results.count = itemList.size();
             }
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            classLIstAdapter1 = (ArrayList<ClassJob>)results.values;
+            filteredItemList = (ArrayList<ClassJob>)results.values;
             if(results.count>0){
                 notifyDataSetChanged();
             }else{
                 notifyDataSetInvalidated();
             }
         }
-    }
-
-
-    @Override
-    public Filter getFilter() {
-        return null;
     }
 }
 
