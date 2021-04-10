@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class ClassLIstAdapter1 extends BaseAdapter {
+public class ClassLIstAdapter1 extends BaseAdapter{
     private Context ctx;
     private ArrayList<ClassJob> classLIstAdapter1 = new ArrayList<ClassJob>();
     public ClassLIstAdapter1(){
@@ -70,11 +74,8 @@ public class ClassLIstAdapter1 extends BaseAdapter {
         item.setNumber(num);
         item.setOpen(open);
 
-
         classLIstAdapter1.add(item);
 
     }
-
-
 }
 

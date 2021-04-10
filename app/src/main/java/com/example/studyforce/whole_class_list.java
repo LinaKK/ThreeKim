@@ -11,7 +11,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class whole_class_list extends AppCompatActivity {
 
@@ -59,11 +62,11 @@ public class whole_class_list extends AppCompatActivity {
         listView1.setAdapter(adapter);
 
         //클래스 미리 생성된 것들
-        adapter.addItem("알고리즘", "2명", "전공", "공개");
-        adapter.addItem("정보보안", "4명", "전공","공개");
-        adapter.addItem("데이터", "0명", "전공", "비공개");
-        adapter.addItem("지능형", "4명", "전공","공개");
-        adapter.addItem("창의", "4명", "전공"," 비공개");
+        adapter.addItem("a알고리즘", "2명", "전공", "공개");
+        adapter.addItem("b정보보안", "4명", "전공","공개");
+        adapter.addItem("c데이터", "0명", "전공", "비공개");
+        adapter.addItem("d지능형", "4명", "전공","공개");
+        adapter.addItem("e창의", "4명", "전공"," 비공개");
         adapter.addItem("C언어", "10명", "전공","공개");
         adapter.addItem("java", "4명", "전공","공개");
         adapter.addItem("C++", "45명", "전공","공개");
@@ -77,6 +80,26 @@ public class whole_class_list extends AppCompatActivity {
         fClass = (ImageButton)findViewById(R.id.findClass);
         classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
+
+
+        //클래스 찾기 기능
+        classSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String ftext = s.toString();
+
+            }
+        });
 
 
         //클래스찾기버튼
@@ -137,6 +160,12 @@ public class whole_class_list extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    //검색을 수행하는 함수
+    public void search(String charText){
+
+
     }
 
 
