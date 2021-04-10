@@ -2,8 +2,10 @@ package com.example.studyforce;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,9 +14,11 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,7 +64,24 @@ public class personal_schedule extends AppCompatActivity {
 
 
         //날짜 선택 시 팝업창 띄우기
-        //materialCalendarView.setSelectedDate();
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                //Toast.makeText(personal_schedule.this,"----current date-------->\n"+date.getDate(),Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
+                ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
+                ad.setMessage("그날의 할일");
+
+                ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+
+            }
+        });
 
 
     }
