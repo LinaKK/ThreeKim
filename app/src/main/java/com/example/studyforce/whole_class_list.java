@@ -34,15 +34,12 @@ import java.util.Locale;
 
 public class whole_class_list extends AppCompatActivity {
 
-    private String[] mClass = {"학생", "교수"};
-    private EditText classSearch; //검색어를 입력할 창
+    String[] mClass = {"학생", "교수"};
+    //EditText classSearch; //검색어를 입력할 창
     ListView listView1 = null;  //전체리스트뷰
     ClassLIstAdapter1 adapter;
 
     private String jobs = "학생";
-
-
-    private ListView cList;
 
     ImageButton fClass;
     ImageButton aClass;
@@ -55,34 +52,41 @@ public class whole_class_list extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
-
-
         //어댑터 생성
         adapter = new ClassLIstAdapter1();
-        listView1 = (ListView)findViewById(R.id.wholeClasslist);
+
+        listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
 
         //클래스 미리 생성된 것들
-        adapter.addItem("a알고리즘", "2명", "전공", "공개");
-        adapter.addItem("b정보보안", "4명", "전공","공개");
-        adapter.addItem("c데이터", "0명", "전공", "비공개");
-        adapter.addItem("d지능형", "4명", "전공","공개");
-        adapter.addItem("e창의", "4명", "전공"," 비공개");
-        adapter.addItem("C언어", "10명", "전공","공개");
+        adapter.addItem("apple", "2명", "전공", "공개");
+        adapter.addItem("bird", "4명", "전공","공개");
+        adapter.addItem("cat", "0명", "전공", "비공개");
+        adapter.addItem("dog", "4명", "전공","공개");
+        adapter.addItem("efgh", "4명", "전공"," 비공개");
+        adapter.addItem("Cba", "10명", "전공","공개");
         adapter.addItem("java", "4명", "전공","공개");
         adapter.addItem("C++", "45명", "전공","공개");
 
-        //CreateByStu or CreateByT에서 만든 걸 db에서 받아와 목록이 될 것들
 
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
 
         fClass = (ImageButton)findViewById(R.id.findClass);
-        classSearch = (EditText)findViewById(R.id.fClassname);
+        EditText classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
 
 
         //검색
         classSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable edit) {
+            String filterText = edit.toString();
+            if(filterText.length() > 0){
+                listView1.setFilterText(filterText);
+            }else{
+                listView1.clearTextFilter();
+            }
+        }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -90,18 +94,7 @@ public class whole_class_list extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String filterText = s.toString();
-                if(filterText.length()>0){
-                    listView1.setFilterText(filterText);
-                }else{
-                    listView1.clearTextFilter();
-                }
-            }
         });
-
 
         //클래스추가버튼
         aClass.setOnClickListener(new View.OnClickListener() {
