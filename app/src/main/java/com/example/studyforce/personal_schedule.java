@@ -59,6 +59,7 @@ public class personal_schedule extends AppCompatActivity {
         listView1= (ListView)findViewById(R.id.today_todo);
         listView1.setAdapter(adapter);
 
+        //일정 예시
         adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
         adapter.notifyDataSetChanged();
 
@@ -67,7 +68,6 @@ public class personal_schedule extends AppCompatActivity {
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                //Toast.makeText(personal_schedule.this,"----current date-------->\n"+date.getDate(),Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
                 ad.setMessage("그날의 할일");
@@ -82,7 +82,6 @@ public class personal_schedule extends AppCompatActivity {
 
             }
         });
-
 
     }
 

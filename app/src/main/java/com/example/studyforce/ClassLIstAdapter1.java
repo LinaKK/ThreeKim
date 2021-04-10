@@ -13,9 +13,7 @@ import java.util.ArrayList;
 
 public class ClassLIstAdapter1 extends BaseAdapter {
     private Context ctx;
-
     private ArrayList<ClassJob> classLIstAdapter1 = new ArrayList<ClassJob>();
-
     public ClassLIstAdapter1(){
 
     }
@@ -76,5 +74,7 @@ public class ClassLIstAdapter1 extends BaseAdapter {
         classLIstAdapter1.add(item);
 
     }
+
+
 }
 

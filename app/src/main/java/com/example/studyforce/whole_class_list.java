@@ -6,16 +6,23 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +58,7 @@ public class whole_class_list extends AppCompatActivity {
         listView1 = (ListView)findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
 
+        //클래스 미리 생성된 것들
         adapter.addItem("알고리즘", "2명", "전공", "공개");
         adapter.addItem("정보보안", "4명", "전공","공개");
         adapter.addItem("데이터", "0명", "전공", "비공개");
@@ -59,6 +67,9 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("C언어", "10명", "전공","공개");
         adapter.addItem("java", "4명", "전공","공개");
         adapter.addItem("C++", "45명", "전공","공개");
+
+        //CreateByStu or CreateByT에서 만든 걸 db에서 받아와 목록이 될 것들
+
 
         adapter.notifyDataSetChanged();
 
@@ -69,6 +80,12 @@ public class whole_class_list extends AppCompatActivity {
 
 
         //클래스찾기버튼
+        fClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         //클래스추가버튼
@@ -86,23 +103,43 @@ public class whole_class_list extends AppCompatActivity {
             }
         });
 
-
-
-
+        //리스트뷰 클릭 시 가입 여부 알림창
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
+                AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
+                ad.setTitle("가입메시지");
+                ad.setMessage("해당 클래스에 가입하시겠습니까?");
+                ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
+                        //내부클래스 액티비티에 값 넘겨주기
+                       Intent intent = new Intent(getApplicationContext(),InClass.class);
+                       intent.putExtra("name",names);
+                       startActivity(intent);
+                        //dialog.dismiss();
+                    }
+                });
+                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+            }
+        });
         //리스트뷰 초기화
 
     }
-
-
-    //클래스 추가버튼 -> 클래스 클릭시 추가 여부 메시지 띄우기
-
-
     //키보드
     @Override
     protected void onResume() {
         super.onResume();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
+
 
 
 }

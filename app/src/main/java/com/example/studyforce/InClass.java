@@ -45,6 +45,12 @@ public class InClass extends AppCompatActivity {
         shortNoticeList.setAdapter(adapterNotice);*/
         sendRequest1();
 
+        //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
+        Intent intent = getIntent();
+        classname.setText(intent.getStringExtra("name"));
+        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후
+        // 클래스이름만 넘겨주고 db에서 이름과 일치하는
+        // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지??
 
     }
 
