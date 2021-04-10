@@ -15,9 +15,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ClassLIstAdapter1 extends BaseAdapter{
+public class ClassLIstAdapter1 extends BaseAdapter implements Filterable{
     private Context ctx;
     private ArrayList<ClassJob> classLIstAdapter1 = new ArrayList<ClassJob>();
+    private ArrayList<ClassJob> list2 = classLIstAdapter1;
+    Filter filter;
     public ClassLIstAdapter1(){
 
     }
@@ -76,6 +78,44 @@ public class ClassLIstAdapter1 extends BaseAdapter{
 
         classLIstAdapter1.add(item);
 
+    }
+
+    private class ListFilter extends Filter{
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            if(constraint == null || constraint.length()==0){
+                results.values=list2;
+                results.count =list2.size();
+            }else{
+                ArrayList<ClassJob> itemList = new ArrayList<>();
+                for(ClassJob item: list2){
+                    if(item.getTitle().toUpperCase().contains(constraint.toString().toUpperCase())){
+                        itemList.add(item);
+                    }
+                    results.values = itemList;
+                    results.count = itemList.size();
+                }
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            classLIstAdapter1 = (ArrayList<ClassJob>)results.values;
+            if(results.count>0){
+                notifyDataSetChanged();
+            }else{
+                notifyDataSetInvalidated();
+            }
+        }
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 }
 

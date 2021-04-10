@@ -34,7 +34,7 @@ public class whole_class_list extends AppCompatActivity {
 
     private String[] mClass = {"학생", "교수"};
     private AlertDialog mClassSelectDialog;
-    private SeachClassAdapter adapter1; //리스트뷰와 연결할 어댑터
+    private SeachClassAdapter adapter1; //검색된리스트뷰와 연결할 어댑터
     private EditText classSearch; //검색어를 입력할 창
     private ListView listView1;  //전체리스트뷰
     private ClassLIstAdapter1 adapter; //전체리스트뷰어댑터
@@ -82,31 +82,16 @@ public class whole_class_list extends AppCompatActivity {
         aClass = (ImageButton)findViewById(R.id.addClass);
 
 
-        //클래스 찾기 기능
-        classSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String ftext = s.toString();
-
-            }
-        });
 
 
         //클래스찾기버튼
         fClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String searchText = classSearch.getText().toString();
+                if(searchText.length()>0){
+                    search(searchText);
+                }
             }
         });
 
