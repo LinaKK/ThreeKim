@@ -113,12 +113,11 @@ public class whole_class_list extends AppCompatActivity {
                 ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
                         //내부클래스 액티비티에 값 넘겨주기
+                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
                        Intent intent = new Intent(getApplicationContext(),InClass.class);
                        intent.putExtra("name",names);
                        startActivity(intent);
-                        //dialog.dismiss();
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
