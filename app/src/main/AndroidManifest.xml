@@ -27,6 +27,7 @@
         <activity android:name=".InClass" />
         <activity android:name=".Sign_Request" />
         <activity android:name=".Login_Request" />
+        <activity android:name=".ValidateRequest"/>
         <activity android:name=".whole_class_list" />
         <activity android:name=".Sign" />
         <activity android:name=".Login" />

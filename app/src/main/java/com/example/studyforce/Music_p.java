@@ -43,15 +43,15 @@ public class Music_p extends AppCompatActivity {
             }
         });
 
-/*
+
         //풀벌레
         m_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(getApplicationContext(),m_service.class));
+                startService(new Intent(getApplicationContext(),m_night.class));
             }
         });
-
+/*
         //시냇물
         m_3.setOnClickListener(new View.OnClickListener(){
             @Override

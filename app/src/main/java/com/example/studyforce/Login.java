@@ -2,8 +2,11 @@ package com.example.studyforce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,12 +26,15 @@ public class Login extends AppCompatActivity {
     private String aId,aPw;
     private Button btn_lo,btn_sign;
 
+    private SharedPreferences appData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        //설정값 불러오기
+        appData =getSharedPreferences("appData", MODE_PRIVATE);
 
         et_id = findViewById(R.id.et_id);
         et_pw = findViewById(R.id.et_pw);
@@ -88,5 +94,19 @@ public class Login extends AppCompatActivity {
 
     }
 
+    //https://vvh-avv.tistory.com/127
+    //SharedPreferences.setAttribute(getContext(), "Uid", Uid.getText().toString());
+    //설정값 저장
+   public static void setAttribute(Context context, String key, String value) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor =prefs.edit();
+        editor.putString(key, value);
+        editor.commit();
+   }
+   //설정 값 읽기
+    public static String getAttribute(Context context, String key){
+        SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(key, null);
+    }
 
 }
