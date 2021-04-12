@@ -16,7 +16,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.ScatterChart;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,20 +35,23 @@ public class InClass extends AppCompatActivity {
     private TextView subject;
     private TextView goal;
     private ListView shortNoticeList;
-    private ArrayList noticetitle;
-    //private noticeList nolist = new noticeList();
+    private ArrayList Notice;
+    private static noticeList[] nList;
+    private static String nolist[];//notice
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class);
         classname = (TextView) findViewById(R.id.InClassName);
-        sendRequest1();
+
+        //sendRequest1();
         sendRequest2();
+
+       // processResponse();
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
-        ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                noticetitle);//noticeTitle로 교체
-        shortNoticeList.setAdapter(adapterNotice);
+
+
 
 
 
@@ -119,14 +125,46 @@ public class InClass extends AppCompatActivity {
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
-        String url = "http://118.33.132.221/php/noticeTitle.php";
+        String url = "http://118.33.132.221/php/noticeList.php";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        processResponse(response);
+                       // processResponse(response);
+                       // classname.setText(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            nList = new noticeList[jsonObject.length()];
+                            String title = jsonObject.getString("title");
+                            classname.setText(title);
+
+                            /*for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int noticenum = jsonObject.getInt("noticenum");
+                                int num = jsonObject.getInt("num");
+                                String classname = jsonObject.getString("classname");
+                                String title = jsonObject.getString("title");
+                                String notice = jsonObject.getString("notice");
+                                nList[i].noticenum = noticenum;
+                                nList[i].num = num;
+                                nList[i].classname = classname;
+                                nList[i].title = title;
+                                nList[i].notice = notice;
+                                if (i+1 == jsonArray.length()) processResponse(nList.length);
+                            }*/
+                            //classname.setText(nList[1].title);
+
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                        /*Gson gson = new Gson();
+                        noticeList noticelist = gson.fromJson(response, noticeList.class);
+                        getnotice g = new getnotice();
+                        classname.setText();*/
+                        //classname.setText(noticelist.title.toString());
                     }
 
                 },
@@ -141,21 +179,27 @@ public class InClass extends AppCompatActivity {
         AppHelper.requestQueue.add(request);
     }
 
-    public void processResponse(String response){
-        Gson gson = new Gson();
+    public void processResponse(int k){
+        nolist = new String[k];
+        for(int i=0; i<nList.length; i++){
+            nolist[i] = nList[i].title;
+        }
+        ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                nolist);
+        shortNoticeList.setAdapter(adapterNotice);
+        /*Gson gson = new Gson();
         noticeList noticelist = gson.fromJson(response, noticeList.class);
         if (noticelist != null){
-            ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                    noticetitle);//noticeTitle로 교체
-            shortNoticeList.setAdapter(adapterNotice);
-           /* int countNotice = noticelist.noticelist.size();
+            int i=0;*
+           // classname.setText(noticelist.titlelist.get(i).toString());
+            /*int countNotice = noticelist.titlelist.size();
 
             getnotice g = new getnotice();
             for(int i =0; i<countNotice; i++){
-                noticetitle.add(g.title);
+                noticetitle.add(noticelist.titlelist);
             }*/
 
-        }
+       // }
     }
 
 
