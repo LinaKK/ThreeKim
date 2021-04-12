@@ -33,17 +33,21 @@ public class InClass extends AppCompatActivity {
     private TextView goal;
     private ListView shortNoticeList;
     private ArrayList noticetitle;
+    //private noticeList nolist = new noticeList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class);
         classname = (TextView) findViewById(R.id.InClassName);
-        /*shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
+        sendRequest1();
+        sendRequest2();
+        shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 noticetitle);//noticeTitle로 교체
-        shortNoticeList.setAdapter(adapterNotice);*/
-        sendRequest1();
+        shortNoticeList.setAdapter(adapterNotice);
+
+
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
@@ -115,9 +119,10 @@ public class InClass extends AppCompatActivity {
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
+        String url = "http://118.33.132.221/php/noticeTitle.php";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
-                AppHelper.url,
+                url ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -140,12 +145,15 @@ public class InClass extends AppCompatActivity {
         Gson gson = new Gson();
         noticeList noticelist = gson.fromJson(response, noticeList.class);
         if (noticelist != null){
-            int countNotice = noticelist.noticelist.size();
+            ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                    noticetitle);//noticeTitle로 교체
+            shortNoticeList.setAdapter(adapterNotice);
+           /* int countNotice = noticelist.noticelist.size();
 
             getnotice g = new getnotice();
             for(int i =0; i<countNotice; i++){
                 noticetitle.add(g.title);
-            }
+            }*/
 
         }
     }
