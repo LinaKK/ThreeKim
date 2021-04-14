@@ -38,14 +38,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/edge"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:textSize="20dp" />
             <ImageButton
                 android:id="@+id/startDate"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:src="@drawable/calendar"/>
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/edge"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:textSize="20dp" />
 
             <ImageButton
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:src="@drawable/calendar"/>
 
         </LinearLayout>

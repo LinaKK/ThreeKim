@@ -48,6 +48,7 @@ public class ScheduleAdd extends AppCompatActivity {
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             update();
+
         }
     };
 
@@ -59,6 +60,7 @@ public class ScheduleAdd extends AppCompatActivity {
             calendar2.set(Calendar.MONTH, month);
             calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             update2();
+
         }
     };
 
@@ -136,7 +138,6 @@ public class ScheduleAdd extends AppCompatActivity {
         eDay = (TextView)findViewById(R.id.endDay);
         eDay.setText(sdf2.format(calendar2.getTime()));
     }
-
 
 
 }
