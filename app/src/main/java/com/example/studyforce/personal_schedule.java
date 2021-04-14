@@ -10,11 +10,8 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -59,6 +56,8 @@ public class personal_schedule extends AppCompatActivity {
         listView1= (ListView)findViewById(R.id.today_todo);
         listView1.setAdapter(adapter);
 
+        //일정 db에서 가져오기
+
         //일정 예시
         adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
         adapter.notifyDataSetChanged();
@@ -70,7 +69,9 @@ public class personal_schedule extends AppCompatActivity {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
-                ad.setMessage("그날의 할일");
+                //setCont에서 날짜 비교해서 일치하는 날짜의 일정만 출력
+                String cont = setCont(date.getYear(), (date.getMonth()+1),date.getDay());
+                ad.setMessage("그 날의 할일");
 
                 ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
@@ -89,6 +90,12 @@ public class personal_schedule extends AppCompatActivity {
     public void date_add(View view) {
         Intent intent = new Intent(this, ScheduleAdd.class);
         startActivity(intent);
+    }
+
+    //날짜알림창에 넣을 내용
+    String setCont(int year, int month, int day){
+
+        return null;
     }
 
 

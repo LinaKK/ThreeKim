@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,12 +38,12 @@ public class ScheduleAdd extends AppCompatActivity {
     public String content;
     //public int startD;
     //public String endD;
-    public int startY;
-    public int startM;
-    public int startD;
-    public int endY;
-    public int endM;
-    public int endD;
+    public String startY;
+    public String startM;
+    public String startD;
+    public String endY;
+    public String endM;
+    public String endD;
 
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -119,13 +120,16 @@ public class ScheduleAdd extends AppCompatActivity {
                 //값 가져오기
                 title = scheduleTitle.getText().toString();
                 content = scheduleCon.getText().toString();
-                startY = Integer.parseInt(sDay_Y.getText().toString());
-                startM = Integer.parseInt(sDay_M.getText().toString());
-                startD = Integer.parseInt(sDay_D.getText().toString());
-                endY = Integer.parseInt(eDay_Y.getText().toString());
-                endM = Integer.parseInt(eDay_M.getText().toString());
-                endD = Integer.parseInt(eDay_D.getText().toString());
 
+                startY = sDay_Y.getText().toString();
+                startM = sDay_M.getText().toString();
+                startD = sDay_D.getText().toString();
+                endY = eDay_Y.getText().toString();
+                endM = eDay_M.getText().toString();
+                endD = eDay_D.getText().toString();
+
+                //확인용
+                 Toast.makeText(getApplicationContext(), startY+startM+startD, Toast.LENGTH_SHORT).show();
                 //값 php로 보내기
 
 
