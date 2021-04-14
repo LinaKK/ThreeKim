@@ -26,8 +26,12 @@ public class ScheduleAdd extends AppCompatActivity {
     Button add;
     ImageButton sDate;
     ImageButton eDate;
-    TextView sDay;
-    TextView eDay;
+    TextView sDay_Y;
+    TextView sDay_M;
+    TextView sDay_D;
+    TextView eDay_Y;
+    TextView eDay_M;
+    TextView eDay_D;
 
     public String title;
     public String content;
@@ -48,6 +52,8 @@ public class ScheduleAdd extends AppCompatActivity {
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             update();
+            updateM();
+            updateD();
 
         }
     };
@@ -60,6 +66,8 @@ public class ScheduleAdd extends AppCompatActivity {
             calendar2.set(Calendar.MONTH, month);
             calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             update2();
+            update2M();
+            update2D();
 
         }
     };
@@ -76,8 +84,12 @@ public class ScheduleAdd extends AppCompatActivity {
         add = (Button)findViewById(R.id.scheduleAdd);
         sDate = (ImageButton)findViewById(R.id.startDate);
         eDate = (ImageButton)findViewById(R.id.endDate);
-        sDay = (TextView)findViewById(R.id.startDay);
-        eDay = (TextView)findViewById(R.id.endDay);
+        sDay_Y = (TextView)findViewById(R.id.startDay);
+        sDay_M =(TextView)findViewById(R.id.startDay_month);
+        sDay_D =(TextView)findViewById(R.id.startDay_day);
+        eDay_Y = (TextView)findViewById(R.id.endDay);
+        eDay_M = (TextView)findViewById(R.id.endDay_month);
+        eDay_D = (TextView)findViewById(R.id.endDay_day);
 
 
 
@@ -107,8 +119,12 @@ public class ScheduleAdd extends AppCompatActivity {
                 //값 가져오기
                 title = scheduleTitle.getText().toString();
                 content = scheduleCon.getText().toString();
-
-
+                startY = Integer.parseInt(sDay_Y.getText().toString());
+                startM = Integer.parseInt(sDay_M.getText().toString());
+                startD = Integer.parseInt(sDay_D.getText().toString());
+                endY = Integer.parseInt(eDay_Y.getText().toString());
+                endM = Integer.parseInt(eDay_M.getText().toString());
+                endD = Integer.parseInt(eDay_D.getText().toString());
 
                 //값 php로 보내기
 
@@ -126,17 +142,41 @@ public class ScheduleAdd extends AppCompatActivity {
     }
 
     void update(){
-        String myFormat = " yyyy/MM/dd";
+        String myFormat = " yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
-        sDay = (TextView)findViewById(R.id.startDay);
-        sDay.setText(sdf.format(calendar.getTime()));
+        sDay_Y = (TextView)findViewById(R.id.startDay);
+        sDay_Y.setText(sdf.format(calendar.getTime()));
+    }
+    void updateM(){
+        String myFormat = " MM";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+        sDay_M =(TextView)findViewById(R.id.startDay_month);
+        sDay_M.setText(sdf.format(calendar.getTime()));
+    }
+    void updateD(){
+        String myFormat = " dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+        sDay_D = (TextView)findViewById(R.id.startDay_day);
+        sDay_D.setText(sdf.format(calendar.getTime()));
     }
 
     void update2(){
-        String myFormat = " yyyy/MM/dd";
+        String myFormat = " yyyy";
         SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
-        eDay = (TextView)findViewById(R.id.endDay);
-        eDay.setText(sdf2.format(calendar2.getTime()));
+        eDay_Y = (TextView)findViewById(R.id.endDay);
+        eDay_Y.setText(sdf2.format(calendar2.getTime()));
+    }
+    void update2M(){
+        String myFormat = " MM";
+        SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
+        eDay_M = (TextView)findViewById(R.id.endDay_month);
+        eDay_M.setText(sdf2.format(calendar2.getTime()));
+    }
+    void update2D(){
+        String myFormat = " dd";
+        SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
+        eDay_D = (TextView)findViewById(R.id.endDay_day);
+        eDay_D.setText(sdf2.format(calendar2.getTime()));
     }
 
 

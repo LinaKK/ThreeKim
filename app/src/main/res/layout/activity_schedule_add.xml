@@ -38,8 +38,23 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/edge"
-                android:layout_weight="2.5"
+                android:layout_weight="1"
                 android:textSize="20dp" />
+            <TextView
+                android:id="@+id/startDay_month"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/edge"
+                android:layout_height="match_parent"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/startDay_day"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/edge"
+                android:layout_height="match_parent"
+                android:textSize="20dp" />
+
             <ImageButton
                 android:id="@+id/startDate"
                 android:layout_width="0dp"
@@ -66,7 +81,21 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/edge"
-                android:layout_weight="2.5"
+                android:layout_weight="1"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/endDay_month"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/edge"
+                android:layout_height="match_parent"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/endDay_day"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/edge"
+                android:layout_height="match_parent"
                 android:textSize="20dp" />
 
             <ImageButton
