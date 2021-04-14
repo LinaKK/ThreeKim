@@ -31,8 +31,14 @@ public class ScheduleAdd extends AppCompatActivity {
 
     public String title;
     public String content;
-    public String startD;
-    public String endD;
+    //public int startD;
+    //public String endD;
+    public int startY;
+    public int startM;
+    public int startD;
+    public int endY;
+    public int endM;
+    public int endD;
 
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -99,8 +105,8 @@ public class ScheduleAdd extends AppCompatActivity {
                 //값 가져오기
                 title = scheduleTitle.getText().toString();
                 content = scheduleCon.getText().toString();
-                startD = sDay.getText().toString();
-                endD = eDay.getText().toString();
+
+
 
                 //값 php로 보내기
 
