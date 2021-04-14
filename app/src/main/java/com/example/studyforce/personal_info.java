@@ -39,7 +39,5 @@ public class personal_info extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }
