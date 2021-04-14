@@ -1,5 +1,3 @@
-//전체 클래스 리스트뷰에 쓰일 어댑터뷰
-
 package com.example.studyforce;
 
 import android.content.Context;
@@ -13,15 +11,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-//ListViewItem == ClassJob
-//classLIstAdapter1 == listViewitemList
-public class ClassLIstAdapter1 extends BaseAdapter implements  Filterable{
-    private ArrayList<ClassJob> listViewItemList = new ArrayList<ClassJob>() ;
-    private ArrayList<ClassJob> filteredItemList = listViewItemList ;
+public class ClassListAdapter extends BaseAdapter implements Filterable {
+    private ArrayList<ClassJob> listViewItemList = new ArrayList<ClassJob>();
+    private ArrayList<ClassJob> filteredItemList = listViewItemList;
 
     Filter listFilter ;
 
-    public ClassLIstAdapter1() {
+    public ClassListAdapter(){
+
     }
 
     @Override
@@ -44,7 +41,7 @@ public class ClassLIstAdapter1 extends BaseAdapter implements  Filterable{
         final int pos = position;
         final Context context = parent.getContext();
 
-        // "listview_item" Layout을 inflate하여 convertView 참조 획득.
+
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.activity_class_list, parent, false);
@@ -60,7 +57,9 @@ public class ClassLIstAdapter1 extends BaseAdapter implements  Filterable{
         TextView text4 = (TextView) convertView.findViewById(R.id.class_open);
 
 
+
         ClassJob classJob = filteredItemList.get(position);
+
 
         text1.setText(classJob.getTitle());
         text2.setText(classJob.getNumber());
@@ -116,17 +115,18 @@ public class ClassLIstAdapter1 extends BaseAdapter implements  Filterable{
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
             // update listview by filtered data list.
             filteredItemList = (ArrayList<ClassJob>) results.values ;
 
             // notify
             if (results.count > 0) {
-                notifyDataSetChanged() ;
+                notifyDataSetChanged();
             } else {
                 notifyDataSetInvalidated() ;
             }
         }
     }
-}
 
+
+
+}

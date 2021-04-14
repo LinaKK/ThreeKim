@@ -35,9 +35,8 @@ import java.util.Locale;
 public class whole_class_list extends AppCompatActivity {
 
     String[] mClass = {"학생", "교수"};
-    //EditText classSearch; //검색어를 입력할 창
     ListView listView1 = null;  //전체리스트뷰
-    ClassLIstAdapter1 adapter;
+    ClassListAdapter adapter;
 
     private String jobs = "학생";
 
@@ -53,7 +52,7 @@ public class whole_class_list extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         //어댑터 생성
-        adapter = new ClassLIstAdapter1();
+        adapter = new ClassListAdapter();
 
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
@@ -71,7 +70,7 @@ public class whole_class_list extends AppCompatActivity {
 
         //adapter.notifyDataSetChanged();
 
-        fClass = (ImageButton)findViewById(R.id.findClass);
+        //fClass = (ImageButton)findViewById(R.id.findClass);
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
 
@@ -97,7 +96,7 @@ public class whole_class_list extends AppCompatActivity {
         });
 
         //클래스추가버튼
-        aClass.setOnClickListener(new View.OnClickListener() {
+       aClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(jobs == mClass[0]){ //학생일때
@@ -137,7 +136,6 @@ public class whole_class_list extends AppCompatActivity {
                 ad.show();
             }
         });
-        //리스트뷰 초기화
 
     }
     //키보드
