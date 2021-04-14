@@ -45,6 +45,7 @@ public class ScheduleAdd extends AppCompatActivity {
     public String endM;
     public String endD;
 
+    //시작날짜용
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -59,6 +60,7 @@ public class ScheduleAdd extends AppCompatActivity {
         }
     };
 
+    //종료날짜용
     Calendar calendar2 = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker2 = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -120,7 +122,7 @@ public class ScheduleAdd extends AppCompatActivity {
                 //값 가져오기
                 title = scheduleTitle.getText().toString();
                 content = scheduleCon.getText().toString();
-
+                //string -> int로 변경 예정
                 startY = sDay_Y.getText().toString();
                 startM = sDay_M.getText().toString();
                 startD = sDay_D.getText().toString();
@@ -128,7 +130,7 @@ public class ScheduleAdd extends AppCompatActivity {
                 endM = eDay_M.getText().toString();
                 endD = eDay_D.getText().toString();
 
-                //확인용
+                //값 잘 가져오는지 확인용
                  Toast.makeText(getApplicationContext(), startY+startM+startD, Toast.LENGTH_SHORT).show();
                 //값 php로 보내기
 
@@ -145,6 +147,7 @@ public class ScheduleAdd extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    //날짜 입력
     void update(){
         String myFormat = " yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);

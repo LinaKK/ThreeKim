@@ -15,7 +15,6 @@
         <activity android:name=".study_time" />
         <activity android:name=".Music_p" />
         <activity android:name=".ScheduleAdd" />
-        <activity android:name=".Study_function" />
         <activity android:name=".detailQ" />
         <activity android:name=".Q" />
         <activity android:name=".qnaList" />

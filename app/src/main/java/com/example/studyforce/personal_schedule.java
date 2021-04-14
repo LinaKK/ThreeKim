@@ -52,7 +52,7 @@ public class personal_schedule extends AppCompatActivity {
 
         //어댑터 생성
         adapter = new ScheduleAdapter();
-
+        //리스트뷰에 어댑터 삽입
         listView1= (ListView)findViewById(R.id.today_todo);
         listView1.setAdapter(adapter);
 
