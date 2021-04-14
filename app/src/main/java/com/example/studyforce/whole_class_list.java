@@ -40,7 +40,6 @@ public class whole_class_list extends AppCompatActivity {
 
     private String jobs = "학생";
 
-    ImageButton fClass;
     ImageButton aClass;
 
     @Override
@@ -66,6 +65,7 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("Cba", "10명", "전공","공개");
         adapter.addItem("java", "4명", "전공","공개");
         adapter.addItem("C++", "45명", "전공","공개");
+        adapter.addItem("elephant", "9명", "전공","공개");
 
 
         //adapter.notifyDataSetChanged();

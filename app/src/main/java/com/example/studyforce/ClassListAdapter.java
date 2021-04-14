@@ -126,7 +126,4 @@ public class ClassListAdapter extends BaseAdapter implements Filterable {
             }
         }
     }
-
-
-
 }
