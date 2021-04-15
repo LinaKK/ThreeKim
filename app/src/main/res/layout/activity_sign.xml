@@ -87,6 +87,17 @@
         android:layout_marginTop="30dp"
         android:text="가입하기"/>
 
+    <!-- Link to Login Screen -->
+    <Button
+        android:id="@+id/btnLoginScreen"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="btn_link_to_login"
+        android:textAllCaps="false"
+        android:textSize="15dp" />
+
+
     <TextView
         android:layout_gravity="center"
         android:layout_width="wrap_content"

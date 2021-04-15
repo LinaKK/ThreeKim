@@ -32,8 +32,8 @@ public class Login_Request extends StringRequest {
         return map;
     }
 
-    /*//값을 넘겨줄 때
-    public static Context context_login;
+    //값을 넘겨줄 때
+    /*public static Context context_login;
     public int userid1;
 
     @Override
@@ -41,6 +41,6 @@ public class Login_Request extends StringRequest {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__request);
 
-        context_login = this;
-    }*/
+        context_login = this;*/
+    }
 }

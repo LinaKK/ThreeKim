@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
     //https://vvh-avv.tistory.com/127
     //SharedPreferences.setAttribute(getContext(), "Uid", Uid.getText().toString());
     //설정값 저장
-   public static void setAttribute(Context context, String key, String value) {
+   /*public static void setAttribute(Context context, String key, String value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor =prefs.edit();
         editor.putString(key, value);
@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity {
    //설정 값 읽기
     public static String getAttribute(Context context, String key){
         SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(key, null);
+        return prefs.getString(key, null);*/
     }
 
 }

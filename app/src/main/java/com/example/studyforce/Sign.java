@@ -1,29 +1,38 @@
 package com.example.studyforce;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
+//import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+//import com.example.studyforce.PHPComm;
+//import okhttp3.MediaType;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class Sign extends AppCompatActivity {
 
+    private static final String TAG =Sign.class.getSimpleName();
     private EditText si_n, si_id, si_pw,si_email;
-    private Button btn1_sign, btn1_idc;
+    private Button btn1_sign, btn1_idc, btnLogin;
     private AlertDialog dialog;
-    private boolean validate = false; //학번 중복체크 기능
+    private String userID; //sharedPreferences 저장하기 위한 전역변수
+
+    public static final MediaType JSON =MediaType.parse("application/json; charset=utf-8");
+    public SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,101 +40,102 @@ public class Sign extends AppCompatActivity {
         setContentView(R.layout.activity_sign);
 
         //값찾기 이름,학번,비번
-        si_n = findViewById(R.id.si_n);
-        si_id = findViewById(R.id.si_id);
-        si_pw = findViewById(R.id.si_pw);
-        si_email = findViewById(R.id.si_email);
+        si_n = (EditText) findViewById(R.id.si_n);
+        si_id = (EditText)findViewById(R.id.si_id);
+        si_pw = (EditText)findViewById(R.id.si_pw);
+        si_email = (EditText)findViewById(R.id.si_email);
 
-        btn1_sign = findViewById(R.id.btn1_sign);
-        btn1_idc = findViewById(R.id.btn1_idc);
+        btn1_sign = (Button) findViewById(R.id.btn1_sign);
+        btn1_idc = (Button) findViewById(R.id.btn1_idc);
+        btnLogin = (Button) findViewById(R.id.btnLoginScreen);
 
-        /*
-        btn1_sign.setOnClickListener(new View.OnClickListener(){
 
-            @Override
+        //회원가입버튼
+        btn1_sign.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                final String Uname = si_n.getText().toString();
-                final String Uid = si_id.getText().toString();
-                final String Upw = si_pw.getText().toString();
-                final String Uemail = si_email.getText().toString();
+                String Uname = si_n.getText().toString().trim();
+                String Uid = si_id.getText().toString().trim();
+                userID = Uid;
+                String Upw = si_pw.getText().toString().trim();
+                String Uemail = si_email.getText().toString().trim();
 
-                //아이디 중복체크
-                if(!validate){
-                    AlertDialog.Builder builder =new AlertDialog.Builder(Sign.this);
-                    dialog =builder.setMessage("중복된 학번인지 확인하여주십시오.").setNegativeButton("확인",null).create();
-                    dialog.show();
-                    return;
+                //입력안할 시
+                if (!Uname.isEmpty() && !Uid.isEmpty() && !Upw.isEmpty() && !Uemail.isEmpty()) {
+                    registerUser(Uname, Uid, Upw, Uemail);
+                } else {
+                    Toast.makeText(getApplicationContext(), "빈칸없이 입력해주세요!", Toast.LENGTH_LONG).show();
                 }
-
-                //빈칸이 있을 시시
-            }
-       });
-
-        btn1_idc.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String Uid = si_id.getText().toString();
-                if (validate) {
-                    return; //중복체크 완료
-                }
-                if (Uid.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Sign.this);
-                    dialog = builder.setMessage("ID가 빈칸입니다.")
-                            .setPositiveButton("확인", null)
-                            .create();
-                    dialog.show();
-                    return;
-
-                }
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Sign.this);
-                                dialog = builder.setMessage("사용 가능한 ID입니다.")
-                                        .setPositiveButton("확인", null)
-                                        .create();
-                                dialog.show();
-                                si_id.setEnabled(false);
-                                validate = true;
-                                btn1_idc.setText("확인");
-
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Sign_Request.this);
-                                dialog = builder.setMessage(" 사용 불가능한 ID 입니다.")
-                                        .setNegativeButton("확인", null)
-                                        .create();
-                                dialog.show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }; // 이해필요..
-                ValidateRequest validateRequest = new ValidateRequest(Uid, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(Sign_Request.this);
-                queue.add(validateRequest);
             }
         });
 
-        //회원가입버튼 눌렀을 때
-        btn1_sign.setOnClickListener(new View.OnClickListener(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent =new Intent (Sign.this,personal_page.class);
-                startActivity(intent);
-
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
             }
-        }); */
-
-
-        }
-
-
-        //추가할 것: 중복체크 보안v, 서버 연동 후 이름 체크, 회원가입누르면 화면전환(로그인)
+        });
 
     }
+
+                //값전달
+                private void registerUser(String Uname, String userID, String Uid, String Upw, String Uemail){
+                    Uri.Builder builder =new Uri.Builder()
+                            .appendQueryParameter("Uname", Uname)
+                            .appendQueryParameter("userID", userID)
+                            .appendQueryParameter("Uid", Uid)
+                            .appendQueryParameter("Upw", Upw)
+                            .appendQueryParameter("Uemail", Uemail);
+                    String urlParameters =builder.build().getEncodedQuery();
+                    new getJSONData().execute(Value.IPADDRESS + "/Sign.php", urlParameters);
+                }
+                private class getJSONData extends AsyncTask<String, Void, String>{
+                    ProgressDialog pdLoading =new ProgressDialog(Sign.this);
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        pdLoading.setMessage("\t회원가입 처리중");
+                        pdLoading.setCancelable(false);
+                        pdLoading.show();
+                    }
+
+                    @Override
+                    //링크참조해서 클래스 생성해야하나?
+                    protected String doInBackground(String... params){
+                        try {
+                            return PHPComm.getJson(params[0], params[1]);
+                        }catch (Exception e){
+                            return new String("Exception" +e.getMessage());
+                        }
+                    }
+
+                    protected void onPostExecute(String result){
+                    pdLoading.dismiss();
+                    showJSONResult(result);
+                    }
+                }
+
+                    protected void showJSONResult(String result){
+                        if(result.equalsIgnoreCase("1")) {
+                            Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show();
+                            storeUserData();
+                            startActivity(new Intent(getApplicationContext(), Login.class));
+                            finish();
+                        } else if (result.equalsIgnoreCase("-1")) {
+                            Toast.makeText(this, "아이디가 이미 가입되어 있습니다", Toast.LENGTH_SHORT).show();
+                            si_id.clearFocus();
+                        }else {
+                            Toast.makeText(this, "회원 등록에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    private void storeUserData(){
+                        settings =getSharedPreferences("settings", Activity.MODE_PRIVATE);
+                        SharedPreferences.Editor editor =settings.edit();
+                        editor.putString("userID",userID);
+                        editor.putBoolean("autologin", true);
+                        editor.commit();
+                    }
+                }
 
