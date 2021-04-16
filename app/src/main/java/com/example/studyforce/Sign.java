@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //import com.example.studyforce.PHPComm;
-//import okhttp3.MediaType;
+import okhttp3.MediaType;
 
 
 
@@ -79,11 +79,11 @@ public class Sign extends AppCompatActivity {
     }
 
                 //값전달
-                private void registerUser(String Uname, String userID, String Uid, String Upw, String Uemail){
+                private void registerUser(String Uname, String userID, String Upw, String Uemail){
                     Uri.Builder builder =new Uri.Builder()
                             .appendQueryParameter("Uname", Uname)
                             .appendQueryParameter("userID", userID)
-                            .appendQueryParameter("Uid", Uid)
+                            .appendQueryParameter("Uid", userID)
                             .appendQueryParameter("Upw", Upw)
                             .appendQueryParameter("Uemail", Uemail);
                     String urlParameters =builder.build().getEncodedQuery();
