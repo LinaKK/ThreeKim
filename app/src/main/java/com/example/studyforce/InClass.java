@@ -43,6 +43,7 @@ public class InClass extends AppCompatActivity {
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
     private static String nolist[];//notice
+    private static String cTodo[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class InClass extends AppCompatActivity {
         classname.setText(intent.getStringExtra("name"));
         //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
-        // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지??
+        // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
     }
 
@@ -193,7 +194,7 @@ public class InClass extends AppCompatActivity {
         if (AppHelper.requestQueue == null) {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-        String url = "http://118.33.132.221/php/todoList.php";
+        String url = "http://118.33.132.221/php/classtodo.php";
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -211,12 +212,10 @@ public class InClass extends AppCompatActivity {
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int noticeNum = jsonObject.getInt("noticenum");
-                                String className = jsonObject.getString("classname");
                                 int num = jsonObject.getInt("num");
-                                String title = jsonObject.getString("title");
-                                String notice = jsonObject.getString("notice");
-                                nList[i] = new noticeList(noticeNum, num, className, title, notice);
+                                String name = jsonObject.getString("name");
+                                String classtodo = jsonObject.getString("classtodo");
+                                cTodoList[i] = new classTodo(num, classtodo, name);
 
 
                             }
