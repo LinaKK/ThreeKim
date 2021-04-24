@@ -160,7 +160,6 @@ public class study_time extends AppCompatActivity {
                         TimerStart.setText("시작");
                         studytimer_time.setText("00:00:00");
                         mStatus = IDLE;
-
                         break;
 
                     case PAUSE://여기서는 초기화버튼이 됨
