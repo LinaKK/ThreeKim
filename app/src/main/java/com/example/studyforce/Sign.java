@@ -51,7 +51,7 @@ public class Sign extends AppCompatActivity {
 
 
         //회원가입버튼
-        btn1_sign.setOnClickListener(new View.OnClickListener() {
+          btn1_sign.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String Uname = si_n.getText().toString().trim();
                 String Uid = si_id.getText().toString().trim();
@@ -79,7 +79,7 @@ public class Sign extends AppCompatActivity {
     }
 
                 //값전달
-                private void registerUser(String Uname, String userID, String Upw, String Uemail){
+             private void registerUser(String Uname, String userID, String Upw, String Uemail){
                     Uri.Builder builder =new Uri.Builder()
                             .appendQueryParameter("Uname", Uname)
                             .appendQueryParameter("userID", userID)
@@ -138,4 +138,6 @@ public class Sign extends AppCompatActivity {
                         editor.commit();
                     }
                 }
+
+
 

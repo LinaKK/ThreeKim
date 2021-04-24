@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 
 
-public class Login extends AppCompatActivity {
+  public class Login extends AppCompatActivity {
     private EditText et_id,et_pw;
     private String aId,aPw;
     private Button btn_lo,btn_sign;
@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
         });
 
 
-        /*
+
         //로그인버튼
         btn_lo.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity {
                 RequestQueue queue= Volley.newRequestQueue(Login.this);
                 queue.add(loginRequest);
             }
-        }); */
+        });
 
     }
 
@@ -106,7 +106,5 @@ public class Login extends AppCompatActivity {
    //설정 값 읽기
     public static String getAttribute(Context context, String key){
         SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(key, null);*/
-    }
+        return prefs.getString(key, null);}*/
 
-}

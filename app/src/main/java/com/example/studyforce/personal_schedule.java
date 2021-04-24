@@ -42,6 +42,16 @@ public class personal_schedule extends AppCompatActivity {
     SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
     String getTime;
 
+    int id2;
+    int sDay;
+    int sMonth;
+    int sYear;
+    int eDay;
+    int eMonth;
+    int eYear;
+    String schTitle;
+    String schCont;
+
     private ListView listView1;  //리스트뷰
     private ScheduleAdapter adapter; //리스트뷰어댑터
 
@@ -74,8 +84,12 @@ public class personal_schedule extends AppCompatActivity {
         //sendRequest();
 
         //일정 예시
-        adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
+        adapter.addItem("과제1","2021/"+"04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
         adapter.notifyDataSetChanged();
+
+        /*
+        adapter.addItem(schTitle, sDay+"/"+sMonth+"/"+sYear, eDay+"/"+eMonth+"/"+eYear, schCont);
+         */
 
 
         //날짜 선택 시 팝업창 띄우기
@@ -104,15 +118,15 @@ public class personal_schedule extends AppCompatActivity {
     /*
     //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
      JSONObject jsonObject = jsonArray.getJSONObject(i);
-     int id2 = jsonObject.getInt("id");
-     int sDay = jsonObject.getInt("s_day");
-     int sMonth = jsonObject.getInt("s_month");
-     int sYear = jsonObject.getInt("s_year");
-     int eDay = jsonObject.getInt("e_day");
-     int eMonth = jsonObject.getInt("e_month");
-     int eYear = jsonObject.getInt("e_year");
-     String schTitle = jsonObject.getString("title");
-     String schCont = jsonObject.getString("cont");
+     id2 = jsonObject.getInt("id");
+     sDay = jsonObject.getInt("s_day");
+     sMonth = jsonObject.getInt("s_month");
+     sYear = jsonObject.getInt("s_year");
+     eDay = jsonObject.getInt("e_day");
+     eMonth = jsonObject.getInt("e_month");
+     eYear = jsonObject.getInt("e_year");
+     schTitle = jsonObject.getString("title");
+     schCont = jsonObject.getString("cont");
      */
 
 

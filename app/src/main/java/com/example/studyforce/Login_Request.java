@@ -41,6 +41,6 @@ public class Login_Request extends StringRequest {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__request);
 
-        context_login = this;*/
-    }
+        context_login = this; }*/
+
 }
