@@ -102,7 +102,17 @@ public class personal_schedule extends AppCompatActivity {
     }
     //일정 db에서 가져오기(시작날짜, 종료날짜, 제목, 내용)
     /*
-    num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
+    //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
+     JSONObject jsonObject = jsonArray.getJSONObject(i);
+     int id2 = jsonObject.getInt("id");
+     int sDay = jsonObject.getInt("s_day");
+     int sMonth = jsonObject.getInt("s_month");
+     int sYear = jsonObject.getInt("s_year");
+     int eDay = jsonObject.getInt("e_day");
+     int eMonth = jsonObject.getInt("e_month");
+     int eYear = jsonObject.getInt("e_year");
+     String schTitle = jsonObject.getString("title");
+     String schCont = jsonObject.getString("cont");
      */
 
 

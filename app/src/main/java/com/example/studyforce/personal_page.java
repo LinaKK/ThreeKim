@@ -42,11 +42,14 @@ public class personal_page extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
 
 
-        //로그인 성공시 받아올 학번
+        //로그인 성공시 받아올 학번(Login_Request 성공시 학번만 받아오기)
+        /*
         //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
+        String username = jsonObject.getString("name"); //'pinfo'테이블
+         */
+
 
         //학번->이름으로 연결(data연결)
-
         info = (ImageButton)findViewById(R.id.userinfo);
         schedule = (ImageButton)findViewById(R.id.schedule);
         myclass = (ImageButton)findViewById(R.id.userclasses);

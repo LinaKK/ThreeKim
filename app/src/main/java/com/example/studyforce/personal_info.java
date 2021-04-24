@@ -26,6 +26,12 @@ public class personal_info extends AppCompatActivity {
 
         //로그인 성공시 받아올 학번
         //int userid3 = ((Login_Request)Login_Request.context_login).userid1;
+        /*
+         String username = jsonObject.getString("name"); //'pinfo'테이블
+         String usermail = jsonObject.getString("email"); //'pinfo'테이블
+         int userid = jsonObject.getint("num"); //'pinfo'테이블
+         */
+
 
         uname = findViewById(R.id.uname);
         uid = findViewById(R.id.uid);
