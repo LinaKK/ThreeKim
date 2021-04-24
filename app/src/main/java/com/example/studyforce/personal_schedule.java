@@ -10,15 +10,29 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import static java.sql.DriverManager.println;
 
 public class personal_schedule extends AppCompatActivity {
 
@@ -30,6 +44,7 @@ public class personal_schedule extends AppCompatActivity {
 
     private ListView listView1;  //리스트뷰
     private ScheduleAdapter adapter; //리스트뷰어댑터
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +71,7 @@ public class personal_schedule extends AppCompatActivity {
         listView1= (ListView)findViewById(R.id.today_todo);
         listView1.setAdapter(adapter);
 
-        //일정 db에서 가져오기
+        //sendRequest();
 
         //일정 예시
         adapter.addItem("과제1","2021/04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
@@ -85,6 +100,8 @@ public class personal_schedule extends AppCompatActivity {
         });
 
     }
+    //일정 db에서 가져오기(시작날짜, 종료날짜, 제목, 내용)
+
 
     //일정 추가이벤트
     public void date_add(View view) {
