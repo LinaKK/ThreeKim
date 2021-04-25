@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 //import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class Sign extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+        ActionBar ac =getSupportActionBar();
+        ac.setTitle("회원가입");
 
         //값찾기 이름,학번,비번
         si_n = (EditText) findViewById(R.id.si_n);
@@ -47,7 +51,12 @@ public class Sign extends AppCompatActivity {
 
         btn1_sign = (Button) findViewById(R.id.btn1_sign);
         btn1_idc = (Button) findViewById(R.id.btn1_idc);
-        btnLogin = (Button) findViewById(R.id.btnLoginScreen);
+        /*btnLogin = (Button) findViewById(R.id.btnLoginScreen);*/
+
+        CheckBox cb1=(CheckBox)findViewById(R.id.chstu);
+        CheckBox cb2=(CheckBox)findViewById(R.id.chpro);
+
+        //체크박스로 둘 나뉘는 이벤트 추가예정
 
 
         //회원가입버튼

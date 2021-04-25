@@ -12,16 +12,36 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:textSize="45sp"
+        android:textSize="35sp"
         android:padding="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         />
 
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="30dp">
+    <CheckBox
+        android:id="@+id/chstu"
+        android:textColor="#808080"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학생"
+        />
+    <CheckBox
+        android:id="@+id/chpro"
+        android:textColor="#808080"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="교수"
+        />
+</LinearLayout>
     <EditText
         android:id="@+id/si_n"
+        android:textcolor="#52a3cc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -49,10 +69,12 @@
 
         <Button
             android:id="@+id/btn1_idc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="85dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
-            android:text="중복체크" />
+            android:background="@drawable/btnbl"
+            android:text="중복체크"
+            android:textColor="#52a3cc" />
     </LinearLayout>
 
     <EditText
@@ -80,14 +102,16 @@
 
 
     <Button
-        android:layout_gravity="center"
         android:id="@+id/btn1_sign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="가입하기"/>
+        android:textColor="@color/white"
+        android:background="@drawable/button_b"
+        android:text="가입하기" />
 
-    <!-- Link to Login Screen -->
+   <!-- &lt;!&ndash; Link to Login Screen &ndash;&gt;
     <Button
         android:id="@+id/btnLoginScreen"
         android:layout_width="fill_parent"
@@ -95,7 +119,7 @@
         android:background="@null"
         android:text="btn_link_to_login"
         android:textAllCaps="false"
-        android:textSize="15dp" />
+        android:textSize="15dp" />-->
 
 
     <TextView
@@ -103,10 +127,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Study for CE"
+
         android:textSize="15sp"
         android:padding="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
-        android:textColor="#808080"
+        android:textColor="#7ea1e5"
         />
 </LinearLayout>
