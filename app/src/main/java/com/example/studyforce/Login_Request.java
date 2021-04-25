@@ -19,8 +19,8 @@ public class Login_Request extends StringRequest {
     final static private String URL ="http://118.33.132.221/php/Login.php";
     private Map<String, String> map;
 
-    public Login_Request(String Uid, String Upw, Response.Listener<String> listener){
-        super(Request.Method.POST, URL, listener, null);
+    public Login_Request(String Uid, String Upw, Response.Listener<String> listener, Response.ErrorListener errorListener){
+        super(Request.Method.POST, URL, listener, errorListener);
 
         map =new HashMap<>();
         map.put("Uid", Uid);
