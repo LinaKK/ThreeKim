@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class personal_page extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class personal_page extends AppCompatActivity {
     ImageButton timer;
     ImageButton schedule;
     ImageButton myclass;
+    TextView Username;
     ImageView mp3;
     Button exit, logout;
 
@@ -41,21 +43,22 @@ public class personal_page extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
 
-
-        //로그인 성공시 받아올 학번(Login_Request 성공시 학번만 받아오기)
-        /*
-        //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
-        String username = jsonObject.getString("name"); //'pinfo'테이블
-         */
-
-
-        //학번->이름으로 연결(data연결)
         info = (ImageButton)findViewById(R.id.userinfo);
         schedule = (ImageButton)findViewById(R.id.schedule);
         myclass = (ImageButton)findViewById(R.id.userclasses);
         timer = (ImageButton)findViewById(R.id.timer);
         exit = (Button)findViewById(R.id.exit);
         logout=(Button)findViewById(R.id.logout);
+        Username = (TextView)findViewById(R.id.username);
+
+        //로그인 성공시 받아올 학번(Login_Request 성공시 학번만 받아오기)
+        /*
+        //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
+        String username = jsonObject.getString("name"); //'pinfo'테이블
+        Username.setText(username);
+         */
+
+
 
         //개인정보
         info.setOnClickListener(new View.OnClickListener() {
