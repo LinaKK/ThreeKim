@@ -37,11 +37,12 @@ import static java.sql.DriverManager.println;
 public class personal_schedule extends AppCompatActivity {
 
     TextView date;
-    long Now;
-    Date Date;
+    long Now = System.currentTimeMillis();;
+    Date Date = new Date(Now);
     SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
     String getTime;
 
+    //db용
     int id2;
     int sDay;
     int sMonth;
@@ -51,6 +52,16 @@ public class personal_schedule extends AppCompatActivity {
     int eYear;
     String schTitle;
     String schCont;
+
+    //현재 일,월, 년도
+    SimpleDateFormat cDay = new SimpleDateFormat("dd");
+    SimpleDateFormat cMonth = new SimpleDateFormat("MM");
+    SimpleDateFormat cYear = new SimpleDateFormat("yyyy");
+    String getDay = cDay.format(Date);
+    String getMonth = cMonth.format(Date);
+    String getYear = cYear.format(Date);
+
+
 
     private ListView listView1;  //리스트뷰
     private ScheduleAdapter adapter; //리스트뷰어댑터
@@ -70,8 +81,8 @@ public class personal_schedule extends AppCompatActivity {
                 new SundayDecorator(), new SaturdayDecorator());
 
         date = (TextView)findViewById(R.id.date);
-        Now = System.currentTimeMillis();
-        Date = new Date(Now);
+        //Now = System.currentTimeMillis();
+        //Date = new Date(Now);
         getTime = cDate.format(Date);
         date.setText(getTime);
 
@@ -85,6 +96,7 @@ public class personal_schedule extends AppCompatActivity {
 
         //일정 예시
         adapter.addItem("과제1","2021/"+"04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
+        //AddItem();
         adapter.notifyDataSetChanged();
 
         /*
@@ -129,6 +141,25 @@ public class personal_schedule extends AppCompatActivity {
      schCont = jsonObject.getString("cont");
      */
 
+    //일정표시리스트뷰 (날짜계산해서 해당 날짜범위의 것만 표시)
+   /* public void AddItem(){
+
+         //어댑터 생성
+        adapter = new ScheduleAdapter();
+        //리스트뷰에 어댑터 삽입
+        listView1= (ListView)findViewById(R.id.today_todo);
+        listView1.setAdapter(adapter);
+
+        if(sYear <= getYear =< eYear){
+        if(sMonth <= getMonth =<eMonth){
+        if(sDay <= getDay =<eDay){
+        //adapter.addItem(schTitle, sYear+"/"+sMonth+"/"+sDay,  eYear+"/"+eMonth+"/"+eDay, schCont);
+        }
+        }
+        }
+
+    }*/
+
 
     //일정 추가이벤트
     public void date_add(View view) {
@@ -145,9 +176,7 @@ public class personal_schedule extends AppCompatActivity {
 
 }
 
-
-
-
+//삭제할 예정
 /*final TextView date = findViewById(R.id.date);
         CalendarView calendarView = findViewById(R.id.calendar);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
