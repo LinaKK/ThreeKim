@@ -2,8 +2,11 @@ package com.example.studyforce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,8 +33,19 @@ public class notice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
-        shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
+        shortNoticeList = (ListView) findViewById(R.id.noticelist);
         sendRequest2();
+
+    }
+
+    public void OnClick(View v){
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.addnotice:
+                intent = new Intent(this, addNotice.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     private void sendRequest2(){

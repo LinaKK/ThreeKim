@@ -21,9 +21,11 @@
         android:layout_weight="1">
 
     <Button
+        android:onClick="OnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:id="@+id/addnotice"
         android:text="+"/>
 
     <Button
@@ -41,6 +43,7 @@
         android:layout_weight="7"
         android:orientation="vertical">
     <ListView
+        android:id="@+id/noticelist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     </LinearLayout>

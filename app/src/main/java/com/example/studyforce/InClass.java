@@ -49,10 +49,10 @@ public class InClass extends AppCompatActivity {
         classname = (TextView) findViewById(R.id.InClassName);
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
-        shortTodolist = (ListView) findViewById(R.id.shortTodoList);
 
         sendRequest1();
         sendRequest2();
+        sendRequest3();
 
 
 
@@ -210,10 +210,12 @@ public class InClass extends AppCompatActivity {
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int id = jsonObject.getInt("id");
                                 int num = jsonObject.getInt("num");
-                                String done = jsonObject.getString("done");
-                                String classtodo = jsonObject.getString("classtodo");
-                                cTodoList[i] = new classTodo(num, classtodo, done);
+                                int done = jsonObject.getInt("done");
+                                String classtodo = jsonObject.getString("todo");
+                                String className = jsonObject.getString("classname");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className);
 
                             }
                             showTodo(cTodoList);
@@ -241,9 +243,9 @@ public class InClass extends AppCompatActivity {
         for(int i=0; i<cTodo.length; i++){
             todolist.add(cTodo[i].classtodo);
         }
-        ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+        ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
-        shortNoticeList.setAdapter(adapterNotice);
+        shortTodolist.setAdapter(adapterClassTodo);
 
     }
 
