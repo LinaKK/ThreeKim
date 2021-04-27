@@ -95,7 +95,7 @@ public class personal_schedule extends AppCompatActivity {
         //sendRequest();
 
         //일정 예시
-        adapter.addItem("과제1","2021/"+"04/09","2021/04/21","알고리즘 과제 빨리 끝내기");
+        adapter.addItem("과제1","2021/"+"04/09","2021/04/30","알고리즘 과제 빨리 끝내기");
         //AddItem();
         adapter.notifyDataSetChanged();
 

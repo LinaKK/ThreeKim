@@ -33,6 +33,11 @@ public class personal_info extends AppCompatActivity {
         umail = findViewById(R.id.umail);
         exit = (Button)findViewById(R.id.exit3);
 
+        //예시
+        uname.setText("홍길동");
+        uid.setText("12345678");
+        umail.setText("hong123@uhs.ac.kr");
+
 
         //로그인 성공시 받아올 학번
         //int userid3 = ((Login_Request)Login_Request.context_login).userid1;

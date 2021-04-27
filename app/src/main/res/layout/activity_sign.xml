@@ -41,14 +41,13 @@
 </LinearLayout>
     <EditText
         android:id="@+id/si_n"
-        android:textcolor="#52a3cc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="이름"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName" /> //android:textcolor="#52a3cc"
 
     <LinearLayout
         android:layout_width="wrap_content"
