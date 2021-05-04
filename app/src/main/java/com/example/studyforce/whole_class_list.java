@@ -28,6 +28,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -37,6 +47,7 @@ public class whole_class_list extends AppCompatActivity {
     String[] mClass = {"학생", "교수"};
     ListView listView1 = null;  //전체리스트뷰
     ClassListAdapter adapter;
+    public static wholeclist[] wclist;
 
     private String jobs = "학생";
 
@@ -56,7 +67,8 @@ public class whole_class_list extends AppCompatActivity {
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
 
-        //클래스 미리 생성된 것들
+        //클래스 미리 생성된 것들 ->전체 클래스리스트 출력 맨밑에 showCList에 작성
+        // + ClassListAdapter()수정필요 wholeclist에서 필요한거 가져오기
         adapter.addItem("apple", "2명", "전공", "공개");
         adapter.addItem("bird", "4명", "전공","공개");
         adapter.addItem("cat", "0명", "전공", "비공개");
@@ -144,6 +156,69 @@ public class whole_class_list extends AppCompatActivity {
         super.onResume();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
+
+    private void sendRequest1(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        String url = "http://118.33.132.221/php/wholeclasslist.php";
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            wclist = new wholeclist[jsonArray.length()];
+                            int s = jsonArray.length();
+                            //classname.setText(String.valueOf(s));
+                            //classname.setText(nList[1].title);
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int classnum = jsonObject.getInt("classnum");
+                                String classname = jsonObject.getString("classname");
+                                int num = jsonObject.getInt("num");
+                                String name = jsonObject.getString("name");
+                                String subject = jsonObject.getString("subject");
+                                String goal = jsonObject.getString("goal");
+                                int open = jsonObject.getInt("goal");
+                                wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
+
+                            }
+                            //classname.setText(nList[1].notice);
+                            showCList(wclist);
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //println("error -> " + error.getMessage());
+                    }
+                }
+
+        );
+        AppHelper.requestQueue.add(request);
+    }
+
+    private void showCList(wholeclist[] wclist){
+        //클래스리스트 출력
+        //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+
+    }
+
+
+    /*모른척부탁
+    private wholeclist[] make (int i, int classnum, String classname, int num, String name, String subject, String goal ){
+        wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal);
+        return wclist;
+    }*/
 
 
 }

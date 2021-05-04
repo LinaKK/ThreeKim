@@ -11,7 +11,7 @@ public class qna {
         this.qnanum = qnanum;
         this.qtitle = qtitle;
         this.q = q;
-        this.a=a;
+        this.a = a;
         this.qwriter = qwriter;
         this.awriter = awriter;
 
