@@ -47,6 +47,7 @@ public class whole_class_list extends AppCompatActivity {
     String[] mClass = {"학생", "교수"};
     ClassListAdapter adapter;
     ListView listView1 =null;  //전체리스트뷰
+    TextView errorm;
 
     public static wholeclist[] wclist;
 
@@ -206,7 +207,7 @@ public class whole_class_list extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //println("error -> " + error.getMessage());
+                        println("error -> " + error.getMessage());
                     }
                 }
 
@@ -273,6 +274,12 @@ public class whole_class_list extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void println(String data){
+
+        errorm = (TextView)findViewById(R.id.errorm);
+        errorm.append(data);
     }
 
 
