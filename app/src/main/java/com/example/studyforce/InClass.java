@@ -1,11 +1,15 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +31,13 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.sql.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static java.sql.DriverManager.println;
 
@@ -41,6 +49,17 @@ public class InClass extends AppCompatActivity {
     private ListView shortTodolist;
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
+
+    long Now = System.currentTimeMillis();;
+    java.util.Date Date = new Date(Now);
+    SimpleDateFormat cDay = new SimpleDateFormat("dd");
+    SimpleDateFormat cMonth = new SimpleDateFormat("MM");
+    SimpleDateFormat cYear = new SimpleDateFormat("yyyy");
+    String getDay = cDay.format(Date);
+    String getMonth = cMonth.format(Date);
+    String getYear = cYear.format(Date);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +81,8 @@ public class InClass extends AppCompatActivity {
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
+
+
     }
 
     public void btnClick(View v){
@@ -79,6 +100,11 @@ public class InClass extends AppCompatActivity {
 
             case R.id.cal:
                 //달력추가, 이벤트 표시가능?
+                int getYears = Integer.parseInt(getYear);
+                int getMonths = Integer.parseInt(getMonth);
+                int getDays = Integer.parseInt(getDay);
+                DatePickerDialog dialog = new DatePickerDialog(this, listener, getYears, getMonths-1, getDays);
+                dialog.show();
 
                 break;
 
@@ -96,6 +122,28 @@ public class InClass extends AppCompatActivity {
 
 
     }
+    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            //Toast.makeText(getApplicationContext(), year + "년" + monthOfYear + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder ad = new AlertDialog.Builder(InClass.this);
+            ad.setTitle(year+"/"+(monthOfYear+1)+"/"+dayOfMonth);
+            ad.setMessage("오늘의 할일");
+            ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            ad.setNegativeButton("일정 추가", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            ad.show();
+        }
+    };
 
     private void sendRequest1(){
         if (AppHelper.requestQueue == null){
@@ -244,7 +292,6 @@ public class InClass extends AppCompatActivity {
         shortTodolist.setAdapter(adapterClassTodo);
 
     }
-
 
 
     //오류확인
