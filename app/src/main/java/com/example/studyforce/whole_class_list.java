@@ -225,7 +225,7 @@ public class whole_class_list extends AppCompatActivity {
                 opens = "공개";
             else
                 opens="비공개";
-            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].num, opens);
+            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, opens);
         }
 
         //adapter.notifyDataSetChanged();
