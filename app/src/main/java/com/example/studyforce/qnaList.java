@@ -98,14 +98,22 @@ public class qnaList extends AppCompatActivity {
                 qnal);
         qlist.setAdapter(adapter);
 
-       /* 클릭하면 detailQ로 넘어가기 + qnanum detailQ로 넘기기 - 오류나는데 할수있는분 부탁..
-       qlist.setOnClickListener(new AdapterView.OnItemClickListener(){
+       //클릭하면 detailQ로 넘어가기 + qnanum detailQ로 넘기기 - 오류나는데 할수있는분 부탁..
+        qlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), detailQ.class);
+                intent.putExtra("qtitle", Integer.parseInt(qnal.get(position).toString()));
+                startActivity(intent);
+            }
+        });
+
+       /*qlist.setOnClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(this, detailQ.class);
+                Intent intent = new Intent(getApplicationContext(), detailQ.class);
                 intent.putExtra("qtitle", Integer.parseInt(qnal.get(position).toString()));
                 startActivityForResult(intent,0);
-
             }
 
         });*/

@@ -75,9 +75,7 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("dog", "4명", "전공","공개");
         adapter.addItem("efgh", "4명", "전공"," 비공개");
         adapter.addItem("Cba", "10명", "전공","공개");
-        adapter.addItem("java", "4명", "전공","공개");
-        adapter.addItem("C++", "45명", "전공","공개");
-        adapter.addItem("elephant", "9명", "전공","공개");
+
 
 
         //adapter.notifyDataSetChanged();
