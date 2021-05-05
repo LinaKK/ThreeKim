@@ -69,12 +69,10 @@ public class whole_class_list extends AppCompatActivity {
 
         //클래스 미리 생성된 것들 ->전체 클래스리스트 출력 맨밑에 showCList에 작성
         // + ClassListAdapter()수정필요 wholeclist에서 필요한거 가져오기
-        adapter.addItem("apple", "2명", "전공", "공개");
-        adapter.addItem("bird", "4명", "전공","공개");
-        adapter.addItem("cat", "0명", "전공", "비공개");
-        adapter.addItem("dog", "4명", "전공","공개");
-        adapter.addItem("efgh", "4명", "전공"," 비공개");
-        adapter.addItem("Cba", "10명", "전공","공개");
+        adapter.addItem("apple", "전공", "4명", "공개");
+        adapter.addItem("bird", "전공", "2명","공개");
+        adapter.addItem("cat", "전공", "0명", "비공개");
+
 
 
 
@@ -183,6 +181,13 @@ public class whole_class_list extends AppCompatActivity {
                                 String goal = jsonObject.getString("goal");
                                 int open = jsonObject.getInt("goal");
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
+                                /*
+                                 //어댑터 생성
+                                 adapter = new ClassListAdapter();
+                                 listView1 = (ListView) findViewById(R.id.wholeClasslist);
+                                 listView1.setAdapter(adapter);
+                                 adapter.addItem(classname, num, subject, "공개");
+                                 */
 
                             }
                             //classname.setText(nList[1].notice);
