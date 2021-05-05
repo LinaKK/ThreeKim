@@ -138,7 +138,7 @@ public class InClass extends AppCompatActivity {
             ad.setNegativeButton("일정 추가", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
                 }
             });
             ad.show();

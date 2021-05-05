@@ -262,10 +262,13 @@ public class whole_class_list extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //내부클래스 액티비티에 값 넘겨주기
+                        //개인클래스리스트로 넘기기(db)
                         String names = ((ClassJob)adapter.getItem(i)).getTitle();
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
                         intent.putExtra("name",names);
                         startActivity(intent);
+
+
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {

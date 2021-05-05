@@ -131,7 +131,7 @@ public class ScheduleAdd extends AppCompatActivity {
                 endD = eDay_D.getText().toString();
 
                 //값 잘 가져오는지 확인용
-                 Toast.makeText(getApplicationContext(), startY+startM+startD, Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
                 //값 php로 보내기
                 /*
                 //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
