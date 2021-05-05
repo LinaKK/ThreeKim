@@ -69,7 +69,7 @@ public class ClassListAdapter extends BaseAdapter implements Filterable {
         return convertView;
     }
 
-    public void addItem( String name, String job, String num, String open) {
+    public void addItem( String name, String job, int num, String open) {
         ClassJob item = new ClassJob();
 
         item.setTitles(name);

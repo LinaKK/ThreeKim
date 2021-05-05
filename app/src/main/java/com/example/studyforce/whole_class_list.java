@@ -45,11 +45,13 @@ import java.util.Locale;
 public class whole_class_list extends AppCompatActivity {
 
     String[] mClass = {"학생", "교수"};
-    ListView listView1 = null;  //전체리스트뷰
     ClassListAdapter adapter;
+    ListView listView1 =null;  //전체리스트뷰
+
     public static wholeclist[] wclist;
 
     private String jobs = "학생";
+    String opens;
 
     ImageButton aClass;
 
@@ -61,29 +63,31 @@ public class whole_class_list extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
+
+        /*
         //어댑터 생성
         adapter = new ClassListAdapter();
-
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
+        sendRequest1();
 
         //클래스 미리 생성된 것들 ->전체 클래스리스트 출력 맨밑에 showCList에 작성
         // + ClassListAdapter()수정필요 wholeclist에서 필요한거 가져오기
-        adapter.addItem("apple", "전공", "4명", "공개");
-        adapter.addItem("bird", "전공", "2명","공개");
-        adapter.addItem("cat", "전공", "0명", "비공개");
+        adapter.addItem("apple", "전공", 4, "공개");
+        adapter.addItem("bird", "전공", 2,"공개");
+        adapter.addItem("cat", "전공", 0, "비공개");
 
 
+         */
 
-
-        //adapter.notifyDataSetChanged();
+        sendRequest1();
 
         //fClass = (ImageButton)findViewById(R.id.findClass);
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
 
-
-        //검색
+        /*
+         //검색
         classSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable edit) {
@@ -102,6 +106,9 @@ public class whole_class_list extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
+         */
+
+
 
         //클래스추가버튼
        aClass.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +125,8 @@ public class whole_class_list extends AppCompatActivity {
             }
         });
 
-        //리스트뷰 클릭 시 가입 여부 알림창
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /*
+       listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
@@ -144,6 +151,9 @@ public class whole_class_list extends AppCompatActivity {
                 ad.show();
             }
         });
+        */
+        //리스트뷰 클릭 시 가입 여부 알림창
+
 
     }
     //키보드
@@ -180,14 +190,8 @@ public class whole_class_list extends AppCompatActivity {
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
                                 int open = jsonObject.getInt("goal");
+
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
-                                /*
-                                 //어댑터 생성
-                                 adapter = new ClassListAdapter();
-                                 listView1 = (ListView) findViewById(R.id.wholeClasslist);
-                                 listView1.setAdapter(adapter);
-                                 adapter.addItem(classname, num, subject, "공개");
-                                 */
 
                             }
                             //classname.setText(nList[1].notice);
@@ -211,8 +215,63 @@ public class whole_class_list extends AppCompatActivity {
     }
 
     private void showCList(wholeclist[] wclist){
-        //클래스리스트 출력
-        //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        //클래스리스트 출력      //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        adapter = new ClassListAdapter();
+        listView1 = (ListView) findViewById(R.id.wholeClasslist);
+        listView1.setAdapter(adapter);
+        for(int i=0; i<wclist.length; i++){
+            if(wclist[i].open==0)
+                opens = "공개";
+            else
+                opens="비공개";
+            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].num, opens);
+        }
+        //adapter.notifyDataSetChanged();
+        EditText classSearch = (EditText)findViewById(R.id.fClassname);
+        classSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable edit) {
+                String filterText = edit.toString();
+                if(filterText.length() > 0){
+                    listView1.setFilterText(filterText);
+                }else{
+                    listView1.clearTextFilter();
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
+                AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
+                ad.setTitle("가입메시지");
+                ad.setMessage("해당 클래스에 가입하시겠습니까?");
+                ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //내부클래스 액티비티에 값 넘겨주기
+                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
+                        Intent intent = new Intent(getApplicationContext(),InClass.class);
+                        intent.putExtra("name",names);
+                        startActivity(intent);
+                    }
+                });
+                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+            }
+        });
 
     }
 

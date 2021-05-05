@@ -4,13 +4,13 @@ package com.example.studyforce;
 
 public class ClassJob {
     private String name;
-    private String num;
+    private int num;
     private String job;
     private String open;
 
 
 
-    public void setNumber(String number){
+    public void setNumber(int number){
         num = number;
     }
 
@@ -28,7 +28,7 @@ public class ClassJob {
         return this.name;
     }
 
-    public String getNumber(){
+    public int getNumber(){
         return this.num;
     }
 

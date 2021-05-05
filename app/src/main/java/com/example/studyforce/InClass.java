@@ -55,11 +55,6 @@ public class InClass extends AppCompatActivity {
         sendRequest3();
 
 
-
-
-
-
-
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
         classname.setText(intent.getStringExtra("name"));
@@ -84,6 +79,7 @@ public class InClass extends AppCompatActivity {
 
             case R.id.cal:
                 //달력추가, 이벤트 표시가능?
+
                 break;
 
             case R.id.todo:
