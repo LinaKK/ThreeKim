@@ -215,8 +215,10 @@ public class whole_class_list extends AppCompatActivity {
         AppHelper.requestQueue.add(request);
     }
 
+
+    //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
-        //클래스리스트 출력      //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
         adapter = new ClassListAdapter();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
@@ -229,6 +231,8 @@ public class whole_class_list extends AppCompatActivity {
         }
 
         //adapter.notifyDataSetChanged();
+
+        //클래스 검색
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
         classSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -249,6 +253,7 @@ public class whole_class_list extends AppCompatActivity {
             }
         });
 
+        //리스트뷰 클릭시
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
