@@ -94,9 +94,8 @@ public class study_time extends AppCompatActivity {
             //return true;
         }
         //예시용 메뉴
-        if(id == R.id.studytime){
-            Intent intent= new Intent(getApplicationContext(), Timegraph.class);
-            startActivity(intent);
+        if(id == R.id.setting){
+
         }
         return super.onOptionsItemSelected(item);
     }

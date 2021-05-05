@@ -160,10 +160,9 @@ public class personal_page extends AppCompatActivity {
             startActivity(intent);
             //return true;
         }
-        //예시용 메뉴
-        if(id == R.id.studytime){
-            Intent intent= new Intent(getApplicationContext(), Timegraph.class);
-            startActivity(intent);
+        //환경설정
+        if(id == R.id.setting){
+
         }
         return super.onOptionsItemSelected(item);
     }

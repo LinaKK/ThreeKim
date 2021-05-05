@@ -9,8 +9,8 @@
         app:showAsAction="always"
         android:icon="@drawable/music"/>
 
-    <item android:id="@+id/studytime"
-        android:title="평균공부시간"
+    <item android:id="@+id/setting"
+        android:title="환경설정"
         app:showAsAction="never"/>
 
 

@@ -66,7 +66,7 @@ public class whole_class_list extends AppCompatActivity {
 
 
         /*
-        //어댑터 생성
+        //예시용 어댑터 생성
         adapter = new ClassListAdapter();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
@@ -77,8 +77,6 @@ public class whole_class_list extends AppCompatActivity {
         adapter.addItem("apple", "전공", 4, "공개");
         adapter.addItem("bird", "전공", 2,"공개");
         adapter.addItem("cat", "전공", 0, "비공개");
-
-
          */
 
         sendRequest1();
