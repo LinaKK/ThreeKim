@@ -1,4 +1,4 @@
-//전체 클래스 리스트 (추가, 검색 기능 포함) - 검색 기능은 아직 미완/추가할때 메시지 창도 불안함
+//전체 클래스 리스트 (추가, 검색 기능 포함)
 
 package com.example.studyforce;
 
@@ -263,6 +263,7 @@ public class whole_class_list extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //내부클래스 액티비티에 값 넘겨주기
                         //개인클래스리스트로 넘기기(db)
+                        //classnum++ 해야함
                         String names = ((ClassJob)adapter.getItem(i)).getTitle();
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
                         intent.putExtra("name",names);
