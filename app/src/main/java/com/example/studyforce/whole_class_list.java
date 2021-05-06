@@ -188,7 +188,7 @@ public class whole_class_list extends AppCompatActivity {
                                 String name = jsonObject.getString("name");
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
-                                int open = jsonObject.getInt("goal");
+                                int open = jsonObject.getInt("open");
 
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
 

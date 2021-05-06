@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class qnaList extends AppCompatActivity {
                                 String q = jsonObject.getString("q");
                                 String a = jsonObject.getString("a");
                                 String qw = jsonObject.getString("qwriter");
-                                String aw = jsonObject.getString("awirter");
+                                String aw = jsonObject.getString("awriter");
                                 qnalist[i] = new qna(qnum, qt, q, a, qw, aw);
 
 
@@ -103,7 +104,8 @@ public class qnaList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), detailQ.class);
-                intent.putExtra("qtitle", Integer.parseInt(qnal.get(position).toString()));
+                String qtitle = qnal.get(position).toString();
+                intent.putExtra("qtitle", qtitle);
                 startActivity(intent);
             }
         });
