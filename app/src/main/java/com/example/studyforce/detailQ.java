@@ -57,11 +57,12 @@ public class detailQ extends AppCompatActivity {
             rj.put("qtitle", qtitle);
         }
         catch (JSONException e){}
+        //contextQ.setText(rj.toString());
 
         String url = "http://118.33.132.221/php/contextQ.php";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
                 rj,
                 new Response.Listener<JSONObject>(){
