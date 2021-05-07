@@ -21,10 +21,11 @@
         android:layout_weight="1">
 
         <Button
+            android:onClick="setQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="+"/>
+            android:text="질문하기"/>
 
 
     </LinearLayout>

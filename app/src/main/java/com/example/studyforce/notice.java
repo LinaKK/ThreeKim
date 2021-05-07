@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -99,13 +100,23 @@ public class notice extends AppCompatActivity {
     }
 
     public void showNotiList(noticeList[] notice){
-        List nolist = new ArrayList();
+        final List nolist = new ArrayList();
         for(int i=0; i<notice.length; i++){
             nolist.add(nList[i].title);
         }
         ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 nolist);
         shortNoticeList.setAdapter(adapterNotice);
+
+        shortNoticeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), noticeD.class);
+                String noticeTitle = nolist.get(position).toString();
+                intent.putExtra("ntitle", noticeTitle);
+                startActivity(intent);
+            }
+        });
 
     }
 

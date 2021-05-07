@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".A"></activity>
+        <activity android:name=".noticeD" />
         <activity android:name=".Timegraph" />
         <activity android:name=".study_time" />
         <activity android:name=".Music_p" />
@@ -26,7 +28,7 @@
         <activity android:name=".InClass" />
         <activity android:name=".Sign_Request" />
         <activity android:name=".Login_Request" />
-        <activity android:name=".ValidateRequest"/>
+        <activity android:name=".ValidateRequest" />
         <activity android:name=".whole_class_list" />
         <activity android:name=".Sign" />
         <activity android:name=".Login" />

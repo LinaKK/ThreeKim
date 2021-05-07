@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
             // 실행 확인용
             Intent intent;
-            intent = new Intent(this, qnaList.class);
+            intent = new Intent(this, InClass.class);
             startActivity(intent);
         }
 

@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,7 +24,7 @@
             android:text="제목: "/>
 
         <EditText
-            android:id="@+id/nTitle"
+            android:id="@+id/setQTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="제목을 입력하세요."/>
@@ -32,13 +33,13 @@
     //사진파일 추가버튼?
 
     <EditText
-        android:id="@+id/nCont"
+        android:id="@+id/setQC"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:hint="내용을 입력하세요."/>
 
     <Button
-        android:id="@+id/updateN"
+        android:onClick="updateQClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

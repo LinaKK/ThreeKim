@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,10 @@ public class qnaList extends AppCompatActivity {
         sendRequest2();
 
     }
+    public void setQ(View v){
+        Intent intent = new Intent(this, Q.class);
+        startActivity(intent);
+    }
 
     private void sendRequest2(){
         if (AppHelper.requestQueue == null){
@@ -64,10 +69,8 @@ public class qnaList extends AppCompatActivity {
                                 int qnum = jsonObject.getInt("qnanum");
                                 String qt = jsonObject.getString("qtitle");
                                 String q = jsonObject.getString("q");
-                                String a = jsonObject.getString("a");
                                 String qw = jsonObject.getString("qwriter");
-                                String aw = jsonObject.getString("awriter");
-                                qnalist[i] = new qna(qnum, qt, q, a, qw, aw);
+                                qnalist[i] = new qna(qnum, qt, q, qw);
 
 
                             }showQnalist(qnalist);

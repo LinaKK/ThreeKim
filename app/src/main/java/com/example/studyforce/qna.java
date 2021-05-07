@@ -4,16 +4,13 @@ public class qna {
     int qnanum;
     String qtitle;
     String q;
-    String a;
-    String qwriter, awriter;
+    String qwriter;
 
-    public qna( int qnanum, String qtitle, String q, String a, String qwriter, String awriter){
+    public qna( int qnanum, String qtitle, String q, String qwriter){
         this.qnanum = qnanum;
         this.qtitle = qtitle;
         this.q = q;
-        this.a = a;
         this.qwriter = qwriter;
-        this.awriter = awriter;
 
     }
 }

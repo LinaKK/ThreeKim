@@ -4,11 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -16,49 +12,37 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Q extends AppCompatActivity {
-    private EditText setQTitle;
-    private EditText setQC;
-    private TextView a;
+public class noticeD extends AppCompatActivity {
+    String ntitle;
+    TextView Dnotitle;
+    TextView Ncontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_q);
-        setQTitle = (EditText) findViewById(R.id.setQTitle);
-        setQC = (EditText) findViewById(R.id.setQC);
+        setContentView(R.layout.activity_notice_d);
+        Intent intent = getIntent();
+        ntitle = intent.getStringExtra("ntitle");
+        Dnotitle = findViewById(R.id.noticeTitle);
+        Dnotitle.setText(ntitle);
+        Ncontext = findViewById(R.id.NoticeContext);
+        sendRequest();
     }
 
-    public void updateQClick(View v){
-        //대화상자 등록? ->확인 ->등록
-
-        String qt = setQTitle.getText().toString();
-        String q = setQC.getText().toString();
-        if (qt.length() == 0 || q.length() == 0) {
-            Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
-        }
-        else sendRequest(qt, q);
-
-    }
-
-    private void sendRequest(final String qtitle, String q){
+    private void sendRequest(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
         JSONObject rj = new JSONObject();
         try {
-            rj.put("qtitle", qtitle);
-            rj.put("q", q);
-            //작성자 이름, 클래스이름 넘기기
+            rj.put("ntitle", ntitle);
         }
         catch (JSONException e){}
-        //contextQ.setText(rj.toString());
 
-        String url = "http://118.33.132.221/php/Q.php";
+        String url = "http://118.33.132.221/php/contextNoti.php";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -69,10 +53,8 @@ public class Q extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            String context = response.getString("qtitle");
-                            if (context.length() == qtitle.length()) print();//String- 출력->같음 ==->다름
-
-
+                            String context = response.getString("notice"); //날짜 추가
+                            Ncontext.setText(context);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -89,17 +71,8 @@ public class Q extends AppCompatActivity {
         AppHelper.requestQueue.add(jsonObjectRequest);
 
     }
-
-    private void print(){
-        Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, qnaList.class);
-        startActivity(intent);
-
-    }
-
-
     private void println(String data){
-        a = (TextView)findViewById(R.id.a);
-        a.append(data);
+        Dnotitle = (TextView)findViewById(R.id.noticeTitle);
+        Dnotitle.append(data);
     }
 }

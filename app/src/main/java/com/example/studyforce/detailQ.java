@@ -29,10 +29,11 @@ import java.util.List;
 
 public class detailQ extends AppCompatActivity {
     private static qna qnalist[];
-    private ListView qlist;
+    private Alist[] alist;
     private String qtitle;
     private TextView Dqnatitle;
     private TextView contextQ;
+    private ListView al;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +44,16 @@ public class detailQ extends AppCompatActivity {
         Dqnatitle = (TextView)findViewById(R.id.Dqnatitle);
         Dqnatitle.setText(qtitle);
         contextQ = (TextView)findViewById(R.id.contextQ);
+        al = (ListView) findViewById(R.id.alist);
         sendRequest();
+        sendRequest1();
 
+    }
 
-
+    public void updateA(View view){
+        Intent intent = new Intent(this, A.class);
+        intent.putExtra("qtitle", qtitle);
+        startActivity(intent);
     }
 
     private void sendRequest(){
@@ -90,65 +97,6 @@ public class detailQ extends AppCompatActivity {
 
     }
 
-    private void sendRequest2(){
-        if (AppHelper.requestQueue == null){
-            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
-        }
-
-        JSONObject rj = new JSONObject();
-        try {
-            rj.put("qtitle", qtitle);
-        }
-        catch (JSONException e){}
-
-        String url = "http://118.33.132.221/php/contextQ.php";
-        StringRequest request = new StringRequest(
-
-                Request.Method.GET,
-                url ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        contextQ.setText(response);
-                        // processResponse(response);
-                        // classname.setText(response);
-                        /*try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            qnalist = new qna[jsonArray.length()];
-                            int s = jsonArray.length();
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
-
-                            for(int i=0; i<jsonArray.length(); i++){
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int qnum = jsonObject.getInt("qnanum");
-                                String qt = jsonObject.getString("qtitle");
-                                String q = jsonObject.getString("q");
-                                String a = jsonObject.getString("a");
-                                String qw = jsonObject.getString("qwriter");
-                                String aw = jsonObject.getString("awriter");
-                                qnalist[i] = new qna(qnum, qt, q, a, qw, aw);
-
-
-                            }//showAlist(qnalist);
-
-                        }
-                        catch (JSONException e){
-                            e.printStackTrace();
-                        }*/
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
-                    }
-                }
-
-        );
-        AppHelper.requestQueue.add(request);
-    }
     //답변하기 버튼 누르면 답변 화면이동
 
     //답변표시
@@ -166,5 +114,69 @@ public class detailQ extends AppCompatActivity {
     private void println(String data){
         Dqnatitle = (TextView)findViewById(R.id.contextQ);
         Dqnatitle.append(data);
+    }
+
+    private void sendRequest1(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("qtitle", qtitle);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/listA.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // processResponse(response);
+                        // classname.setText(response);
+                        try {
+                            alist = new Alist[response.length()];
+                            //classname.setText(String.valueOf(s));
+                            //classname.setText(nList[1].title);
+
+                            for(int i=0; i<response.length(); i++){
+                                String a = response.getString("a");
+                                String aw = response.getString("aw");
+                                alist[i] = new Alist(a, aw);
+
+
+                            }showAlist(alist);
+                            //classname.setText(nList[1].notice);
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+
+    }
+    private void showAlist(Alist[] alist){
+        List a = new ArrayList();
+        for(int i=0; i<alist.length; i++){
+            a.add(alist[i].a);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                a);
+        al.setAdapter(adapter);
+
     }
 }

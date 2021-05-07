@@ -5,12 +5,13 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="30dp"
         android:layout_margin="15dp"
-        android:text="질문 상세"/>
+        android:text="답변하기"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,39 +19,24 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/Dqnatitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        //if 작성자->삭제버튼
+            android:layout_height="wrap_content"
+            android:text="질문제목"/>
 
     </LinearLayout>
+    //사진파일 추가버튼?
 
-    <TextView
-        android:id="@+id/contextQ"
+    <EditText
+        android:id="@+id/setA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="300dp"
+        android:hint="내용을 입력하세요."/>
 
     <Button
-        android:onClick="updateA"
+        android:onClick="updateAClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="답변하기"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/alist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    //댓글아이콘
-    //답변리스트로+더보기버튼
+        android:layout_gravity="center"
+        android:text="확인"/>
 
 </LinearLayout>
