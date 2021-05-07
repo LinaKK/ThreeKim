@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 
@@ -68,9 +69,15 @@ public class detailQ extends AppCompatActivity {
                 new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
-                        contextQ.setText(response.toString());
-                    }
 
+                        try {
+                            String context = response.getString("q");
+                            contextQ.setText(context);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 },
                 new Response.ErrorListener(){
             @Override
