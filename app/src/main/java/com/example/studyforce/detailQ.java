@@ -46,7 +46,7 @@ public class detailQ extends AppCompatActivity {
         contextQ = (TextView)findViewById(R.id.contextQ);
         al = (ListView) findViewById(R.id.alist);
         sendRequest();
-        sendRequest1();
+        //sendRequest1();
 
     }
 
@@ -115,7 +115,7 @@ public class detailQ extends AppCompatActivity {
         Dqnatitle = (TextView)findViewById(R.id.contextQ);
         Dqnatitle.append(data);
     }
-
+/*
     private void sendRequest1(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
@@ -178,5 +178,5 @@ public class detailQ extends AppCompatActivity {
                 a);
         al.setAdapter(adapter);
 
-    }
+    }*/
 }
