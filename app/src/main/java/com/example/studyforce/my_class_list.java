@@ -19,6 +19,13 @@ public class my_class_list extends AppCompatActivity {
         exit=findViewById(R.id.exit);
         plus_class=findViewById(R.id.plus_class);
 
+        /*
+        본인 클래스 리스트 db에서 받아오기
+        (클래스name, 클래스공개(or 비공개))
+        => 누르면 클래스 내부 페이지로 이동
+
+         */
+
         //나가기 버튼
         exit.setOnClickListener(new OnClickListener() {
             @Override

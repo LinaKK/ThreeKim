@@ -125,7 +125,6 @@ public class InClass extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            //Toast.makeText(getApplicationContext(), year + "년" + monthOfYear + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
             AlertDialog.Builder ad = new AlertDialog.Builder(InClass.this);
             ad.setTitle(year+"/"+(monthOfYear+1)+"/"+dayOfMonth);
             ad.setMessage("오늘의 할일");
