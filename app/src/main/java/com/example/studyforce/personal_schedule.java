@@ -203,13 +203,3 @@ public class personal_schedule extends AppCompatActivity {
 
 }
 
-//삭제할 예정
-/*final TextView date = findViewById(R.id.date);
-        CalendarView calendarView = findViewById(R.id.calendar);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                month +=1;
-                date.setText(String.format("%d년 %d월 %d일", year, month, day));
-            }
-        });*/

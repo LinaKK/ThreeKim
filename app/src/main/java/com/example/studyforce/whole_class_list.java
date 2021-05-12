@@ -220,13 +220,16 @@ public class whole_class_list extends AppCompatActivity {
         adapter = new ClassListAdapter();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
-        for(int i=0; i<wclist.length; i++){
+        /*
+         for(int i=0; i<wclist.length; i++){ //db의 length
             if(wclist[i].open==0)
                 opens = "공개";
             else
-                opens="비공개";
-            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, opens);
-        }
+                opens="비공개";}
+         */
+
+            //adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, opens);
+
 
         //adapter.notifyDataSetChanged();
 
