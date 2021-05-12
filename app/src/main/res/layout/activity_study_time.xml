@@ -7,6 +7,7 @@
     tools:context=".study_time"
     android:orientation="vertical">
 
+    //선희야 이 그래프이미지 버튼 삭제해버려 나 이 기능 구현 못할 것같아...ㅠㅠㅠ
     <ImageButton
         android:id="@+id/graph"
         android:layout_width="40dp"
