@@ -70,11 +70,12 @@ public class InClass extends AppCompatActivity {
         classname = (TextView) findViewById(R.id.InClassName);
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
-        goalList = (ListView)findViewById(R.id.goalList); //목표 listview
+
         sendRequest1();
         sendRequest2();
         sendRequest3();
 
+        clickGoalList();
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
@@ -83,15 +84,9 @@ public class InClass extends AppCompatActivity {
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
-        goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(),InGoal.class);
-                //목표값을 넘겨줘야함
-                startActivity(intent);
-            }
-        });
+
     }
+
 
     public void btnClick(View v){
         Intent intent;
@@ -300,6 +295,17 @@ public class InClass extends AppCompatActivity {
 
     }
 
+    public void clickGoalList(){
+        goalList = (ListView)findViewById(R.id.goalList); //목표 listview
+        goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),InGoal.class);
+                //목표값을 넘겨줘야함(목표 이름이 아닌 목표 번호를 넘겨줘야 함...) => 목표 생성할 때마다 목표number 1씩 증가하게 하면 될 듯...
+                startActivity(intent);
+            }
+        });
+    }
 
     //오류확인
     private void println(String data){

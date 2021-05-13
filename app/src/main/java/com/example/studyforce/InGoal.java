@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -29,6 +30,13 @@ public class InGoal extends AppCompatActivity {
     PieChart pieChart;
     Button finishGoal;
 
+    ArrayList pieuser = new ArrayList();
+
+    int num = 4; //array length (db table)
+    int num2;
+
+    private String name = "홍길동";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,25 +45,10 @@ public class InGoal extends AppCompatActivity {
         finishGoal = (Button)findViewById(R.id.goalfinish);
         Gtitle = (TextView)findViewById(R.id.GoalTitle);
         pieChart = (PieChart)findViewById(R.id.piechart);
-        ArrayList pieuser = new ArrayList();
 
-        pieuser.add(new PieEntry(50f, "김"));
-        pieuser.add(new PieEntry(100f, "이"));
-        pieuser.add(new PieEntry(75f,"박"));
-        pieuser.add(new PieEntry(50f, "비어있음"));
-        Description des = new Description();
-        des.setText("StudyForCE");
-        pieChart.setDescription(des);
-        PieDataSet dataSet = new PieDataSet(pieuser, "");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        pieChart.animateXY(200, 200);
-        PieData data =new PieData(dataSet);
-        data.setValueTextSize(10f);
-        data.setValueTextColor(Color.BLACK);
+        setChart();
 
-        pieChart.setData(data);
-
-        listview = (ListView)findViewById(R.id.goalperson);
+       listview = (ListView)findViewById(R.id.goalperson);
         getList();
 
         finishGoal.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +61,8 @@ public class InGoal extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
+                        //db table에 이름과 수치값 넘겨주기
+                        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
                         finishGoal.setText("이미 달성함!");
                         finishGoal.setEnabled(false);
                     }
@@ -81,7 +76,37 @@ public class InGoal extends AppCompatActivity {
                 ad.show();
             }
         });
+
+
     }
+
+    //db에서 값 받아오기 그걸로 세팅...
+
+    private ArrayList<PieEntry>piedata(){
+        ArrayList<PieEntry>data = new ArrayList<>();
+        num2 = 100;
+        data.add(new PieEntry(num2, name));
+
+        return data;
+    }
+
+    public void setChart(){
+        pieChart = (PieChart)findViewById(R.id.piechart);
+        Description des = new Description();
+        des.setText("StudyForCE");
+        pieChart.setDescription(des);
+
+        PieDataSet dataSet = new PieDataSet(piedata(), "");
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieChart.animateXY(200, 200);
+
+        PieData data = new PieData(dataSet);
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChart.setData(data);
+    }
+
 
     //리스트 db에서 가져오기(클래스에 가입된 사람들)
     public void getList(){
