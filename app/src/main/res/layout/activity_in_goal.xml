@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InGoal"
+    android:orientation="vertical"
+    android:weightSum="6">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:text="목표01"
+        android:textSize="30dp"
+        android:id="@+id/GoalTitle"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="목표 달성 전"
+        android:id="@+id/goalfinish"/>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:id="@+id/piechart"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="참여자목록"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:id="@+id/goalperson"/>
+
+
+</LinearLayout>

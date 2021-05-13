@@ -115,7 +115,7 @@
     </GridLayout>
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/border"
@@ -124,9 +124,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="목표달성 그래프"/>
-
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/goalList"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"

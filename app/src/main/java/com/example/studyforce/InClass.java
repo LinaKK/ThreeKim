@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -47,6 +48,7 @@ public class InClass extends AppCompatActivity {
     private TextView goal;
     private ListView shortNoticeList;
     private ListView shortTodolist;
+    ListView goalList;
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
 
@@ -68,7 +70,7 @@ public class InClass extends AppCompatActivity {
         classname = (TextView) findViewById(R.id.InClassName);
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
-
+        goalList = (ListView)findViewById(R.id.goalList); //목표 listview
         sendRequest1();
         sendRequest2();
         sendRequest3();
@@ -81,8 +83,14 @@ public class InClass extends AppCompatActivity {
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
-
-
+        goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),InGoal.class);
+                //목표값을 넘겨줘야함
+                startActivity(intent);
+            }
+        });
     }
 
     public void btnClick(View v){
