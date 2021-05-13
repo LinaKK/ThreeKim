@@ -67,7 +67,7 @@ public class InGoal extends AppCompatActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //해당 그래프에 수치 추가
+                        //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
                         finishGoal.setText("이미 달성함!");
                         finishGoal.setEnabled(false);
                     }
