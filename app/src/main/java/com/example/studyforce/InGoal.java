@@ -32,8 +32,8 @@ public class InGoal extends AppCompatActivity {
 
     ArrayList pieuser = new ArrayList();
 
-    int num = 4; //array length (db table)
-    int num2;
+    float num = 4; //array length (db table)
+    float num2;
 
     private String name = "홍길동";
 
@@ -84,8 +84,11 @@ public class InGoal extends AppCompatActivity {
 
     private ArrayList<PieEntry>piedata(){
         ArrayList<PieEntry>data = new ArrayList<>();
-        num2 = 100;
+        num2 = (1/num)*100;
         data.add(new PieEntry(num2, name));
+        data.add(new PieEntry(num2, "김도희"));
+        data.add(new PieEntry(num2, "이"));
+        data.add(new PieEntry(num2, "q"));
 
         return data;
     }
@@ -97,7 +100,8 @@ public class InGoal extends AppCompatActivity {
         pieChart.setDescription(des);
 
         PieDataSet dataSet = new PieDataSet(piedata(), "");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        //dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(new int[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE});
         pieChart.animateXY(200, 200);
 
         PieData data = new PieData(dataSet);
