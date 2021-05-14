@@ -184,7 +184,7 @@ public class whole_class_list extends AppCompatActivity {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 int classnum = jsonObject.getInt("classnum");
                                 String classname = jsonObject.getString("classname");
-                                int num = jsonObject.getInt("num");
+                                int num = jsonObject.getInt("num"); //학번
                                 String name = jsonObject.getString("name");
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
@@ -217,6 +217,7 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        //띄워야 할 것 =>
         adapter = new ClassListAdapter();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         listView1.setAdapter(adapter);
@@ -265,14 +266,12 @@ public class whole_class_list extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //개인클래스리스트로 넘기기(db)
-                        //classnum++ 해야함
+                        //클래스이름갯수
                         //내부클래스 액티비티에 값 넘겨주기
                         String names = ((ClassJob)adapter.getItem(i)).getTitle();
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
                         intent.putExtra("name",names);
                         startActivity(intent);
-
-
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {

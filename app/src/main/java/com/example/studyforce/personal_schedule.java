@@ -44,7 +44,7 @@ public class personal_schedule extends AppCompatActivity {
     SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
     String getTime;
 
-    //db용
+    //db용 - 학번을 걸러서 가져오기
     int id2;
     int sDay;
     int sMonth;

@@ -84,7 +84,7 @@ public class my_class_list extends AppCompatActivity {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 int classnum = jsonObject.getInt("classnum");
                                 String classname = jsonObject.getString("classname");
-                                int num = jsonObject.getInt("num");
+                                int num = jsonObject.getInt("num"); //학번
                                 String name = jsonObject.getString("name");
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
@@ -115,7 +115,7 @@ public class my_class_list extends AppCompatActivity {
 
     //my class list 보여주기용 - 수정중....
     private void showCList(wholeclist[] wclist){
-        /*
+        /* 학번 구분해야함...
         for(int i=0; i<.length; i++){
         if(wclist[i].name == username)
          ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,

@@ -13,6 +13,8 @@ import android.widget.TextView;
 public class CreateByStu extends AppCompatActivity {
     private String spw = "";
 
+    //1, 0으로 비교
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -256,9 +256,9 @@ public class InClass extends AppCompatActivity {
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int id = jsonObject.getInt("id");
-                                int num = jsonObject.getInt("num");
-                                int done = jsonObject.getInt("done");
+                                int id = jsonObject.getInt("id"); //번호(1부터 시작)
+                                int num = jsonObject.getInt("num"); //학번
+                                int done = jsonObject.getInt("done"); //
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
                                 cTodoList[i] = new classTodo(id, num, classtodo, done, className);
@@ -295,7 +295,7 @@ public class InClass extends AppCompatActivity {
 
     }
 
-    public void clickGoalList(){
+    public void clickGoalList(){ //위 함수로 넘기기...
         goalList = (ListView)findViewById(R.id.shortTodoList); //목표 listview
         goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
