@@ -36,7 +36,7 @@ public class qnaList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qna_list);
         qlist = (ListView) findViewById(R.id.qlist);
-        sendRequest2();
+        sendRequest();
 
     }
     public void setQ(View v){
@@ -44,7 +44,7 @@ public class qnaList extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void sendRequest2(){
+    private void sendRequest(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }

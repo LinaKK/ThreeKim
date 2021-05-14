@@ -45,7 +45,7 @@ import org.json.JSONObject;
           et_id = findViewById(R.id.et_id);
           et_pw = findViewById(R.id.et_pw);
           //btn_lo = findViewById(R.id.btn_lo);
-          btn_sign = findViewById(R.id.btn1_sign);
+          //btn_sign = findViewById(R.id.btn1_sign);
 
           //회원가입페이지 이동
          /* btn_sign.setOnClickListener(new View.OnClickListener() {
@@ -66,53 +66,17 @@ import org.json.JSONObject;
 
       }
 
+      public void btn_sign(View view){
+          Intent intent = new Intent(this, Sign.class);
+          startActivity(intent);
+      }
+
       public void btn_lo(View view){
           String Sid = et_id.getText().toString();
           int id = Integer.parseInt(Sid);
           String pw = et_pw.getText().toString();
           loginsendRequest(id, pw);
       }
-
-
-      /*private void login() {
-          final int Uid = Integer.parseInt(et_id.getText().toString());
-          String Upw = et_pw.getText().toString();
-
-          Response.Listener<String> responseListener = new Response.Listener<String>() {
-              @Override
-              public void onResponse(String response) {
-                  try {
-                      JSONObject jsonObject = new JSONObject(response);
-                      String success = jsonObject.getString("success");
-                      if (success != null && success.equals("1")) {
-                          Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
-                          Intent intent = new Intent(Login.this, personal_page.class);
-                          intent.putExtra("Uid", Uid);
-                          startActivity(intent);
-                          //finish();
-                      } else {
-                          Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
-                          return;
-                      }
-                  } catch (JSONException e) {
-                      e.printStackTrace();
-                  }
-              }
-          };
-
-          Response.ErrorListener errorListener = new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                  Toast.makeText(getApplicationContext(), "로그인 처리시 에러발생!", Toast.LENGTH_SHORT).show();
-                  return;
-              }
-          };
-          Login_Request loginRequest = new Login_Request(Uid, Upw, responseListener, errorListener);
-          //loginRequest.setShouldCache(false);
-
-          RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-          queue.add(loginRequest);
-      }*/
 
       private void loginsendRequest(final int ed_id, String ed_pw){
           if (AppHelper.requestQueue == null){
@@ -178,5 +142,48 @@ import org.json.JSONObject;
       private void loginError(){
           Toast.makeText(this,"id or pw is incorrect",Toast.LENGTH_SHORT).show();
       }
+
+
+      /*private void login() {
+          final int Uid = Integer.parseInt(et_id.getText().toString());
+          String Upw = et_pw.getText().toString();
+
+          Response.Listener<String> responseListener = new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                  try {
+                      JSONObject jsonObject = new JSONObject(response);
+                      String success = jsonObject.getString("success");
+                      if (success != null && success.equals("1")) {
+                          Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
+                          Intent intent = new Intent(Login.this, personal_page.class);
+                          intent.putExtra("Uid", Uid);
+                          startActivity(intent);
+                          //finish();
+                      } else {
+                          Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
+                          return;
+                      }
+                  } catch (JSONException e) {
+                      e.printStackTrace();
+                  }
+              }
+          };
+
+          Response.ErrorListener errorListener = new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                  Toast.makeText(getApplicationContext(), "로그인 처리시 에러발생!", Toast.LENGTH_SHORT).show();
+                  return;
+              }
+          };
+          Login_Request loginRequest = new Login_Request(Uid, Upw, responseListener, errorListener);
+          //loginRequest.setShouldCache(false);
+
+          RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+          queue.add(loginRequest);
+      }*/
+
+
 
   }

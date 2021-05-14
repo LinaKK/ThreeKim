@@ -34,6 +34,7 @@ public class detailQ extends AppCompatActivity {
     private TextView Dqnatitle;
     private TextView contextQ;
     private ListView al;
+    private answerListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,9 @@ public class detailQ extends AppCompatActivity {
         Dqnatitle.setText(qtitle);
         contextQ = (TextView)findViewById(R.id.contextQ);
         al = (ListView) findViewById(R.id.alist);
+
         sendRequest();
-        //sendRequest1();
+        sendRequest1();
 
     }
 
@@ -115,7 +117,7 @@ public class detailQ extends AppCompatActivity {
         Dqnatitle = (TextView)findViewById(R.id.contextQ);
         Dqnatitle.append(data);
     }
-/*
+
     private void sendRequest1(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
@@ -129,7 +131,7 @@ public class detailQ extends AppCompatActivity {
 
         String url = "http://118.33.132.221/php/listA.php";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 url,
                 rj,
@@ -139,18 +141,17 @@ public class detailQ extends AppCompatActivity {
                         // processResponse(response);
                         // classname.setText(response);
                         try {
-                            alist = new Alist[response.length()];
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            alist = new Alist[jsonArray.length()];
 
-                            for(int i=0; i<response.length(); i++){
-                                String a = response.getString("a");
-                                String aw = response.getString("aw");
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String a = jsonObject.getString("a");
+                                String aw = jsonObject.getString("awriter");
                                 alist[i] = new Alist(a, aw);
+                            }
+                            showAlist(alist);
 
-
-                            }showAlist(alist);
-                            //classname.setText(nList[1].notice);
                         }
                         catch (JSONException e){
                             e.printStackTrace();
@@ -170,13 +171,15 @@ public class detailQ extends AppCompatActivity {
 
     }
     private void showAlist(Alist[] alist){
-        List a = new ArrayList();
+        /*List a = new ArrayList();
         for(int i=0; i<alist.length; i++){
             a.add(alist[i].a);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+        }*/
+        mAdapter = new answerListAdapter(this, alist);
+        al.setAdapter(mAdapter);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 a);
-        al.setAdapter(adapter);
+        al.setAdapter(adapter);*/
 
-    }*/
+    }
 }

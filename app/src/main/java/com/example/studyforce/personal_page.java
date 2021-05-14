@@ -42,6 +42,9 @@ public class personal_page extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
+        Intent intent = getIntent();
+        int num = intent.getIntExtra("num",0);// 로그인후 학번
+
 
         info = (ImageButton)findViewById(R.id.userinfo);
         schedule = (ImageButton)findViewById(R.id.schedule);
