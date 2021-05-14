@@ -40,7 +40,6 @@ import org.json.JSONObject;
 
           et_id = findViewById(R.id.et_id);
           et_pw = findViewById(R.id.et_pw);
-
           btn_lo = findViewById(R.id.btn_lo);
           btn_sign = findViewById(R.id.btn1_sign);
 
@@ -63,7 +62,7 @@ import org.json.JSONObject;
 
 
       private void login() {
-          final String Uid = et_id.getText().toString();
+          final int Uid = Integer.parseInt(et_id.getText().toString());
           String Upw = et_pw.getText().toString();
 
           Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -77,7 +76,7 @@ import org.json.JSONObject;
                           Intent intent = new Intent(Login.this, personal_page.class);
                           intent.putExtra("Uid", Uid);
                           startActivity(intent);
-                          finish();
+                          //finish();
                       } else {
                           Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
                           return;
@@ -96,7 +95,7 @@ import org.json.JSONObject;
               }
           };
           Login_Request loginRequest = new Login_Request(Uid, Upw, responseListener, errorListener);
-          loginRequest.setShouldCache(false);
+          //loginRequest.setShouldCache(false);
 
           RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
           queue.add(loginRequest);

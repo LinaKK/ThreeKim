@@ -65,8 +65,8 @@ public class Sign extends AppCompatActivity {
     }
     private void Sign() {
         String Uname = si_n.getText().toString();
-        String Uid = si_id.getText().toString();
-        userID = Uid;
+        int Uid = Integer.parseInt(si_id.getText().toString());
+         //우리 id string이 아니라 num아니었나...?
         String Upw = si_pw.getText().toString();
         String Uemail = si_email.getText().toString();
 
@@ -80,7 +80,7 @@ public class Sign extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"회원가입 성공!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Sign.this,Login.class);
                         startActivity(intent);
-                        finish();
+                        //finish();
                     } else {
                         Toast.makeText(getApplicationContext(),"회원가입 실패!",Toast.LENGTH_SHORT).show();
                         return;
@@ -99,7 +99,7 @@ public class Sign extends AppCompatActivity {
             }
         };
 
-        Sign_Request SignRequest = new Sign_Request(Uname,Upw,Uid,Uemail,resposneListener,errorListener);
+        Sign_Request SignRequest = new Sign_Request(Uname,Uid, Upw,Uemail,resposneListener,errorListener);
         SignRequest.setShouldCache(false);
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());

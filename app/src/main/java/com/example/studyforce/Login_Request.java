@@ -17,20 +17,22 @@ import android.os.Bundle;
 public class Login_Request extends StringRequest {
 
     final static private String URL ="http://118.33.132.221/php/Login.php";
-    private Map<String, String> map;
+    private Map<String, String> map = new HashMap<String, String>();
+    private Map<String, Integer>map2 = new HashMap<String, Integer>();
 
-    public Login_Request(String Uid, String Upw, Response.Listener<String> listener, Response.ErrorListener errorListener){
+    public Login_Request(int Uid, String Upw, Response.Listener<String> listener, Response.ErrorListener errorListener){
         super(Request.Method.POST, URL, listener, errorListener);
-
-        map =new HashMap<>();
-        map.put("Uid", Uid);
+        map2.put("Uid", Uid);
         map.put("Upw", Upw);
     }
 
     @Override
-    protected Map<String, String>getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws AuthFailureError {
         return map;
     }
+
+
+
 
     //값을 넘겨줄 때
     /*public static Context context_login;
