@@ -2,8 +2,12 @@ package com.example.studyforce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,12 +29,16 @@ public class todoC extends AppCompatActivity {
     private ListView shortTodolist;
     TextView todolistinclass;
 
+    Button AddTodoC;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_c);
         shortTodolist = (ListView) findViewById(R.id.todoc);
         sendRequest3();
+
+        addTodo();
     }
 
     private void sendRequest3() {
@@ -92,9 +100,30 @@ public class todoC extends AppCompatActivity {
                 todolist);
         shortTodolist.setAdapter(adapterClassTodo);
 
+        shortTodolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //goal 번호 넘겨주기
+                Intent intent = new Intent(getApplicationContext(), InGoal.class);
+                startActivity(intent);
+            }
+        });
     }
     private void println(String data){
         todolistinclass = (TextView) findViewById(R.id.todolistinclass);
         todolistinclass.append(data);
     }
+
+    private void addTodo(){
+        AddTodoC = (Button)findViewById(R.id.addTodoC);
+        AddTodoC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), addEvent.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
 }

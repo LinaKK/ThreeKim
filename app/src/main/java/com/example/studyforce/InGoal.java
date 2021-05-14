@@ -32,7 +32,7 @@ public class InGoal extends AppCompatActivity {
 
     ArrayList pieuser = new ArrayList();
 
-    float num = 4; //array length (db table)
+    float num = 4; //array length (db table) = 인원 수
     float num2;
 
     private String name = "홍길동";

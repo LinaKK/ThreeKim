@@ -124,13 +124,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:text="목표달성 그래프"/>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="1"
-            android:id="@+id/goalList"/>
+            android:text="목표달성 그래프"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"

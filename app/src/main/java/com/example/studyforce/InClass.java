@@ -296,12 +296,12 @@ public class InClass extends AppCompatActivity {
     }
 
     public void clickGoalList(){
-        goalList = (ListView)findViewById(R.id.goalList); //목표 listview
+        goalList = (ListView)findViewById(R.id.shortTodoList); //목표 listview
         goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
-                //목표값을 넘겨줘야함(목표 이름이 아닌 목표 번호를 넘겨줘야 함.../목표번호가 관리하기 쉬울 것 같아서) => 목표 생성할 때마다 목표number 1씩 증가하게 하면 될 듯...
+                //목표번호를 넘겨줘야함(목표번호가 관리하기 쉬울 것 같아서) => 목표 생성할 때마다 목표number 1씩 증가하게 하면 될 듯...
                 startActivity(intent);
             }
         });
