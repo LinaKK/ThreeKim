@@ -300,8 +300,11 @@ public class InClass extends AppCompatActivity {
         goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //int gnum = ((ClassJob)adapter.getItem(position)).getTitle();
+                int gnum=0;
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 //목표번호를 넘겨줘야함(목표번호가 관리하기 쉬울 것 같아서) => 목표 생성할 때마다 목표number 1씩 증가하게 하면 될 듯...
+                intent.putExtra("gnum", gnum);
                 startActivity(intent);
             }
         });

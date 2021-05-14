@@ -30,7 +30,6 @@ public class InGoal extends AppCompatActivity {
     PieChart pieChart;
     Button finishGoal;
 
-    ArrayList pieuser = new ArrayList();
 
     float num = 4; //array length (db table) = 인원 수
     float num2;
@@ -43,9 +42,12 @@ public class InGoal extends AppCompatActivity {
         setContentView(R.layout.activity_in_goal);
 
         finishGoal = (Button)findViewById(R.id.goalfinish);
-        Gtitle = (TextView)findViewById(R.id.GoalTitle);
         pieChart = (PieChart)findViewById(R.id.piechart);
 
+        Intent intent = new Intent(this.getIntent());
+        int gnum = intent.getIntExtra("gnum",0);
+
+        getGTitle(gnum);
         setChart();
 
        listview = (ListView)findViewById(R.id.goalperson);
@@ -80,10 +82,16 @@ public class InGoal extends AppCompatActivity {
 
     }
 
+    public void getGTitle(int num){
+        Gtitle = (TextView)findViewById(R.id.GoalTitle);
+        String gTitle = "";
+        Gtitle.setText(gTitle);
+    }
+
     //db에서 값 받아오기 그걸로 세팅...
 
     private ArrayList<PieEntry>piedata(){
-        ArrayList<PieEntry>data = new ArrayList<>();
+        ArrayList<PieEntry> data = new ArrayList<>();
         num2 = (1/num)*100;
         data.add(new PieEntry(num2, name));
         data.add(new PieEntry(num2, "김도희"));
