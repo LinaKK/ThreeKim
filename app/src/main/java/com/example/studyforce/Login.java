@@ -7,14 +7,18 @@ import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -40,11 +44,11 @@ import org.json.JSONObject;
 
           et_id = findViewById(R.id.et_id);
           et_pw = findViewById(R.id.et_pw);
-          btn_lo = findViewById(R.id.btn_lo);
+          //btn_lo = findViewById(R.id.btn_lo);
           btn_sign = findViewById(R.id.btn1_sign);
 
           //회원가입페이지 이동
-          btn_sign.setOnClickListener(new View.OnClickListener() {
+         /* btn_sign.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
                   Intent intent = new Intent(Login.this, Sign.class);
@@ -55,13 +59,22 @@ import org.json.JSONObject;
           btn_lo.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  login();
+                  //login();
               }
-          });
+          });*/
+
+
+      }
+
+      public void btn_lo(View view){
+          String Sid = et_id.getText().toString();
+          int id = Integer.parseInt(Sid);
+          String pw = et_pw.getText().toString();
+          loginsendRequest(id, pw);
       }
 
 
-      private void login() {
+      /*private void login() {
           final int Uid = Integer.parseInt(et_id.getText().toString());
           String Upw = et_pw.getText().toString();
 
@@ -99,5 +112,71 @@ import org.json.JSONObject;
 
           RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
           queue.add(loginRequest);
+      }*/
+
+      private void loginsendRequest(final int ed_id, String ed_pw){
+          if (AppHelper.requestQueue == null){
+              AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+          }
+          JSONObject rj = new JSONObject();
+          try {
+              rj.put("id", ed_id);
+              rj.put("pw", ed_pw);
+          }
+          catch (JSONException e){}
+          //contextQ.setText(rj.toString());
+
+          String url = "http://118.33.132.221/php/Login.php";
+
+          JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                  Request.Method.POST,
+                  url,
+                  rj,
+                  new Response.Listener<JSONObject>(){
+                      @Override
+                      public void onResponse(JSONObject response) {
+
+                          try {
+                              /*TextView a;
+                              a = (TextView)findViewById(R.id.error);
+                              a.setText(response.toString());*/
+                              int result = response.getInt("result");
+                              if (result==0)
+                                  start(ed_id);
+
+                              else
+                                  loginError();
+
+                          } catch (JSONException e) {
+                              e.printStackTrace();
+                          }
+
+                      }
+                  },
+                  new Response.ErrorListener(){
+                      @Override
+                      public void onErrorResponse(VolleyError error) {
+                          println("error -> " + error.getMessage());
+                      }
+                  }
+          );
+          AppHelper.requestQueue.add(jsonObjectRequest);
+
       }
+      private void println(String data){
+          TextView a;
+          a = (TextView)findViewById(R.id.error);
+          a.append(data);
+      }
+
+      private void start(int num){
+          Intent intent = new Intent(this, personal_page.class);
+          intent.putExtra("num", num);
+          startActivity(intent);
+      }
+
+      private void loginError(){
+          Toast.makeText(this,"id or pw is incorrect",Toast.LENGTH_SHORT).show();
+      }
+
   }
