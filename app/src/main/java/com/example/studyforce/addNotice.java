@@ -24,7 +24,6 @@ public class addNotice extends AppCompatActivity {
     private String classname;
     private int num;
     private TextView e;
-    private String Snum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class addNotice extends AppCompatActivity {
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
         num = intent.getIntExtra("num",0);
-        Snum = Integer.toString(num);
     }
 
     public void updateN(View v){
