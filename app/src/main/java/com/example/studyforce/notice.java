@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -28,14 +29,17 @@ public class notice extends AppCompatActivity {
     private ListView shortNoticeList;
     private static noticeList[] nList;
     private TextView TitleNotice;
+    String classname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
 
         shortNoticeList = (ListView) findViewById(R.id.noticelist);
-        sendRequest2();
+        sendRequest2(classname);
 
     }
 
@@ -49,54 +53,56 @@ public class notice extends AppCompatActivity {
         }
     }
 
-    private void sendRequest2(){
+    private void sendRequest2(String classname){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", classname);
+        }
+        catch (JSONException e){}
+
         String url = "http://118.33.132.221/php/noticeTitle.php";
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                url ,
-                new Response.Listener<String>() {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
                     @Override
-                    public void onResponse(String response) {
-                        // processResponse(response);
-                        // classname.setText(response);
+                    public void onResponse(JSONObject response) {
+
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONArray jsonArray = response.getJSONArray("res");
                             nList = new noticeList[jsonArray.length()];
-                            int s = jsonArray.length();
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
 
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 int noticeNum = jsonObject.getInt("noticenum");
-                                String className = jsonObject.getString("classname");
+                               // String className = jsonObject.getString("classname");
                                 int num = jsonObject.getInt("num");
                                 String title = jsonObject.getString("title");
-                                String notice = jsonObject.getString("notice");
-                                nList[i] = new noticeList(noticeNum, num, className, title, notice);
-
+                                //String notice = jsonObject.getString("notice");
+                                nList[i] = new noticeList(noticeNum, num, title);
 
                             }showNotiList(nList);
-                            //classname.setText(nList[1].notice);
-                        }
-                        catch (JSONException e){
+
+
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }
 
+                    }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         println("error -> " + error.getMessage());
                     }
                 }
-
         );
-        AppHelper.requestQueue.add(request);
+        AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
     public void showNotiList(noticeList[] notice){
@@ -114,6 +120,7 @@ public class notice extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), noticeD.class);
                 String noticeTitle = nolist.get(position).toString();
                 intent.putExtra("ntitle", noticeTitle);
+                intent.putExtra("classname",classname);
                 startActivity(intent);
             }
         });

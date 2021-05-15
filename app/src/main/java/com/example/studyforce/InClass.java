@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.ScatterChart;
@@ -51,6 +52,7 @@ public class InClass extends AppCompatActivity {
     ListView goalList;
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
+    private String cname;
 
     long Now = System.currentTimeMillis();;
     java.util.Date Date = new Date(Now);
@@ -70,29 +72,32 @@ public class InClass extends AppCompatActivity {
         classname = (TextView) findViewById(R.id.InClassName);
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
-
-        sendRequest1();
-        sendRequest2();
-        sendRequest3();
+        //sendRequest1();
 
         clickGoalList();
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
-        classname.setText(intent.getStringExtra("name"));
+        cname = intent.getStringExtra("name");
+        classname.setText(cname);
         //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
-
+        sendRequest2("ThreeK");//(cname)
+        sendRequest3();
     }
 
 
     public void btnClick(View v){
+        Intent intent1 = getIntent();
+        //String classname = intent1.getStringExtra("name");
+        String classname = "ThreeK";
         Intent intent;
         switch (v.getId()){
             case R.id.notice:
                 intent = new Intent(this, notice.class);
+                intent.putExtra("classname", classname);
                 startActivity(intent);
                 break;
 
@@ -118,6 +123,7 @@ public class InClass extends AppCompatActivity {
 
             case R.id.qna:
                 intent = new Intent(this, qnaList.class);
+                intent.putExtra("classname", classname);
                 startActivity(intent);
                 break;
 
@@ -172,7 +178,7 @@ public class InClass extends AppCompatActivity {
         AppHelper.requestQueue.add(request);
     }
 
-    private void sendRequest2(){
+    private void sendReques(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
@@ -195,11 +201,11 @@ public class InClass extends AppCompatActivity {
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 int noticeNum = jsonObject.getInt("noticenum");
-                                String className = jsonObject.getString("classname");
+                               // String className = jsonObject.getString("classname");
                                 int num = jsonObject.getInt("num");
                                 String title = jsonObject.getString("title");
-                                String notice = jsonObject.getString("notice");
-                                nList[i] = new noticeList(noticeNum, num, className, title, notice);
+                                //String notice = jsonObject.getString("notice");
+                                nList[i] = new noticeList(noticeNum, num, title);
 
 
                             }showNotiList(nList);
@@ -220,6 +226,57 @@ public class InClass extends AppCompatActivity {
 
         );
         AppHelper.requestQueue.add(request);
+    }
+    private void sendRequest2(String classname){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", classname);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/noticeTitle.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            nList = new noticeList[jsonArray.length()];
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int noticeNum = jsonObject.getInt("noticenum");
+                                // String className = jsonObject.getString("classname");
+                                int num = jsonObject.getInt("num");
+                                String title = jsonObject.getString("title");
+                                //String notice = jsonObject.getString("notice");
+                                nList[i] = new noticeList(noticeNum, num, title);
+
+                            }showNotiList(nList);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
     public void showNotiList(noticeList[] notice){

@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 public class noticeD extends AppCompatActivity {
     String ntitle;
+    String classname;
     TextView Dnotitle;
     TextView Ncontext;
 
@@ -26,6 +27,7 @@ public class noticeD extends AppCompatActivity {
         setContentView(R.layout.activity_notice_d);
         Intent intent = getIntent();
         ntitle = intent.getStringExtra("ntitle");
+        classname = intent.getStringExtra("classname");
         Dnotitle = findViewById(R.id.noticeTitle);
         Dnotitle.setText(ntitle);
         Ncontext = findViewById(R.id.NoticeContext);
@@ -39,6 +41,7 @@ public class noticeD extends AppCompatActivity {
         JSONObject rj = new JSONObject();
         try {
             rj.put("ntitle", ntitle);
+            rj.put("classname",classname);
         }
         catch (JSONException e){}
 

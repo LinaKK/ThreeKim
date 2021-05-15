@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -29,6 +30,7 @@ public class qnaList extends AppCompatActivity {
     private static qna qnalist[];
     private ListView qlist;
     public TextView qnatitle;
+    private String classname;
 
 
     @Override
@@ -36,13 +38,69 @@ public class qnaList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qna_list);
         qlist = (ListView) findViewById(R.id.qlist);
-        sendRequest();
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        sendRequest2(classname);
 
     }
     public void setQ(View v){
         Intent intent = new Intent(this, Q.class);
         startActivity(intent);
     }
+
+
+
+    private void sendRequest2(String classname){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", "ThreeK");
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/qnalist.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            qnalist = new qna[jsonArray.length()];
+                            println(response.toString());
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int qnum = jsonObject.getInt("qnanum");
+                                String qt = jsonObject.getString("qtitle");
+                                String q = jsonObject.getString("q");
+                                String qw = jsonObject.getString("qwriter");
+                                qnalist[i] = new qna(qnum, qt, q, qw);
+
+                            }showQnalist(qnalist);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
+
 
     private void sendRequest(){
         if (AppHelper.requestQueue == null){
