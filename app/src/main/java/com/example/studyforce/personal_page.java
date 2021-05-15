@@ -32,6 +32,8 @@ public class personal_page extends AppCompatActivity {
     TextView Username;
     ImageView mp3;
     Button exit, logout;
+    private int num;
+    private String name, email;
 
 
 
@@ -40,10 +42,13 @@ public class personal_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_page);
 
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
         Intent intent = getIntent();
-        int num = intent.getIntExtra("num",0);// 로그인후 학번
+        num = intent.getIntExtra("num",0);// 로그인후 학번
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
 
         info = (ImageButton)findViewById(R.id.userinfo);
@@ -53,6 +58,8 @@ public class personal_page extends AppCompatActivity {
         exit = (Button)findViewById(R.id.exit);
         logout=(Button)findViewById(R.id.logout);
         Username = (TextView)findViewById(R.id.username);
+
+        Username.setText(name);
 
         //로그인 성공시 받아올 학번(Login_Request 성공시 학번만 받아오기)
         /*
@@ -68,6 +75,9 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), personal_info.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -77,6 +87,7 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), personal_schedule.class);
+                intent.putExtra("num",num);
                 startActivity(intent);
             }
         });
@@ -87,6 +98,7 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), my_class_list.class);
+                intent.putExtra("num",num);
                 startActivity(intent);
             }
         });

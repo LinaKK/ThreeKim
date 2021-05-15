@@ -53,6 +53,7 @@ public class InClass extends AppCompatActivity {
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
     private String cname;
+    private int num = 20180641;
 
     long Now = System.currentTimeMillis();;
     java.util.Date Date = new Date(Now);
@@ -79,13 +80,14 @@ public class InClass extends AppCompatActivity {
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
         cname = intent.getStringExtra("name");
+        //num = intent.getIntExtra("num",0);
         classname.setText(cname);
-        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후
+        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
         sendRequest2("ThreeK");//(cname)
-        sendRequest3();
+        sendRequest3("ThreeK");//(cname)
     }
 
 
@@ -97,12 +99,15 @@ public class InClass extends AppCompatActivity {
         switch (v.getId()){
             case R.id.notice:
                 intent = new Intent(this, notice.class);
+                intent.putExtra("num",num);
                 intent.putExtra("classname", classname);
                 startActivity(intent);
                 break;
 
             case R.id.nextEvent:
                 intent = new Intent(this, nextEvent.class);
+                intent.putExtra("num",num);
+                intent.putExtra("classname", classname);
                 startActivity(intent);
                 break;
 
@@ -118,12 +123,15 @@ public class InClass extends AppCompatActivity {
 
             case R.id.todo:
                 intent = new Intent(this, todoC.class);
+                intent.putExtra("num",num);
+                intent.putExtra("classname", classname);
                 startActivity(intent);
                 break;
 
             case R.id.qna:
                 intent = new Intent(this, qnaList.class);
                 intent.putExtra("classname", classname);
+                intent.putExtra("num",num);
                 startActivity(intent);
                 break;
 
@@ -153,80 +161,8 @@ public class InClass extends AppCompatActivity {
         }
     };
 
-    private void sendRequest1(){
-        if (AppHelper.requestQueue == null){
-            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
-        }
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                AppHelper.url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        classname.setText(response);
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
-                    }
-                }
-
-        );
-        AppHelper.requestQueue.add(request);
-    }
-
-    private void sendReques(){
-        if (AppHelper.requestQueue == null){
-            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
-        }
-        String url = "http://118.33.132.221/php/noticeTitle.php";
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                url ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                       // processResponse(response);
-                       // classname.setText(response);
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            nList = new noticeList[jsonArray.length()];
-                            int s = jsonArray.length();
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
-
-                            for(int i=0; i<jsonArray.length(); i++){
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int noticeNum = jsonObject.getInt("noticenum");
-                               // String className = jsonObject.getString("classname");
-                                int num = jsonObject.getInt("num");
-                                String title = jsonObject.getString("title");
-                                //String notice = jsonObject.getString("notice");
-                                nList[i] = new noticeList(noticeNum, num, title);
 
 
-                            }showNotiList(nList);
-                            //classname.setText(nList[1].notice);
-                        }
-                        catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
-                    }
-                }
-
-        );
-        AppHelper.requestQueue.add(request);
-    }
     private void sendRequest2(String classname){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
@@ -291,54 +227,58 @@ public class InClass extends AppCompatActivity {
     }
 
     //classTodoList request
-    private void sendRequest3() {
-        if (AppHelper.requestQueue == null) {
-            AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
+    private void sendRequest3(String classname){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", classname);
+        }
+        catch (JSONException e){}
+
         String url = "http://118.33.132.221/php/classtodo.php";
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
                 url,
-                new Response.Listener<String>() {
+                rj,
+                new Response.Listener<JSONObject>(){
                     @Override
-                    public void onResponse(String response) {
-                        // processResponse(response);
-                        // classname.setText(response);
+                    public void onResponse(JSONObject response) {
+
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONArray jsonArray = response.getJSONArray("res");
                             cTodoList = new classTodo[jsonArray.length()];
                             int s = jsonArray.length();
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
+                            println(String.valueOf(s));
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int id = jsonObject.getInt("id"); //번호(1부터 시작)
-                                int num = jsonObject.getInt("num"); //학번
-                                int done = jsonObject.getInt("done"); //
+                                int id = jsonObject.getInt("id");
+                                int num = jsonObject.getInt("num");
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
+                                int done = jsonObject.getInt("done");
                                 cTodoList[i] = new classTodo(id, num, classtodo, done, className);
 
-                            }
-                            showTodo(cTodoList);
-                            //classname.setText(nList[1].notice);
+                            }showTodo(cTodoList);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }
 
+                    }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         println("error -> " + error.getMessage());
                     }
                 }
-
         );
-        AppHelper.requestQueue.add(request);
-
+        AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
     private void showTodo(classTodo[] cTodo){

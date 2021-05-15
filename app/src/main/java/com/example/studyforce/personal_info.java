@@ -10,15 +10,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class personal_info extends AppCompatActivity {
 
     Button exit;
     TextView uname;
     TextView uid;
     TextView umail;
-    String username;
+    /*String username;
     String usermail;
-    int userid;
+    int userid;*/
+    TextView a;
+    int num;
+    String name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +45,17 @@ public class personal_info extends AppCompatActivity {
         umail = findViewById(R.id.umail);
         exit = (Button)findViewById(R.id.exit3);
 
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num", 0);
+        String Snum = Integer.toString(num);
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
+
+
         //예시
-        uname.setText("홍길동");
+        /*uname.setText("홍길동");
         uid.setText("12345678");
-        umail.setText("hong123@uhs.ac.kr");
+        umail.setText("hong123@uhs.ac.kr");*/
 
 
         //로그인 성공시 받아올 학번
@@ -44,11 +63,11 @@ public class personal_info extends AppCompatActivity {
         /*
          username = jsonObject.getString("name"); //'pinfo'테이블
          usermail = jsonObject.getString("email"); //'pinfo'테이블
-         userid = jsonObject.getint("num"); //'pinfo'테이블
+         userid = jsonObject.getint("num"); //'pinfo'테이블*/
 
-        uname.setText(username);
-        uid.setText(userid);
-        umail.setText(usermail);*/
+        uname.setText(name);
+        uid.setText(Snum);
+        umail.setText(email);
 
 
 
@@ -61,4 +80,9 @@ public class personal_info extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 }

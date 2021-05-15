@@ -105,8 +105,11 @@ import org.json.JSONObject;
                               a = (TextView)findViewById(R.id.error);
                               a.setText(response.toString());*/
                               int result = response.getInt("result");
-                              if (result==0)
-                                  start(ed_id);
+                              String name = response.getString("name");
+                              String email = response.getString("email");
+                              if (result==0){
+                                  start(ed_id, name, email);
+                              /*println(response.toString());*/}
 
                               else
                                   loginError();
@@ -133,9 +136,11 @@ import org.json.JSONObject;
           a.append(data);
       }
 
-      private void start(int num){
+      private void start(int num, String name, String email){
           Intent intent = new Intent(this, personal_page.class);
           intent.putExtra("num", num);
+          intent.putExtra("name", name);
+          intent.putExtra("email", email);
           startActivity(intent);
       }
 

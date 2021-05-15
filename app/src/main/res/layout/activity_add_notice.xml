@@ -36,10 +36,15 @@
         android:hint="내용을 입력하세요."/>
 
     <Button
-        android:id="@+id/updateN"
+        android:onClick="updateN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="확인"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/e"/>
 
 </LinearLayout>

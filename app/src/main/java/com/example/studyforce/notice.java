@@ -30,6 +30,7 @@ public class notice extends AppCompatActivity {
     private static noticeList[] nList;
     private TextView TitleNotice;
     String classname;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class notice extends AppCompatActivity {
         setContentView(R.layout.activity_notice);
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
 
         shortNoticeList = (ListView) findViewById(R.id.noticelist);
         sendRequest2(classname);
@@ -48,6 +50,8 @@ public class notice extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.addnotice:
                 intent = new Intent(this, addNotice.class);
+                intent.putExtra("classname",classname);
+                intent.putExtra("num",num);
                 startActivity(intent);
                 break;
         }

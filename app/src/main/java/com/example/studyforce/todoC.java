@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -28,6 +29,8 @@ public class todoC extends AppCompatActivity {
     private static classTodo[] cTodoList;
     private ListView shortTodolist;
     TextView todolistinclass;
+    String classname;
+    int num;
 
     Button AddTodoC;
 
@@ -35,8 +38,11 @@ public class todoC extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_c);
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",0);
         shortTodolist = (ListView) findViewById(R.id.todoc);
-        sendRequest3();
+        sendRequest2();
 
         addTodo();
     }
@@ -89,6 +95,61 @@ public class todoC extends AppCompatActivity {
         );
         AppHelper.requestQueue.add(request);
 
+    }
+
+
+    private void sendRequest2(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", classname);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/classtodo.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            cTodoList = new classTodo[jsonArray.length()];
+                            int s = jsonArray.length();
+                            println(String.valueOf(s));
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                int id = jsonObject.getInt("id");
+                                int num = jsonObject.getInt("num");
+                                String classtodo = jsonObject.getString("todo");
+                                String className = jsonObject.getString("classname");
+                                int done = jsonObject.getInt("done");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className);
+
+                            }showTodo(cTodoList);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
     private void showTodo(classTodo[] cTodo){
