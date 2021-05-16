@@ -2,6 +2,7 @@ package com.example.studyforce;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class InGoal extends AppCompatActivity {
     Button finishGoal;
 
 
-    float num = 4; //array length (db table) = 인원 수
+    float num ; //array length (db table) = 인원 수
     float num2;
 
     private String name = "홍길동";
@@ -101,23 +102,32 @@ public class InGoal extends AppCompatActivity {
         data.add(new PieEntry(num2, "김도희"));
         data.add(new PieEntry(num2, "이"));
         data.add(new PieEntry(num2, "q"));
+        data.add(new PieEntry(num2, "q"));
+        data.add(new PieEntry(num2, "q"));
+        data.add(new PieEntry(num2, "q"));
 
         return data;
     }
 
     public void setChart(){
+        num=7;
+
         pieChart = (PieChart)findViewById(R.id.piechart);
         Description des = new Description();
         des.setText("StudyForCE");
         pieChart.setDescription(des);
 
+        int orange = ContextCompat.getColor(this, R.color.orange);
+        int skyblue = ContextCompat.getColor(this,R.color.skyblue);
+        int pink = ContextCompat.getColor(this, R.color.pink);
+
         PieDataSet dataSet = new PieDataSet(piedata(), "");
-        //dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        dataSet.setColors(new int[] {Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE});
+        //dataSet.setColors(ColorTemplate.MATERIAL_COLORS); => 색 테마
+        dataSet.setColors(new int[] {Color.RED,orange, Color.YELLOW,Color.GREEN,skyblue, Color.BLUE, pink});
         pieChart.animateXY(200, 200);
 
         PieData data = new PieData(dataSet);
-        data.setValueTextSize(10f);
+        data.setValueTextSize(8f);
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
