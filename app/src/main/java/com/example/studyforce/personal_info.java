@@ -69,13 +69,14 @@ public class personal_info extends AppCompatActivity {
         uid.setText(Snum);
         umail.setText(email);
 
-
-
         //메인으로 나가기
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), personal_page.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

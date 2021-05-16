@@ -48,6 +48,8 @@ public class whole_class_list extends AppCompatActivity {
     ClassListAdapter adapter;
     ListView listView1 =null;  //전체리스트뷰
     TextView errorm;
+    int num;
+    String name, email;
 
     public static wholeclist[] wclist;
 
@@ -63,6 +65,11 @@ public class whole_class_list extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
+
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num",0);// 로그인후 학번
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
 
         /*
@@ -115,10 +122,16 @@ public class whole_class_list extends AppCompatActivity {
             public void onClick(View v) {
                 if(jobs == mClass[0]){ //학생일때
                     Intent intent = new Intent(getApplicationContext(),CreateByStu.class);
+                    intent.putExtra("num",num);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                 }
                 else{//교수일때
                     Intent intent = new Intent(getApplicationContext(),CreateByT.class);
+                    intent.putExtra("num",num);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                 }
             }

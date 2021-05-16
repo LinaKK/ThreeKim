@@ -37,6 +37,9 @@ public class study_time extends AppCompatActivity {
     long mPauseTime;
     String time;
 
+    private int num;
+    private String name, email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,12 @@ public class study_time extends AppCompatActivity {
         exit = (Button)findViewById(R.id.exit2);
         graph = (ImageButton)findViewById(R.id.graph);
 
+        //회원 정보
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num",0);// 로그인후 학번
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
+
         //그래프페이지로 이동
         graph.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +77,9 @@ public class study_time extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),personal_page.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });

@@ -38,6 +38,9 @@ public class ScheduleAdd extends AppCompatActivity {
     TextView eDay_M;
     TextView eDay_D;
 
+    private int num;
+    private String name, email;
+
     public String title;
     public String content;
     //public int startD;
@@ -98,6 +101,11 @@ public class ScheduleAdd extends AppCompatActivity {
         eDay_M = (TextView)findViewById(R.id.endDay_month);
         eDay_D = (TextView)findViewById(R.id.endDay_day);
 
+        //회원정보
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num",0);// 로그인후 학번
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
 
         //시작달력 눌렀을 때

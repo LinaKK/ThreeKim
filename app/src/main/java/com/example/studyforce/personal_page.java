@@ -45,16 +45,11 @@ public class personal_page extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
+
         Intent intent = getIntent();
         num = intent.getIntExtra("num",0);// 로그인후 학번
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
-
-        Intent intent2 = new Intent(getApplicationContext(), my_class_list.class);
-        intent2.putExtra("name", name);
-        intent2.putExtra("num",num);
-        startActivity(intent2);
-
 
         info = (ImageButton)findViewById(R.id.userinfo);
         schedule = (ImageButton)findViewById(R.id.schedule);
@@ -65,15 +60,6 @@ public class personal_page extends AppCompatActivity {
         Username = (TextView)findViewById(R.id.username);
 
         Username.setText(name);
-
-        //로그인 성공시 받아올 학번(Login_Request 성공시 학번만 받아오기)
-        /*
-        //int userid2 = ((Login_Request)Login_Request.context_login).userid1;
-        String username = jsonObject.getString("name"); //'pinfo'테이블
-        Username.setText(username);
-         */
-
-
 
         //개인정보
         info.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +79,8 @@ public class personal_page extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), personal_schedule.class);
                 intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -104,6 +92,8 @@ public class personal_page extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), my_class_list.class);
                 intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -113,6 +103,9 @@ public class personal_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), study_time.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name", name);
+                intent.putExtra("email",email);
                 startActivity(intent);
             }
         });
@@ -140,7 +133,8 @@ public class personal_page extends AppCompatActivity {
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                finish();
+                                finishAffinity();
+                                return;
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {

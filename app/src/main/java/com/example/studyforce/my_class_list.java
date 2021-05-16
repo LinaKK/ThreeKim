@@ -45,7 +45,9 @@ public class my_class_list extends AppCompatActivity {
         username2 = (TextView)findViewById(R.id.username2);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("name");
+        final String username = intent.getStringExtra("name");
+        final int userid = intent.getIntExtra("num",0);
+        final String usermail = intent.getStringExtra("email");
         username2.setText(username);
 
         /*
@@ -60,6 +62,9 @@ public class my_class_list extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(my_class_list.this, personal_page.class);
+                intent.putExtra("name",username);
+                intent.putExtra("num",userid);
+                intent.putExtra("email", usermail);
                 startActivity(intent);
             }
         });
@@ -69,6 +74,9 @@ public class my_class_list extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent (my_class_list.this, whole_class_list.class);
+                intent.putExtra("name",username);
+                intent.putExtra("num",userid);
+                intent.putExtra("email", usermail);
                 startActivity(intent);
             }
         });

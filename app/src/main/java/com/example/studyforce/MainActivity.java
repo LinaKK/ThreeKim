@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
             // 실행 확인용
             Intent intent;
-            intent = new Intent(this, InGoal.class);
+            intent = new Intent(this, Login.class);
             startActivity(intent);
         }
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         returns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), personal_page.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });

@@ -43,6 +43,8 @@ public class personal_schedule extends AppCompatActivity {
     Date Date = new Date(Now);
     SimpleDateFormat cDate = new SimpleDateFormat(" \u003Cyyyy년 MM월 dd일\u003E ");
     String getTime;
+    private int num;
+    private String name, email;
 
     //db용 - 학번을 걸러서 가져오기
     int id2;
@@ -93,6 +95,12 @@ public class personal_schedule extends AppCompatActivity {
         //리스트뷰에 어댑터 삽입
         listView1= (ListView)findViewById(R.id.today_todo);
         listView1.setAdapter(adapter);
+
+        //회원정보 가져오기
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num",0);// 로그인후 학번
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
         //sendRequest();
 
@@ -191,6 +199,9 @@ public class personal_schedule extends AppCompatActivity {
     //일정 추가이벤트
     public void date_add(View view) {
         Intent intent = new Intent(this, ScheduleAdd.class);
+        intent.putExtra("num",num);
+        intent.putExtra("name", name);
+        intent.putExtra("email",email);
         startActivity(intent);
     }
 
