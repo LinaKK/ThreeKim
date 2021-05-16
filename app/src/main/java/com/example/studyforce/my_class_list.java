@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,12 +21,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.sql.DriverManager.println;
 
 public class my_class_list extends AppCompatActivity {
     Button exit;
     Button plus_class;
-    int userid;  //학번(로그인 성공 시 받아오기)
+    TextView username2;
+    int id;
+    ListView myClassList;
 
     public static wholeclist[] wclist;
 
@@ -34,6 +41,12 @@ public class my_class_list extends AppCompatActivity {
         setContentView(R.layout.activity_my_class_list);
         exit=findViewById(R.id.exit);
         plus_class=findViewById(R.id.plus_class);
+        myClassList = (ListView)findViewById(R.id.list_class);
+        username2 = (TextView)findViewById(R.id.username2);
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("name");
+        username2.setText(username);
 
         /*
         본인 클래스 리스트 db에서 받아오기
@@ -115,14 +128,16 @@ public class my_class_list extends AppCompatActivity {
 
     //my class list 보여주기용 - 수정중....
     private void showCList(wholeclist[] wclist){
-        /* 학번 구분해야함...
-        for(int i=0; i<.length; i++){
-        if(wclist[i].name == username)
-         ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                nolist); //layout 수정해야함.
-        shortNoticeList.setAdapter(adapterNotice);
+        Intent intent = getIntent();
+        id= intent.getIntExtra("num", 0);
+        //학번 구분
+        List mclist = new ArrayList();
+        for(int i=0; i<wclist.length; i++){
+        if(wclist[i].num == id)
+             mclist.add(wclist[i].classname);
+         ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                mclist); //layout 수정해야함.
+        myClassList.setAdapter(adapterMCList);
         }
-         */
-
         }
     }

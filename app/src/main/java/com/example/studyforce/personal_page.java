@@ -50,6 +50,11 @@ public class personal_page extends AppCompatActivity {
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
 
+        Intent intent2 = new Intent(getApplicationContext(), my_class_list.class);
+        intent2.putExtra("name", name);
+        intent2.putExtra("num",num);
+        startActivity(intent2);
+
 
         info = (ImageButton)findViewById(R.id.userinfo);
         schedule = (ImageButton)findViewById(R.id.schedule);

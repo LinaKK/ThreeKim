@@ -75,7 +75,6 @@ public class InClass extends AppCompatActivity {
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
         //sendRequest1();
 
-        clickGoalList();
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
@@ -281,8 +280,8 @@ public class InClass extends AppCompatActivity {
         AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
-    private void showTodo(classTodo[] cTodo){
-        List todolist = new ArrayList();
+    private void showTodo(final classTodo[] cTodo){
+        final List todolist = new ArrayList();
         for(int i=0; i<cTodo.length; i++){
             todolist.add(cTodo[i].classtodo);
         }
@@ -290,21 +289,21 @@ public class InClass extends AppCompatActivity {
                 todolist);
         shortTodolist.setAdapter(adapterClassTodo);
 
-    }
-
-    public void clickGoalList(){ //위 함수로 넘기기...
-        goalList = (ListView)findViewById(R.id.shortTodoList); //목표 listview
-        goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        shortTodolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //int gnum = ((ClassJob)adapter.getItem(position)).getTitle();
+                String gTitle = todolist.get(position).toString();
                 int gnum=0;
+                for(int i=0; i<cTodo.length; i++){
+                    if(cTodo[i].classtodo == gTitle)
+                        gnum = cTodo[i].id;
+                }
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
-                //목표번호를 넘겨줘야함(목표번호가 관리하기 쉬울 것 같아서) => 목표 생성할 때마다 목표number 1씩 증가하게 하면 될 듯...
                 intent.putExtra("gnum", gnum);
                 startActivity(intent);
             }
         });
+
     }
 
     //오류확인
