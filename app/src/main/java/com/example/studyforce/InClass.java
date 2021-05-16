@@ -53,7 +53,7 @@ public class InClass extends AppCompatActivity {
     private static noticeList[] nList;
     private static classTodo[] cTodoList;
     private String cname;
-    private int num = 20180641;
+    private int num;
 
     long Now = System.currentTimeMillis();;
     java.util.Date Date = new Date(Now);
@@ -64,7 +64,7 @@ public class InClass extends AppCompatActivity {
     String getMonth = cMonth.format(Date);
     String getYear = cYear.format(Date);
 
-
+    String name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,8 @@ public class InClass extends AppCompatActivity {
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
         cname = intent.getStringExtra("cname");
-        //num = intent.getIntExtra("num",0);
+        name = intent.getStringExtra("name");
+        num = intent.getIntExtra("num",0);
         classname.setText(cname);
         //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
@@ -298,7 +299,14 @@ public class InClass extends AppCompatActivity {
                     if(cTodo[i].classtodo == gTitle)
                         gnum = cTodo[i].id;
                 }
+                Intent intent2 = getIntent();
+                cname = intent2.getStringExtra("cname");
+                name = intent2.getStringExtra("name");
+                num = intent2.getIntExtra("num",0);
+
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
+                intent.putExtra("classname", cname);
+                intent.putExtra("num",num);
                 intent.putExtra("gnum", gnum);
                 startActivity(intent);
             }
