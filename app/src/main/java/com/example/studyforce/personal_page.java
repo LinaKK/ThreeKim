@@ -114,10 +114,8 @@ public class personal_page extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*
                         Intent intent = new Intent(getApplicationContext(), Login.class);
-              startActivity(intent);
-                         */
+                        startActivity(intent);
 
                     }
                 });
@@ -148,9 +146,6 @@ public class personal_page extends AppCompatActivity {
                 alert.show();
             }
         });
-
-
-
 
     }
 
