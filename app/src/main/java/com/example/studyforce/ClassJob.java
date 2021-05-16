@@ -10,19 +10,19 @@ public class ClassJob {
 
 
 
-    public void setNumber(int number){
-        num = number;
+    public void setNumber(int num){
+        num = num;
     }
 
-    public void setJobs(String Job){
-        job = Job;
+    public void setJobs(String job){
+        job = job;
     }
 
-    public void setTitles(String title){
-        name= title;
+    public void setTitles(String name){
+        name= name;
     }
 
-    public void setOpen(String opened){open=opened;}
+    public void setOpen(String open){open=open;}
 
     public String getTitle(){
         return this.name;
@@ -37,4 +37,14 @@ public class ClassJob {
     }
 
     public String getOpen(){return this.open;}
+
+    /*
+    public ClassJob(String name, int num, String job, String open){
+        this.name = name;
+        this.num = num;
+        this.job=job;
+        this.open= open;
+    }
+     */
+
 }

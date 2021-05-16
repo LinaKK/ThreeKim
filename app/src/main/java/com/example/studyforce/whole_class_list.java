@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -71,50 +72,9 @@ public class whole_class_list extends AppCompatActivity {
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
 
-
-        /*
-        //예시용 어댑터 생성
-        adapter = new ClassListAdapter();
-        listView1 = (ListView) findViewById(R.id.wholeClasslist);
-        listView1.setAdapter(adapter);
         sendRequest1();
 
-        //클래스 미리 생성된 것들 ->전체 클래스리스트 출력 맨밑에 showCList에 작성
-        // + ClassListAdapter()수정필요 wholeclist에서 필요한거 가져오기
-        adapter.addItem("apple", "전공", 4, "공개");
-        adapter.addItem("bird", "전공", 2,"공개");
-        adapter.addItem("cat", "전공", 0, "비공개");
-         */
-
-        sendRequest1();
-
-        //fClass = (ImageButton)findViewById(R.id.findClass);
-        EditText classSearch = (EditText)findViewById(R.id.fClassname);
         aClass = (ImageButton)findViewById(R.id.addClass);
-
-        /*
-         //검색
-        classSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable edit) {
-            String filterText = edit.toString();
-            if(filterText.length() > 0){
-                listView1.setFilterText(filterText);
-            }else{
-                listView1.clearTextFilter();
-            }
-        }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
-         */
-
-
 
         //클래스추가버튼
        aClass.setOnClickListener(new View.OnClickListener() {
@@ -226,26 +186,18 @@ public class whole_class_list extends AppCompatActivity {
         AppHelper.requestQueue.add(request);
     }
 
-
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
-        //띄워야 할 것 =>
-        adapter = new ClassListAdapter();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
+
+        final List list = new ArrayList();
+        for(int i=0; i<wclist.length; i++){
+            list.add(wclist[i].classname);
+        }
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                list);
         listView1.setAdapter(adapter);
-        /*
-         for(int i=0; i<wclist.length; i++){ //db의 length
-            if(wclist[i].open==0)
-                opens = "공개";
-            else
-                opens="비공개";}
-         */
-
-            //adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, opens);
-
-
-        //adapter.notifyDataSetChanged();
 
         //클래스 검색
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
@@ -281,9 +233,12 @@ public class whole_class_list extends AppCompatActivity {
                         //개인클래스리스트로 넘기기(db)
                         //클래스이름갯수
                         //내부클래스 액티비티에 값 넘겨주기
-                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
+                        String cnames = (String)parent.getAdapter().getItem(i);
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
-                        intent.putExtra("name",names);
+                        intent.putExtra("num",num);
+                        intent.putExtra("name", name);
+                        intent.putExtra("email",email);
+                        intent.putExtra("cname",cnames);
                         startActivity(intent);
                     }
                 });

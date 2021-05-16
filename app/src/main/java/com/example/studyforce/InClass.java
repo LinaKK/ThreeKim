@@ -78,7 +78,7 @@ public class InClass extends AppCompatActivity {
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
-        cname = intent.getStringExtra("name");
+        cname = intent.getStringExtra("cname");
         //num = intent.getIntExtra("num",0);
         classname.setText(cname);
         //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용

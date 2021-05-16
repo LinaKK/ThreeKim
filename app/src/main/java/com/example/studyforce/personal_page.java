@@ -114,9 +114,26 @@ public class personal_page extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                        startActivity(intent);
-
+                        AlertDialog.Builder builder = new AlertDialog.Builder(personal_page.this);
+                        builder.setMessage("정말로 로그아웃하시겠습니까?");
+                        builder.setTitle("로그아웃알림창")
+                                .setCancelable(false)
+                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        return;
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.setTitle("로그아웃알림창");
+                        alert.show();
                     }
                 });
 
@@ -146,7 +163,6 @@ public class personal_page extends AppCompatActivity {
                 alert.show();
             }
         });
-
     }
 
 

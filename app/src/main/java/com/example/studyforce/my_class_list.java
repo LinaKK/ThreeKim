@@ -138,10 +138,14 @@ public class my_class_list extends AppCompatActivity {
     private void showCList(wholeclist[] wclist){
         Intent intent = getIntent();
         id= intent.getIntExtra("num", 0);
-        //학번 구분
+        final String username3 = intent.getStringExtra("name");
+
+        myClassList = (ListView)findViewById(R.id.list_class);
+
+        //학번 구분 or 이름 구분
         List mclist = new ArrayList();
         for(int i=0; i<wclist.length; i++){
-        if(wclist[i].num == id)
+        if(wclist[i].name == username3)
              mclist.add(wclist[i].classname);
          ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 mclist); //layout 수정해야함.

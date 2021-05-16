@@ -148,6 +148,16 @@ import org.json.JSONObject;
           Toast.makeText(this,"id or pw is incorrect",Toast.LENGTH_SHORT).show();
       }
 
+      long pressTime;
+      public void onBackPressed(){
+          if(System.currentTimeMillis() - pressTime < 2000){
+              finishAffinity();
+              return;
+          }
+          Toast.makeText(this, "한 번 더 누르시면 앱이 종료됩니다", Toast.LENGTH_LONG).show();
+          pressTime=System.currentTimeMillis();
+      }
+
 
       /*private void login() {
           final int Uid = Integer.parseInt(et_id.getText().toString());

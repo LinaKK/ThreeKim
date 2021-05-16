@@ -61,15 +61,16 @@ public class ClassListAdapter extends BaseAdapter implements Filterable {
         ClassJob classJob = filteredItemList.get(position);
 
 
-        text1.setText(classJob.getTitle());
-        text2.setText(classJob.getNumber());
-        text3.setText(classJob.getJob());
-        text4.setText(classJob.getOpen());
+        text1.setText(filteredItemList.get(position).getTitle());
+        text2.setText(filteredItemList.get(position).getNumber());
+        text3.setText(filteredItemList.get(position).getJob());
+        text4.setText(filteredItemList.get(position).getOpen());
 
         return convertView;
     }
 
-    public void addItem( String name, String job, int num, String open) {
+
+     public void addItem( String name, String job, int num, String open) {
         ClassJob item = new ClassJob();
 
         item.setTitles(name);
@@ -79,6 +80,7 @@ public class ClassListAdapter extends BaseAdapter implements Filterable {
 
         listViewItemList.add(item);
     }
+
 
     @Override
     public Filter getFilter() {

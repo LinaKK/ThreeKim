@@ -52,19 +52,6 @@ public class personal_info extends AppCompatActivity {
         email = intent.getStringExtra("email");
 
 
-        //예시
-        /*uname.setText("홍길동");
-        uid.setText("12345678");
-        umail.setText("hong123@uhs.ac.kr");*/
-
-
-        //로그인 성공시 받아올 학번
-        //int userid3 = ((Login_Request)Login_Request.context_login).userid1;
-        /*
-         username = jsonObject.getString("name"); //'pinfo'테이블
-         usermail = jsonObject.getString("email"); //'pinfo'테이블
-         userid = jsonObject.getint("num"); //'pinfo'테이블*/
-
         uname.setText(name);
         uid.setText(Snum);
         umail.setText(email);
