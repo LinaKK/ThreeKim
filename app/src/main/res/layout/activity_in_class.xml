@@ -65,7 +65,7 @@
         <ListView
             android:id="@+id/shortNoticeList"
             android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_rowSpan="2"
             android:layout_column="0"
             android:layout_columnSpan="2"
@@ -115,7 +115,7 @@
     </GridLayout>
 
     <LinearLayout
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/border"

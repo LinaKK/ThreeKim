@@ -99,11 +99,6 @@ public class Sign extends AppCompatActivity {
             }
         };
 
-        Sign_Request SignRequest = new Sign_Request(Uname,Uid, Upw,Uemail,resposneListener,errorListener);
-        SignRequest.setShouldCache(false);
-
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        queue.add(SignRequest);
     }
 }
 
