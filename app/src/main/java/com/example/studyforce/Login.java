@@ -75,7 +75,11 @@ import org.json.JSONObject;
           String Sid = et_id.getText().toString();
           int id = Integer.parseInt(Sid);
           String pw = et_pw.getText().toString();
-          loginsendRequest(id, pw);
+
+          if (Sid.length() == 0 || pw.length() == 0)
+              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
+          else
+              loginsendRequest(id, pw);
       }
 
       private void loginsendRequest(final int ed_id, String ed_pw){

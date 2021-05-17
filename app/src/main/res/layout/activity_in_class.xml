@@ -55,12 +55,12 @@
             android:text="공지사항" />
 
         <Button
-            android:id="@+id/nextEvent"
+            android:id="@+id/cal"
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_gravity="center"
             android:onClick="btnClick"
-            android:text="다음 이벤트" />
+            android:text="달력" />
 
         <ListView
             android:id="@+id/shortNoticeList"
@@ -83,13 +83,13 @@
 
 
         <Button
-            android:id="@+id/cal"
+            android:id="@+id/nextEvent"
             android:layout_rowSpan="1"
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:layout_gravity="center"
             android:onClick="btnClick"
-            android:text="달력" />
+            android:text="다음 이벤트" />
 
         <Button
             android:id="@+id/todo"

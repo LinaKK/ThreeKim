@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -31,7 +33,10 @@ public class my_class_list extends AppCompatActivity {
     Button plus_class;
     TextView username2;
     int id;
+    int userid;
     ListView myClassList;
+    myClist[] myClist;
+    String username;
 
     public static wholeclist[] wclist;
 
@@ -45,8 +50,8 @@ public class my_class_list extends AppCompatActivity {
         username2 = (TextView)findViewById(R.id.username2);
 
         Intent intent = getIntent();
-        final String username = intent.getStringExtra("name");
-        final int userid = intent.getIntExtra("num",0);
+        username = intent.getStringExtra("name");
+        userid = intent.getIntExtra("num",0);
         final String usermail = intent.getStringExtra("email");
         username2.setText(username);
 
@@ -55,7 +60,7 @@ public class my_class_list extends AppCompatActivity {
         (클래스name, 클래스공개(or 비공개))
         => 누르면 클래스 내부 페이지로 이동
          */
-        sendRequest1();
+        getMyclass();
 
         //나가기 버튼
         exit.setOnClickListener(new OnClickListener() {
@@ -82,6 +87,58 @@ public class my_class_list extends AppCompatActivity {
         });
 
         };
+
+    private void getMyclass(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num", userid);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/MyClassList.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            myClist = new myClist[jsonArray.length()];
+                            int s = jsonArray.length();
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String classname = jsonObject.getString("classname");
+                                String subject = jsonObject.getString("subject");
+                                String goal = jsonObject.getString("goal");
+                                int open = jsonObject.getInt("open");
+                                myClist[i] = new myClist(classname, subject, goal, open);
+
+                            }showCList(myClist);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
 
     private void sendRequest1(){
         if (AppHelper.requestQueue == null){
@@ -114,7 +171,7 @@ public class my_class_list extends AppCompatActivity {
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
 
                             }
-                            showCList(wclist);
+                            //showCList(wclist);
                         }
                         catch (JSONException e){
                             e.printStackTrace();
@@ -135,20 +192,34 @@ public class my_class_list extends AppCompatActivity {
 
 
     //my class list 보여주기용 - 수정중....
-    private void showCList(wholeclist[] wclist){
-        Intent intent = getIntent();
+    private void showCList(myClist[] list){
+       /* Intent intent = getIntent();
         id= intent.getIntExtra("num", 0);
-        final String username3 = intent.getStringExtra("name");
+        final String username3 = intent.getStringExtra("name");*/
 
         myClassList = (ListView)findViewById(R.id.list_class);
 
         //학번 구분 or 이름 구분
-        List mclist = new ArrayList();
-        for(int i=0; i<wclist.length; i++){
-        if(wclist[i].name == username3)
-             mclist.add(wclist[i].classname); }
+        final List mclist = new ArrayList();
+        for(int i=0; i<list.length; i++){
+             mclist.add(list[i].classname);
+        }
          ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 mclist); //layout 수정해야함.
         myClassList.setAdapter(adapterMCList);
+
+
+        myClassList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), InClass.class);
+                String classname = mclist.get(position).toString();
+                intent.putExtra("num", userid);
+                intent.putExtra("cname", classname);
+                intent.putExtra("name",username);
+                startActivity(intent);
+            }
+        });
+
         }
     }

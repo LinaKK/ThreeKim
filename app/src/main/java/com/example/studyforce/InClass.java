@@ -92,22 +92,22 @@ public class InClass extends AppCompatActivity {
 
 
     public void btnClick(View v){
-        Intent intent1 = getIntent();
+        //Intent intent1 = getIntent();
         //String classname = intent1.getStringExtra("name");
-        String classname = "ThreeK";
+        //String classname = "ThreeK";
         Intent intent;
         switch (v.getId()){
             case R.id.notice:
                 intent = new Intent(this, notice.class);
                 intent.putExtra("num",num);
-                intent.putExtra("classname", classname);
+                intent.putExtra("classname", cname);
                 startActivity(intent);
                 break;
 
             case R.id.nextEvent:
                 intent = new Intent(this, nextEvent.class);
                 intent.putExtra("num",num);
-                intent.putExtra("classname", classname);
+                intent.putExtra("classname", cname);
                 startActivity(intent);
                 break;
 
@@ -124,13 +124,13 @@ public class InClass extends AppCompatActivity {
             case R.id.todo:
                 intent = new Intent(this, todoC.class);
                 intent.putExtra("num",num);
-                intent.putExtra("classname", classname);
+                intent.putExtra("classname", cname);
                 startActivity(intent);
                 break;
 
             case R.id.qna:
                 intent = new Intent(this, qnaList.class);
-                intent.putExtra("classname", classname);
+                intent.putExtra("classname", cname);
                 intent.putExtra("num",num);
                 startActivity(intent);
                 break;
@@ -216,13 +216,24 @@ public class InClass extends AppCompatActivity {
     }
 
     public void showNotiList(noticeList[] notice){
-        List nolist = new ArrayList();
+        final List nolist = new ArrayList();
         for(int i=0; i<notice.length; i++){
             nolist.add(nList[i].title);
         }
         ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 nolist);
         shortNoticeList.setAdapter(adapterNotice);
+
+        shortNoticeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), noticeD.class);
+                String noticeTitle = nolist.get(position).toString();
+                intent.putExtra("ntitle", noticeTitle);
+                intent.putExtra("classname",cname);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -250,8 +261,6 @@ public class InClass extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = response.getJSONArray("res");
                             cTodoList = new classTodo[jsonArray.length()];
-                            int s = jsonArray.length();
-                            println(String.valueOf(s));
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -260,7 +269,8 @@ public class InClass extends AppCompatActivity {
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
                                 int done = jsonObject.getInt("done");
-                                cTodoList[i] = new classTodo(id, num, classtodo, done, className);
+                                String tname = jsonObject.getString("name");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, tname);
 
                             }showTodo(cTodoList);
 
@@ -284,7 +294,8 @@ public class InClass extends AppCompatActivity {
     private void showTodo(final classTodo[] cTodo){
         final List todolist = new ArrayList();
         for(int i=0; i<cTodo.length; i++){
-            todolist.add(cTodo[i].classtodo);
+            if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
+                todolist.add(cTodo[i].classtodo);
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);

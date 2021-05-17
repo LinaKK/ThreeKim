@@ -31,6 +31,7 @@ public class qnaList extends AppCompatActivity {
     private ListView qlist;
     public TextView qnatitle;
     private String classname;
+    private int num;
 
 
     @Override
@@ -40,11 +41,14 @@ public class qnaList extends AppCompatActivity {
         qlist = (ListView) findViewById(R.id.qlist);
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",0);
         sendRequest2(classname);
 
     }
     public void setQ(View v){
         Intent intent = new Intent(this, Q.class);
+        intent.putExtra("classname", classname);
+        intent.putExtra("num",num);
         startActivity(intent);
     }
 
@@ -73,7 +77,7 @@ public class qnaList extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = response.getJSONArray("res");
                             qnalist = new qna[jsonArray.length()];
-                            println(response.toString());
+                            //println(response.toString());
 
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);

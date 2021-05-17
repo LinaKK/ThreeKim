@@ -47,56 +47,6 @@ public class todoC extends AppCompatActivity {
         addTodo();
     }
 
-    private void sendRequest3() {
-        if (AppHelper.requestQueue == null) {
-            AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-        String url = "http://118.33.132.221/php/classtodo.php";
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // processResponse(response);
-                        // classname.setText(response);
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            cTodoList = new classTodo[jsonArray.length()];
-                            int s = jsonArray.length();
-                            //classname.setText(String.valueOf(s));
-                            //classname.setText(nList[1].title);
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int id = jsonObject.getInt("id");
-                                int num = jsonObject.getInt("num");
-                                int done = jsonObject.getInt("done");
-                                String classtodo = jsonObject.getString("todo");
-                                String className = jsonObject.getString("classname");
-                                cTodoList[i] = new classTodo(id, num, classtodo, done, className);
-
-                            }
-                            showTodo(cTodoList);
-                            //classname.setText(nList[1].notice);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
-                    }
-                }
-
-        );
-        AppHelper.requestQueue.add(request);
-
-    }
-
 
     private void sendRequest2(){
         if (AppHelper.requestQueue == null){
@@ -131,7 +81,8 @@ public class todoC extends AppCompatActivity {
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
                                 int done = jsonObject.getInt("done");
-                                cTodoList[i] = new classTodo(id, num, classtodo, done, className);
+                                String name = jsonObject.getString("name");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, name);
 
                             }showTodo(cTodoList);
 
@@ -153,9 +104,10 @@ public class todoC extends AppCompatActivity {
     }
 
     private void showTodo(classTodo[] cTodo){
-        List todolist = new ArrayList();
+        final List todolist = new ArrayList();
         for(int i=0; i<cTodo.length; i++){
-            todolist.add(cTodo[i].classtodo);
+            if (todolist.contains(cTodo[i].classtodo) == false)
+                todolist.add(cTodo[i].classtodo); //겹치는거 걸러서 넣어서 갯수 다르게 보일거야
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
@@ -166,6 +118,10 @@ public class todoC extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //goal 번호 넘겨주기
                 Intent intent = new Intent(getApplicationContext(), InGoal.class);
+
+                String todo = todolist.get(position).toString();
+                intent.putExtra("todo", todo);
+                intent.putExtra("num", num);
                 startActivity(intent);
             }
         });
@@ -180,7 +136,8 @@ public class todoC extends AppCompatActivity {
         AddTodoC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), addEvent.class);
+                Intent intent = new Intent(getApplicationContext(), addTodo.class);
+                intent.putExtra("cname", classname);
                 startActivity(intent);
             }
         });

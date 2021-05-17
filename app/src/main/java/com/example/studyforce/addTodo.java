@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,56 +15,46 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Q extends AppCompatActivity {
-    private EditText setQTitle;
-    private EditText setQC;
-    private TextView a;
-    private String classname;
-    private int num;
+public class addTodo extends AppCompatActivity {
+    String cname;
+    EditText contextTD;
+    TextView TD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_q);
-        setQTitle = (EditText) findViewById(R.id.setQTitle);
-        setQC = (EditText) findViewById(R.id.setQC);
+        setContentView(R.layout.activity_add_todo);
         Intent intent = getIntent();
-        classname = intent.getStringExtra("classname");
-        num = intent.getIntExtra("num",0);
-    }
+        cname = intent.getStringExtra("cname");
 
-    public void updateQClick(View v){
-        //대화상자 등록? ->확인 ->등록
-
-        String qt = setQTitle.getText().toString();
-        String q = setQC.getText().toString();
-        if (qt.length() == 0 || q.length() == 0) {
-            Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
-        }
-        else sendRequest(qt, q);
+        contextTD = findViewById(R.id.setTodo);
 
     }
+    public void updateTDClick(View view){
+        String TD = contextTD.getText().toString();
+        if (contextTD != null)
+            updateTD(TD);
+        else
+            Toast.makeText(this, "내용을 입력하세요!",Toast.LENGTH_SHORT).show();
+    }
 
-    private void sendRequest(final String qtitle, String q){
+    private void updateTD(String todo){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
         JSONObject rj = new JSONObject();
         try {
-            rj.put("qtitle", qtitle);
-            rj.put("q", q);
-            rj.put("cname", classname);
-            rj.put("num", num);
+            rj.put("todo", todo);
+            rj.put("cname", cname);
             //작성자 이름, 클래스이름 넘기기
         }
         catch (JSONException e){}
         //contextQ.setText(rj.toString());
 
-        String url = "http://118.33.132.221/php/Q.php";
+        String url = "http://118.33.132.221/php/addTodo.php";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -76,8 +65,9 @@ public class Q extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            String context = response.getString("qtitle");
-                            if (context.length() == qtitle.length()) print();//String- 출력->같음 ==->다름
+                            int res = response.getInt("res");
+                            if (res == 0);//String- 출력->같음 ==->다름
+                                print();
 
 
                         } catch (JSONException e) {
@@ -99,14 +89,13 @@ public class Q extends AppCompatActivity {
 
     private void print(){
         Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, qnaList.class);
-        startActivity(intent);// 뒤로가기하면 Inclass나오게 -지금은 질문하기로 돌아감
-
+        // todolist로
     }
-
 
     private void println(String data){
-        a = (TextView)findViewById(R.id.a);
-        a.append(data);
+        TD = (TextView)findViewById(R.id.TD);
+        TD.append(data);
     }
+
+
 }

@@ -15,6 +15,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
@@ -23,6 +28,9 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class InGoal extends AppCompatActivity {
@@ -30,10 +38,14 @@ public class InGoal extends AppCompatActivity {
     ListView listview;
     PieChart pieChart;
     Button finishGoal;
+    // 도희야근데 이거 todoC에서 정보가져올때 전부다가져온거라 showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보내면 될거같아
+    //db에서 이름까지 가져오게 했어
 
 
     float num ; //array length (db table) = 인원 수
     float num2;
+    int id;
+    String todo;
 
     private String name = "홍길동";
 
@@ -47,11 +59,13 @@ public class InGoal extends AppCompatActivity {
 
         Intent intent = new Intent(this.getIntent());
         int gnum = intent.getIntExtra("gnum",0);
+        id = intent.getIntExtra("num", 0);
+        todo = intent.getStringExtra("todo");
 
         getGTitle(gnum);
         setChart();
 
-       listview = (ListView)findViewById(R.id.goalperson);
+        listview = (ListView)findViewById(R.id.goalperson);
         getList();
 
         finishGoal.setOnClickListener(new View.OnClickListener() {
@@ -64,10 +78,8 @@ public class InGoal extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
-                        //db table에 이름과 수치값 넘겨주기
-                        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
-                        finishGoal.setText("이미 달성함!");
-                        finishGoal.setEnabled(false);
+                        updateDone(id, todo);//db table에 이름과 수치값 넘겨주기
+                        //완료 확인 DB update 다음에 실행되게 밑으로 넘겼습니다.
                     }
                 });
                 ad.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -81,6 +93,68 @@ public class InGoal extends AppCompatActivity {
         });
 
 
+    }
+
+    //달성하면 db에 update
+    public void updateDone(int num, String todo){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num", num);
+            rj.put("todo", todo);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/updateDone.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 0)
+                                toastM();
+                            else
+                                print();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+
+    }
+    private void toastM(){
+        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
+        finishGoal.setText("이미 달성함!");
+        finishGoal.setEnabled(false);
+    }
+
+    private void print(){
+        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void println(String data){
+        //a = (TextView)findViewById(R.id.a);
+        //a.append(data);
     }
 
     public void getGTitle(int num){

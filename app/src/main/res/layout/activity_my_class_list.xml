@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:layout_marginRight="5dp"
     android:layout_marginLeft="5dp"
-    android:background="00ff0000"
+
     tools:context=".my_class_list"
     android:orientation="vertical">
+    //android:background="00ff0000" -이거 왜인지 오류나서 일단 밑으로 빼놨어
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,7 +43,7 @@
         android:layout_gravity="center_horizontal">
 
         <ImageView
-            android:id="@+id/exit"
+            android:id="@+id/exi"
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -91,6 +92,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+    <Button
+        android:id="@+id/plus_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="클래스추가"/>
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나가기"/>
     <LinearLayout
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -105,6 +116,8 @@
             android:src="@drawable/plus">
 
         </ImageView>
+        //이미지가 버튼으로 인식이 안됨 -> 함수고치거나 이미지 버튼으로 바꿔야하는듯..?
+        사실 잘 모르겠습니다. 바로 onClick 쓰면 될거같기도
     </LinearLayout>
 
 </LinearLayout>
