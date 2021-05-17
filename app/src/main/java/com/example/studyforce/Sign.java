@@ -32,7 +32,7 @@ public class Sign extends AppCompatActivity {
     private Button btn1_sign, btn1_idc, btnLogin;
     private AlertDialog dialog;
     private String userID; //sharedPreferences 저장하기 위한 전역변수
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

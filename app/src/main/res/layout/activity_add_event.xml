@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:orientation="vertical">
 
     <TextView
@@ -9,28 +11,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:text="이벤트 추가하기"
         android:layout_margin="15dp"/>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:columnCount="3"
         android:orientation="horizontal">
 
-        <Button
+        <ImageView
             android:id="@+id/selectEDate"
-            android:layout_width="wrap_content"
+            android:src="@drawable/calendaradd"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="날짜선택"/>
+            android:layout_marginLeft="20dp" />
 
         <EditText
             android:id="@+id/eDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"/>
-    </LinearLayout>
+    </GridLayout>
 
 
     <EditText
@@ -39,12 +42,32 @@
         android:layout_height="300dp"
         android:layout_margin="20dp"
         android:hint="내용"/>
-    <Button
-        android:id="@+id/updateE"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:text="확인"/>
+        android:layout_marginBottom="15dp">
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
+            android:onClick="eventRe"
+            android:background="@drawable/btn_re"
+            android:layout_width="195dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:text="취소"/> //아니면 임시저장
+        <Button
+            android:id="@+id/updateE"
+            android:background="@drawable/btn_ba"
+            android:layout_width="195dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="end"
+            android:text="확인"/>
+    </LinearLayout>
 
 </LinearLayout>

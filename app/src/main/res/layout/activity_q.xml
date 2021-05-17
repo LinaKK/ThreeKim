@@ -1,48 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:layout_height="match_parent"
+    android:background="#00ff0000"
     android:orientation="vertical">
-
     <TextView
         android:id="@+id/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_margin="15dp"
-        android:text="질문 하기"/>
+        android:text="질문하기"/>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:columnCount="3"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제목: "/>
+            android:layout_marginLeft="5dp"
+            android:text="Q : "
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/setQTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="제목을 입력하세요."/>
+            android:hint="제목을 입력하세요." />
 
-    </LinearLayout>
-    //사진파일 추가버튼?
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:src="@drawable/imageg" />
+
+    </GridLayout>
 
     <EditText
         android:id="@+id/setQC"
+        android:background="@drawable/e_round"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
+        android:layout_height="400dp"
+        android:gravity="center"
         android:hint="내용을 입력하세요."/>
-
-    <Button
-        android:onClick="updateQClick"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="확인"/>
+        android:layout_marginBottom="15dp">
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
+            android:onClick="reBack"
+            android:background="@drawable/btn_re"
+            android:layout_width="195dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:text="취소"/> //아니면 임시저장
 
+        <Button
+            android:background="@drawable/btn_ba"
+            android:layout_width="195dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="end"
+            android:onClick="updateQClick"
+            android:text="확인" />
+
+    </LinearLayout>
 </LinearLayout>
