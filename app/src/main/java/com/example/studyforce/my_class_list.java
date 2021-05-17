@@ -146,10 +146,9 @@ public class my_class_list extends AppCompatActivity {
         List mclist = new ArrayList();
         for(int i=0; i<wclist.length; i++){
         if(wclist[i].name == username3)
-             mclist.add(wclist[i].classname);
+             mclist.add(wclist[i].classname); }
          ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 mclist); //layout 수정해야함.
         myClassList.setAdapter(adapterMCList);
-        }
         }
     }
