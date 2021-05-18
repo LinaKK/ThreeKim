@@ -24,18 +24,21 @@
                 android:text="클래스 이름"
                 android:layout_gravity="center"/>
             <EditText
+                android:id="@+id/edCname"
                 android:inputType="text"/>
 
             <TextView
                 android:text="과목"
                 android:layout_gravity="center"/>
             <EditText
+                android:id="@+id/edSub"
                 android:inputType="text"/>
 
             <TextView
                 android:text="목표"
                 android:layout_gravity="center"/>
             <EditText
+                android:id="@+id/edCgoal"
                 android:inputType="text"/>
 
             <TextView
@@ -61,7 +64,11 @@
                 </RadioGroup>
                 <TextView
                     android:id="@+id/spw"
-                    android:text="" />
+                    android:text="비밀번호: " />
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/edspw"/>
             </TableRow>
 
         </TableLayout>

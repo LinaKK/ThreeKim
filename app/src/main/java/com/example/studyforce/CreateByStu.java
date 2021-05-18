@@ -7,12 +7,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateByStu extends AppCompatActivity {
-    private String spw = "";
+    private String espw = "";
+    EditText Ename, Egoal, Esub;
+    Button cAdd;
 
     //1, 0으로 비교
 
@@ -20,10 +24,18 @@ public class CreateByStu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_by_stu);
-        //updateResult();
+
+        Ename = (EditText)findViewById(R.id.edCname);
+        Egoal = (EditText)findViewById(R.id.edCgoal);
+        Esub = (EditText)findViewById(R.id.edSub);
+
+        cAdd = (Button)findViewById(R.id.create);
+
+        final TextView spw = (TextView) findViewById(R.id.spw);
+        spw.setVisibility(View.INVISIBLE);
 
         RadioGroup jobs = findViewById(R.id.jobs);
-        final EditText editspw = (EditText)findViewById(R.id.editspw);
+        final EditText editspw = (EditText)findViewById(R.id.edspw);
 
         editspw.setVisibility(View.INVISIBLE);
 
@@ -32,20 +44,23 @@ public class CreateByStu extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == R.id.open){//공개
                     editspw.setVisibility(View.INVISIBLE);
-                    //spw = editspw.getText().toString();
-                    //updateResult();
+                    spw.setVisibility(View.INVISIBLE);
                 }
                 else if(checkedId==R.id.secret){//비공개
                     editspw.setVisibility(View.VISIBLE);
+                    espw = editspw.getText().toString();
+                    spw.setVisibility(View.INVISIBLE);
                 }
             }
         });
-    }
 
-    private void updateResult() {
-        TextView spw = (TextView) findViewById(R.id.spw);
-        spw.setText("비밀번호: ");
-        //spw.setText("비밀번호: "+spw);
+        //class create
+        cAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /*
