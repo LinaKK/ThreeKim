@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -65,6 +66,8 @@ public class InClass extends AppCompatActivity {
     String getYear = cYear.format(Date);
 
     String name, email;
+
+    boolean lastLoastState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -293,8 +296,8 @@ public class InClass extends AppCompatActivity {
 
     private void showTodo(final classTodo[] cTodo){
         final List todolist = new ArrayList();
-        ArrayList glist =new ArrayList();
-        ArrayList glist2 =new ArrayList();
+        ArrayList<Integer> glist =new ArrayList(); //완료표시 리스트
+        ArrayList<String> glist2 =new ArrayList(); //이름 리스트
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
@@ -304,7 +307,7 @@ public class InClass extends AppCompatActivity {
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
         shortTodolist.setAdapter(adapterClassTodo);
-
+        shortTodolist.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         shortTodolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -322,12 +325,15 @@ public class InClass extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 intent.putExtra("classname", cname);
                 intent.putExtra("num",num);
-                intent.putExtra("gnum", gnum);
+                intent.putExtra("todo", gTitle);
+
                 startActivity(intent);
             }
         });
 
     }
+
+
 
     //오류확인
     private void println(String data){

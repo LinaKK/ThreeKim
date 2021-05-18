@@ -14,13 +14,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/InClassName"
+            android:textSize="30dp"
             android:layout_gravity="center"/>
     </LinearLayout>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="4.5"
         android:background="@drawable/border"
         android:columnCount="3">
 

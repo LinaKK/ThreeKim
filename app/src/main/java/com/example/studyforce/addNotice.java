@@ -100,7 +100,13 @@ public class addNotice extends AppCompatActivity {
     private void print(){
         Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
         //자동 뒤로가기
-
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",0);
+        Intent intent2 = new Intent(getApplicationContext(),InClass.class);
+        intent2.putExtra("classname",classname);
+        intent2.putExtra("num",num);
+        startActivity(intent2);
     }
 
     private void println(String data){

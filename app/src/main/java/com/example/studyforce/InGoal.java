@@ -61,7 +61,8 @@ public class InGoal extends AppCompatActivity {
         id = intent.getIntExtra("num", 0);
         todo = intent.getStringExtra("todo");
 
-        getGTitle(gnum);
+        Gtitle = (TextView)findViewById(R.id.GoalTitle);
+        Gtitle.setText(todo);
         setChart();
 
         listview = (ListView)findViewById(R.id.goalperson);
@@ -154,11 +155,7 @@ public class InGoal extends AppCompatActivity {
         //a.append(data);
     }
 
-    public void getGTitle(int num){
-        Gtitle = (TextView)findViewById(R.id.GoalTitle);
-        String gTitle = "";
-        Gtitle.setText(gTitle);
-    }
+
 
     //리스트 db에서 가져오기(클래스에 가입된 사람들)
     public void getList(){
