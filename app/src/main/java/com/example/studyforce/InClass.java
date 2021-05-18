@@ -330,8 +330,6 @@ public class InClass extends AppCompatActivity {
 
     }
 
-
-
     //오류확인
     private void println(String data){
         classname.append(data);

@@ -24,7 +24,8 @@ public class CreateByStu extends AppCompatActivity {
 
     private void updateResult() {
         TextView spw = (TextView) findViewById(R.id.spw);
-        spw.setText("비밀번호: "+spw);
+        spw.setText("비밀번호: ");
+        //spw.setText("비밀번호: "+spw);
     }
 
     public void mOnCLick(View V) {
