@@ -79,6 +79,9 @@ public class InGoal extends AppCompatActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
+                        finishGoal.setText("이미 달성함!");
+                        finishGoal.setEnabled(false);
                         //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
                         updateDone(id, todo);//db table에 이름과 수치값 넘겨주기
                         //완료 확인 DB update 다음에 실행되게 밑으로 넘겼습니다.
@@ -143,7 +146,6 @@ public class InGoal extends AppCompatActivity {
     }
     //리나야 이 코드 작동 안하는데 res== 0이 done==0을 말하는 거야 아님 뭐야?? 미완성이라고 했었나....?
     private void toastM(){
-        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
         finishGoal.setText("이미 달성함!");
         finishGoal.setEnabled(false);
     }
