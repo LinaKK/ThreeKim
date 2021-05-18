@@ -55,7 +55,7 @@ public class whole_class_list extends AppCompatActivity {
     public static wholeclist[] wclist;
 
     private String jobs = "학생";
-    String opens;
+    String state;
 
     ImageButton aClass;
 
@@ -160,13 +160,24 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        ClassListAdapter adapter = new ClassListAdapter();
+        listView1.setAdapter(adapter);
+        // String name, String job, int num, String open
+        /*
         final List list = new ArrayList();
         for(int i=0; i<wclist.length; i++){
             list.add(wclist[i].classname);
         }
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                list);
-        listView1.setAdapter(adapter);
+         */
+        for(int i=0; i<wclist.length; i++){
+            if(wclist[i].open == 0){
+                state = "공개";
+            }else{
+                state="비공개";
+            }
+            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, state);
+        }
+
 
         //클래스 검색
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
@@ -179,6 +190,7 @@ public class whole_class_list extends AppCompatActivity {
                 }else{
                     listView1.clearTextFilter();
                 }
+                ((ClassListAdapter)listView1.getAdapter()).getFilter().filter(filterText);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

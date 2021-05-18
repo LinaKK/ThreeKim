@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class CreateByStu extends AppCompatActivity {
@@ -19,7 +20,26 @@ public class CreateByStu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_by_stu);
-        updateResult();
+        //updateResult();
+
+        RadioGroup jobs = findViewById(R.id.jobs);
+        final EditText editspw = (EditText)findViewById(R.id.editspw);
+
+        editspw.setVisibility(View.INVISIBLE);
+
+        jobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.open){//공개
+                    editspw.setVisibility(View.INVISIBLE);
+                    //spw = editspw.getText().toString();
+                    //updateResult();
+                }
+                else if(checkedId==R.id.secret){//비공개
+                    editspw.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void updateResult() {
@@ -28,6 +48,7 @@ public class CreateByStu extends AppCompatActivity {
         //spw.setText("비밀번호: "+spw);
     }
 
+    /*
     public void mOnCLick(View V) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -44,6 +65,8 @@ public class CreateByStu extends AppCompatActivity {
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.create().show();
     }
+     */
+
 
 }
 

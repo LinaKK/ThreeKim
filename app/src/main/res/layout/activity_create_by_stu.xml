@@ -44,17 +44,24 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton
-                    android:text="공개"
-                    android:id="@+id/open"
+                <RadioGroup
+                    android:id="@+id/jobs"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <RadioButton
-                    android:text="비공개"
-                    android:id="@+id/secret"/>
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:text="공개"
+                        android:id="@+id/open"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <RadioButton
+                        android:text="비공개"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/secret"/>
+                </RadioGroup>
                 <TextView
                     android:id="@+id/spw"
-                    android:text=""/>
+                    android:text="" />
             </TableRow>
 
         </TableLayout>
