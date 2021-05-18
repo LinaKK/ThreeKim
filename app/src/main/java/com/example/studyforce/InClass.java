@@ -145,6 +145,11 @@ public class InClass extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+            case R.id.cInfo:
+                intent= new Intent(this, classInfo.class);
+                intent.putExtra("classname", cname);
+                intent.putExtra("num",num);
+                startActivity(intent);
         }
 
 
@@ -353,7 +358,8 @@ public class InClass extends AppCompatActivity {
         }
         //클래스 정보
         if(id == R.id.setting){
-
+            Intent intent= new Intent(getApplicationContext(), classInfo.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

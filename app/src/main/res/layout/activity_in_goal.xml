@@ -31,17 +31,7 @@
         android:layout_weight="3"
         android:id="@+id/piechart"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="참여자목록"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.6"
-        android:id="@+id/goalperson"/>
 
 
 </LinearLayout>

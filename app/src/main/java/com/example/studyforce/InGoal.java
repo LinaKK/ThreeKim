@@ -66,8 +66,6 @@ public class InGoal extends AppCompatActivity {
         Gtitle.setText(todo);
         setChart();
 
-        listview = (ListView)findViewById(R.id.goalperson);
-        getList();
 
         finishGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,10 +157,6 @@ public class InGoal extends AppCompatActivity {
         //a.append(data);
     }
 
-    //리스트 db에서 가져오기(클래스에 가입된 사람들)
-    public void getList(){
-
-    }
     //db에서 값 받아오기 그걸로 세팅...
     private ArrayList<PieEntry>piedata(){
         Intent intent = new Intent();
