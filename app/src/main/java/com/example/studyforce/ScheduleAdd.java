@@ -163,16 +163,7 @@ public class ScheduleAdd extends AppCompatActivity {
                  //값 php로 보내기
                 /*
                 //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                int id2 = jsonObject.getInt("id");
-                int sDay = jsonObject.getInt("s_day");
-                int sMonth = jsonObject.getInt("s_month");
-                int sYear = jsonObject.getInt("s_year");
-                int eDay = jsonObject.getInt("e_day");
-                int eMonth = jsonObject.getInt("e_month");
-                int eYear = jsonObject.getInt("e_year");
-                String schTitle = jsonObject.getString("title");
-                String schCont = jsonObject.getString("cont");
+
                 */
             }
         });

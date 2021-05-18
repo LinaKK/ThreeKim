@@ -41,7 +41,6 @@ public class InGoal extends AppCompatActivity {
     // 도희야근데 이거 todoC에서 정보가져올때 전부다가져온거라 showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보내면 될거같아
     //db에서 이름까지 가져오게 했어
 
-
     float num ; //array length (db table) = 인원 수
     float num2;
     int id;
@@ -91,8 +90,6 @@ public class InGoal extends AppCompatActivity {
                 ad.show();
             }
         });
-
-
     }
 
     //달성하면 db에 update
@@ -168,17 +165,11 @@ public class InGoal extends AppCompatActivity {
 
     }
     //db에서 값 받아오기 그걸로 세팅...
-
     private ArrayList<PieEntry>piedata(){
         ArrayList<PieEntry> data = new ArrayList<>();
         num2 = (1/num)*100;
         data.add(new PieEntry(num2, name));
-        data.add(new PieEntry(num2, "김도희"));
-        data.add(new PieEntry(num2, "이"));
-        data.add(new PieEntry(num2, "q"));
-        data.add(new PieEntry(num2, "q"));
-        data.add(new PieEntry(num2, "q"));
-        data.add(new PieEntry(num2, "q"));
+
 
         return data;
     }
