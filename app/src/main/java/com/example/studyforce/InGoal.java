@@ -38,7 +38,7 @@ public class InGoal extends AppCompatActivity {
     ListView listview;
     PieChart pieChart;
     Button finishGoal;
-    // 도희야근데 이거 todoC에서 정보가져올때 전부다가져온거라 showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보내면 될거같아
+
     //db에서 이름까지 가져오게 했어
 
     float num ; //array length (db table) = 인원 수
@@ -60,6 +60,8 @@ public class InGoal extends AppCompatActivity {
         int gnum = intent.getIntExtra("gnum",0);
         id = intent.getIntExtra("num", 0);
         todo = intent.getStringExtra("todo");
+        //showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보냄.
+
 
         Gtitle = (TextView)findViewById(R.id.GoalTitle);
         Gtitle.setText(todo);
@@ -155,19 +157,20 @@ public class InGoal extends AppCompatActivity {
         //a.append(data);
     }
 
-
-
     //리스트 db에서 가져오기(클래스에 가입된 사람들)
     public void getList(){
 
     }
     //db에서 값 받아오기 그걸로 세팅...
     private ArrayList<PieEntry>piedata(){
+        ArrayList<Glist> glists = (ArrayList<Glist>)getIntent().getSerializableExtra("glist");
         ArrayList<PieEntry> data = new ArrayList<>();
         num2 = (1/num)*100;
         data.add(new PieEntry(num2, name));
-
-
+        for(int i =0; i<glists.size(); i++){
+            if(glists.get(i).done==0)
+                data.add(new PieEntry(num2, glists.get(i).name));
+        }
         return data;
     }
 

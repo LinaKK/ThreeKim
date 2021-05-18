@@ -1,10 +1,12 @@
 package com.example.studyforce;
 
-public class Glist {
-    String name;
-    String done;
+import java.io.Serializable;
 
-    public Glist(String name, String done){
+public class Glist implements Serializable {
+    String name;
+    int done;
+
+    public Glist(String name, int done){
         this.name =name;
         this.done=done;
     }
