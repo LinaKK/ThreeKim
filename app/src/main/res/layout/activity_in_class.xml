@@ -25,6 +25,7 @@
         android:background="@drawable/border"
         android:columnCount="3">
 
+        //얘도 클래스 정보로 뺄까?? (과목, 목표, 팀원 정보)
         <TextView
             android:layout_column="0"
             android:layout_gravity="center"
