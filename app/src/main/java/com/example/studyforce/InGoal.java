@@ -41,12 +41,11 @@ public class InGoal extends AppCompatActivity {
 
     //db에서 이름까지 가져오게 했어
 
-    float num ; //array length (db table) = 인원 수
+    float num=0; //array length (db table) = 인원 수
     float num2;
     int id;
     String todo;
 
-    private String name = "홍길동";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,10 +170,13 @@ public class InGoal extends AppCompatActivity {
 
         ArrayList<Glist> glists = (ArrayList<Glist>)getIntent().getSerializableExtra("glist");
         ArrayList<PieEntry> data = new ArrayList<>();
-        num2 = (1/num)*100;
-        data.add(new PieEntry(num2, name));
+
+        //data.add(new PieEntry(num2, name));
+        //자꾸 오류남...
         for(int i =0; i<glists.size(); i++){
-            if (glists.get(i).title == todo){
+            if(glists.get(i).title == todo){
+                num++;
+                num2 = (1/num)*100;
                 if(glists.get(i).done == 0)
                     data.add(new PieEntry(num2, glists.get(i).name));
             }
@@ -183,7 +185,6 @@ public class InGoal extends AppCompatActivity {
     }
 
     public void setChart(){
-        num=7;
 
         pieChart = (PieChart)findViewById(R.id.piechart);
         Description des = new Description();

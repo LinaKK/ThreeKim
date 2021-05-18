@@ -70,7 +70,7 @@ public class InClass extends AppCompatActivity {
     String getMonth = cMonth.format(Date);
     String getYear = cYear.format(Date);
 
-    String name, email;
+    String names, email;
 
     boolean lastLoastState;
 
@@ -89,7 +89,7 @@ public class InClass extends AppCompatActivity {
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
         cname = intent.getStringExtra("cname");
-        name = intent.getStringExtra("name");
+        names = intent.getStringExtra("name");
         num = intent.getIntExtra("num",0);
         classname.setText(cname);
         //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용 (완료)
@@ -279,8 +279,8 @@ public class InClass extends AppCompatActivity {
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
                                 int done = jsonObject.getInt("done");
-                                String tname = jsonObject.getString("name");
-                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, tname);
+                                String name = jsonObject.getString("name");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, name);
 
                             }showTodo(cTodoList);
 
@@ -307,7 +307,7 @@ public class InClass extends AppCompatActivity {
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
-            glist.add(new Glist(cTodo[i].classtodo,cTodo[i].name, cTodo[i].done));
+            glist.add(new Glist(cTodo[i].classtodo, cTodo[i].name, cTodo[i].done));
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
@@ -317,14 +317,10 @@ public class InClass extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String gTitle = todolist.get(position).toString();
-                int gnum=0;
-                for(int i=0; i<cTodo.length; i++){
-                    if(cTodo[i].classtodo == gTitle)
-                        gnum = cTodo[i].id;
-                }
+
                 Intent intent2 = getIntent();
                 cname = intent2.getStringExtra("cname");
-                name = intent2.getStringExtra("name");
+                names = intent2.getStringExtra("name");
                 num = intent2.getIntExtra("num",0);
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 intent.putExtra("classname", cname);
