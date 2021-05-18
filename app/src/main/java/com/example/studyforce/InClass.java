@@ -92,7 +92,7 @@ public class InClass extends AppCompatActivity {
         name = intent.getStringExtra("name");
         num = intent.getIntExtra("num",0);
         classname.setText(cname);
-        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용
+        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용 (완료)
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 

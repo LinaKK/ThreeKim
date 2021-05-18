@@ -63,6 +63,7 @@ public class whole_class_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whole_class_list);
+        listView1 = (ListView) findViewById(R.id.wholeClasslist);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
@@ -96,36 +97,6 @@ public class whole_class_list extends AppCompatActivity {
                 }
             }
         });
-
-       /*
-       listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
-                ad.setTitle("가입메시지");
-                ad.setMessage("해당 클래스에 가입하시겠습니까?");
-                ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //내부클래스 액티비티에 값 넘겨주기
-                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
-                       Intent intent = new Intent(getApplicationContext(),InClass.class);
-                       intent.putExtra("name",names);
-                       startActivity(intent);
-                    }
-                });
-                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                ad.show();
-            }
-        });
-        */
-        //리스트뷰 클릭 시 가입 여부 알림창
-
 
     }
     //키보드
@@ -189,8 +160,6 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
-        listView1 = (ListView) findViewById(R.id.wholeClasslist);
-
         final List list = new ArrayList();
         for(int i=0; i<wclist.length; i++){
             list.add(wclist[i].classname);
@@ -251,11 +220,9 @@ public class whole_class_list extends AppCompatActivity {
                 ad.show();
             }
         });
-
     }
 
     private void println(String data){
-
         errorm = (TextView)findViewById(R.id.errorm);
         errorm.append(data);
     }
