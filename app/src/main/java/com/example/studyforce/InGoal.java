@@ -141,6 +141,7 @@ public class InGoal extends AppCompatActivity {
         AppHelper.requestQueue.add(jsonObjectRequest);
 
     }
+    //리나야 이 코드 작동 안하는데 res== 0이 done==0을 말하는 거야 아님 뭐야?? 미완성이라고 했었나....?
     private void toastM(){
         Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
         finishGoal.setText("이미 달성함!");

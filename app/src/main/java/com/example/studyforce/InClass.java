@@ -1,12 +1,17 @@
 package com.example.studyforce;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -78,6 +83,8 @@ public class InClass extends AppCompatActivity {
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
         //sendRequest1();
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
@@ -328,6 +335,31 @@ public class InClass extends AppCompatActivity {
             }
         });
 
+    }
+
+    //메뉴 생성
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bottom_menu, menu);
+        return true;
+    }
+
+    //메뉴바 동작들
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //bgm메뉴
+        if(id == R.id.music1){
+            Intent intent= new Intent(getApplicationContext(), Music_p.class);
+            startActivity(intent);
+            //return true;
+        }
+        //클래스 정보
+        if(id == R.id.setting){
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //오류확인

@@ -185,7 +185,7 @@ public class personal_page extends AppCompatActivity {
             startActivity(intent);
             //return true;
         }
-        //환경설정
+        //환경설정 => dialog로 띄울까 아님 새 액티비티로 들어가게 할 까??
         if(id == R.id.setting){
 
         }
