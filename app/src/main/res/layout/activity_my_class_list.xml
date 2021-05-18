@@ -8,8 +8,8 @@
     android:layout_marginLeft="5dp"
 
     tools:context=".my_class_list"
-    android:orientation="vertical">
-    //android:background="00ff0000" -이거 왜인지 오류나서 일단 밑으로 빼놨어
+    android:orientation="vertical"
+    android:background="#00ff0000">
 
     <TextView
         android:layout_width="wrap_content"
