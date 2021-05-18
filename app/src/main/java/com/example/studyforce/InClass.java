@@ -300,7 +300,7 @@ public class InClass extends AppCompatActivity {
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
-            glist.add(new Glist(cTodo[i].name, cTodo[i].done));
+            glist.add(new Glist(cTodo[i].classtodo,cTodo[i].name, cTodo[i].done));
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
@@ -319,7 +319,6 @@ public class InClass extends AppCompatActivity {
                 cname = intent2.getStringExtra("cname");
                 name = intent2.getStringExtra("name");
                 num = intent2.getIntExtra("num",0);
-
                 Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 intent.putExtra("classname", cname);
                 intent.putExtra("num",num);

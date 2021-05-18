@@ -163,13 +163,18 @@ public class InGoal extends AppCompatActivity {
     }
     //db에서 값 받아오기 그걸로 세팅...
     private ArrayList<PieEntry>piedata(){
+        Intent intent = new Intent();
+        todo = intent.getStringExtra("todo");
+
         ArrayList<Glist> glists = (ArrayList<Glist>)getIntent().getSerializableExtra("glist");
         ArrayList<PieEntry> data = new ArrayList<>();
         num2 = (1/num)*100;
         data.add(new PieEntry(num2, name));
         for(int i =0; i<glists.size(); i++){
-            if(glists.get(i).done==0)
-                data.add(new PieEntry(num2, glists.get(i).name));
+            if (glists.get(i).title == todo){
+                if(glists.get(i).done == 0)
+                    data.add(new PieEntry(num2, glists.get(i).name));
+            }
         }
         return data;
     }
