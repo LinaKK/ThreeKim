@@ -296,13 +296,11 @@ public class InClass extends AppCompatActivity {
 
     private void showTodo(final classTodo[] cTodo){
         final List todolist = new ArrayList();
-        ArrayList<Integer> glist =new ArrayList(); //완료표시 리스트
-        ArrayList<String> glist2 =new ArrayList(); //이름 리스트
+
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
-            glist.add(cTodo[i].done);
-            glist2.add(cTodo[i].name);
+
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
