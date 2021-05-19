@@ -142,7 +142,6 @@ public class todoC extends AppCompatActivity {
                 }
 
                 int k = a.size();
-                println(Integer.toString(k));
                 intent.putExtra("todo", todo);
                 intent.putExtra("num", num);
                 intent.putExtra("classStuNum", a.size());

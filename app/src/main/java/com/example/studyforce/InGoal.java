@@ -75,6 +75,7 @@ public class InGoal extends AppCompatActivity {
 
         Gtitle = (TextView)findViewById(R.id.GoalTitle);
         Gtitle.setText(todo);
+        stateDone();
         setChart();
 
 
@@ -158,6 +159,8 @@ public class InGoal extends AppCompatActivity {
     private void toastM(){
         finishGoal.setText("이미 달성함!");
         finishGoal.setEnabled(false);
+        //다시들어가면 버튼눌리는거는 해결했는데 버튼누르고 바로 그래프 바뀌게하는게 문제라 그냥 리스트로 돌아가게하는건 어때
+        //뒤로가기해서 돌아가면 완료한거 반영안되어있어서 액티비티 새로 시작해야할듯- 위에 해결하면 안해도되는디 일단 이게 빠를거같아서
     }
 
     private void print(){
@@ -172,8 +175,48 @@ public class InGoal extends AppCompatActivity {
     }
 
     private void stateDone(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num", id);
+            rj.put("t", t);
 
+        }
+        catch (JSONException e){}
 
+        String url = "http://118.33.132.221/php/stateDone.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 1)
+                                toastM();
+                            else
+                                print();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
 
     }
 
