@@ -46,6 +46,7 @@ public class InGoal extends AppCompatActivity {
     float num2;
     int id;
     String todo;
+    String t;
     ArrayList donename;
     ArrayList Ndonename;
     HashMap<String, Integer> map;
@@ -67,6 +68,7 @@ public class InGoal extends AppCompatActivity {
         donename = intent.getStringArrayListExtra("donename");
         Ndonename = intent.getStringArrayListExtra("Ndonename");
         classStuNum = intent.getIntExtra("classStuNum",0);
+        t = todo;
         //map = (HashMap<String, Integer>) intent.getSerializableExtra("map");
         //showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보냄.
 
@@ -85,8 +87,8 @@ public class InGoal extends AppCompatActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /*Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
-                        finishGoal.setText("이미 달성함!");
+                        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
+                        /*finishGoal.setText("이미 달성함!");
                         finishGoal.setEnabled(false);*/
                         //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
                         updateDone();//db table에 이름과 수치값 넘겨주기
@@ -112,10 +114,10 @@ public class InGoal extends AppCompatActivity {
         JSONObject rj = new JSONObject();
         try {
             rj.put("num", id);
-            rj.put("todo", todo);
+            rj.put("t", t);
+
         }
         catch (JSONException e){}
-        //contextQ.setText(rj.toString());
 
         String url = "http://118.33.132.221/php/updateDone.php";
 
@@ -154,7 +156,6 @@ public class InGoal extends AppCompatActivity {
     //res는 완료버튼 누른거 제대로 업데이트 됐는지 그냥 확인하는 코드여
     //db 확인하려고 만든거라 신경안써도됩니당
     private void toastM(){
-        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
         finishGoal.setText("이미 달성함!");
         finishGoal.setEnabled(false);
     }
@@ -168,6 +169,12 @@ public class InGoal extends AppCompatActivity {
         TextView a;
         a = (TextView)findViewById(R.id.pchardata);
         a.append(data);
+    }
+
+    private void stateDone(){
+
+
+
     }
 
     //db에서 값 받아오기 그걸로 세팅...

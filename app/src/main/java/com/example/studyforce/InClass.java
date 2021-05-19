@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -327,12 +328,42 @@ public class InClass extends AppCompatActivity {
                 cname = intent2.getStringExtra("cname");
                 names = intent2.getStringExtra("name");
                 num = intent2.getIntExtra("num",0);
-                Intent intent = new Intent(getApplicationContext(),InGoal.class);
+               /* Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 intent.putExtra("classname", cname);
                 intent.putExtra("num",num);
                 intent.putExtra("todo", gTitle);
-                intent.putExtra("glist",glist);
-                startActivity(intent);
+                intent.putExtra("glist",glist);*/
+
+
+                /*Intent intent = new Intent(getApplicationContext(), InGoal.class);
+                String todo = todolist.get(position).toString();
+                startActivity(intent);ArrayList donename = new ArrayList();
+                ArrayList Ndonename = new ArrayList();
+                ArrayList a = new ArrayList();
+
+                HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+                for(int j = 0; j<cTodo.length; j++){
+                    if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 1){
+                        donename.add(cTodo[j].name);
+                    }
+                    else if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 0){
+                        Ndonename.add(cTodo[j].name);
+                    }
+                    if (todo.equals(cTodo[j].classtodo)){
+                        a.add(cTodo[j].num);
+                    }
+                }
+
+                int k = a.size();
+                println(Integer.toString(k));
+                intent.putExtra("todo", todo);
+                intent.putExtra("num", num);
+                intent.putExtra("classStuNum", a.size());
+                intent.putStringArrayListExtra("donename",donename);
+                intent.putStringArrayListExtra("Ndonename",Ndonename);
+                //intent.putExtra("map", map);
+                startActivity(intent);*/
             }
         });
 
