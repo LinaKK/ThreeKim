@@ -32,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class InGoal extends AppCompatActivity {
     TextView Gtitle;
@@ -41,10 +42,14 @@ public class InGoal extends AppCompatActivity {
 
     //db에서 이름까지 가져오게 했어
 
-    float num=0; //array length (db table) = 인원 수
+    //float num=0; //array length (db table) = 인원 수
     float num2;
     int id;
     String todo;
+    ArrayList donename;
+    ArrayList Ndonename;
+    HashMap<String, Integer> map;
+    int classStuNum;
 
 
     @Override
@@ -59,6 +64,10 @@ public class InGoal extends AppCompatActivity {
         int gnum = intent.getIntExtra("gnum",0);
         id = intent.getIntExtra("num", 0);
         todo = intent.getStringExtra("todo");
+        donename = intent.getStringArrayListExtra("donename");
+        Ndonename = intent.getStringArrayListExtra("Ndonename");
+        classStuNum = intent.getIntExtra("classStuNum",0);
+        //map = (HashMap<String, Integer>) intent.getSerializableExtra("map");
         //showtodo에서 이름이랑 완료여부 리스트로 만들고 인텐트로 여기로 보냄.
 
 
@@ -76,11 +85,11 @@ public class InGoal extends AppCompatActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
+                        /*Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
                         finishGoal.setText("이미 달성함!");
-                        finishGoal.setEnabled(false);
+                        finishGoal.setEnabled(false);*/
                         //해당 그래프에 수치 추가+이름은 로그인 성공시때 intent로 받아오기
-                        updateDone(id, todo);//db table에 이름과 수치값 넘겨주기
+                        updateDone();//db table에 이름과 수치값 넘겨주기
                         //완료 확인 DB update 다음에 실행되게 밑으로 넘겼습니다.
                     }
                 });
@@ -96,13 +105,13 @@ public class InGoal extends AppCompatActivity {
     }
 
     //달성하면 db에 update
-    public void updateDone(int num, String todo){
+    public void updateDone(){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
         }
         JSONObject rj = new JSONObject();
         try {
-            rj.put("num", num);
+            rj.put("num", id);
             rj.put("todo", todo);
         }
         catch (JSONException e){}
@@ -120,7 +129,7 @@ public class InGoal extends AppCompatActivity {
 
                         try {
                             int res = response.getInt("res");
-                            if (res == 0)
+                            if (res == 1)
                                 toastM();
                             else
                                 print();
@@ -145,6 +154,7 @@ public class InGoal extends AppCompatActivity {
     //res는 완료버튼 누른거 제대로 업데이트 됐는지 그냥 확인하는 코드여
     //db 확인하려고 만든거라 신경안써도됩니당
     private void toastM(){
+        Toast.makeText(getApplicationContext(), "목표를 달성했습니다!!!! Congratulation ^^", Toast.LENGTH_SHORT).show();
         finishGoal.setText("이미 달성함!");
         finishGoal.setEnabled(false);
     }
@@ -155,8 +165,9 @@ public class InGoal extends AppCompatActivity {
 
 
     private void println(String data){
-        //a = (TextView)findViewById(R.id.a);
-        //a.append(data);
+        TextView a;
+        a = (TextView)findViewById(R.id.pchardata);
+        a.append(data);
     }
 
     //db에서 값 받아오기 그걸로 세팅...
@@ -169,6 +180,16 @@ public class InGoal extends AppCompatActivity {
 
         //data.add(new PieEntry(num2, name));
         //자꾸 오류남...
+
+        double persent = donename.size()/(double)classStuNum*100;
+
+        for (int i = 0; i<donename.size(); i++){
+            data.add(new PieEntry((float) persent, donename.get(i).toString()));
+        }
+        for (int i = 0; i<Ndonename.size(); i++){
+            data.add(new PieEntry(0, Ndonename.get(i).toString()));
+        }
+/*
         for(int i =0; i<glists.size(); i++){
             if(glists.get(i).title == todo){
                 num++;
@@ -176,7 +197,11 @@ public class InGoal extends AppCompatActivity {
                 if(glists.get(i).done == 0)
                     data.add(new PieEntry(num2, glists.get(i).name));
             }
-        }
+        }*/
+        println(data.toString());
+        println(donename.toString());
+        println(Integer.toString(classStuNum));
+        //println(Integer.toString(persent));
         return data;
     }
 
@@ -196,11 +221,13 @@ public class InGoal extends AppCompatActivity {
         dataSet.setColors(new int[] {Color.RED,orange, Color.YELLOW,Color.GREEN,skyblue, Color.BLUE, pink});
         pieChart.animateXY(200, 200);
 
+
         PieData data = new PieData(dataSet);
         data.setValueTextSize(8f);
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
+
     }
 
 
