@@ -160,15 +160,16 @@ public class my_class_list extends AppCompatActivity {
 
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int classnum = jsonObject.getInt("classnum");
+                                int classnum = jsonObject.getInt("classnum");//안가져옴
                                 String classname = jsonObject.getString("classname");
-                                int num = jsonObject.getInt("num"); //학번
-                                String name = jsonObject.getString("name");
+                                int num = jsonObject.getInt("num"); //학번, 안가져옴, 인텐트사용
+                                String name = jsonObject.getString("name");//안가져옴, 인텐트사용
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
                                 int open = jsonObject.getInt("open");
+                                int pw = jsonObject.getInt("pw");//안가져옴
 
-                                wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
+                                wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open, pw);
 
                             }
                             //showCList(wclist);
@@ -199,7 +200,7 @@ public class my_class_list extends AppCompatActivity {
 
         myClassList = (ListView)findViewById(R.id.list_class);
 
-        //학번 구분 or 이름 구분
+        //학번 구분 or 이름 구분 -> 서버에서 걸러서 가져와서 안해도됩니당
         final List mclist = new ArrayList();
         for(int i=0; i<list.length; i++){
              mclist.add(list[i].classname);

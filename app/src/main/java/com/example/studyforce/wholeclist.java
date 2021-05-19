@@ -8,7 +8,9 @@ public class wholeclist {
     String subject;
     String goal;
     int open;
-    public wholeclist(int classnum, String classname, int num, String name, String subject, String goal, int open){
+    int pw;
+
+    public wholeclist(int classnum, String classname, int num, String name, String subject, String goal, int open, int pw){
         this.classnum = classnum;
         this.classname = classname;
         this.num = num;
@@ -16,6 +18,7 @@ public class wholeclist {
         this.subject = subject;
         this.goal = goal;
         this.open = open;
+        this.pw = pw;
     }
 
 }
