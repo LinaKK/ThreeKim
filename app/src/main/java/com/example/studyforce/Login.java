@@ -75,6 +75,8 @@ import org.json.JSONObject;
           String Sid = et_id.getText().toString();
           int id = Integer.parseInt(Sid);
           String pw = et_pw.getText().toString();
+          //입력안하면 종료됨
+          //학번 or pw 틀리면 toast 필요 -지금있는건 에러섞임
 
           if (Sid == null || pw == null)
               Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();

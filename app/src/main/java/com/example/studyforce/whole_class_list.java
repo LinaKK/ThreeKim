@@ -88,7 +88,7 @@ public class whole_class_list extends AppCompatActivity {
                     intent.putExtra("email",email);
                     startActivity(intent);
                 }
-                else{//교수일때
+                else{//교수일때 -도희야 이거 그냥 학생일때 화면으로 넘기고 비공개 버튼 막을수 있어?? 할수있으면 그렇게부탁 ㅠ
                     Intent intent = new Intent(getApplicationContext(),CreateByT.class);
                     intent.putExtra("num",num);
                     intent.putExtra("name", name);
