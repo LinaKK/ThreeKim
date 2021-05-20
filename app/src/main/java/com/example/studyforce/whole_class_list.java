@@ -47,7 +47,7 @@ public class whole_class_list extends AppCompatActivity {
 
     String[] mClass = {"학생", "교수"};
     ClassListAdapter adapter;
-    ListView listView1 =null;  //전체리스트뷰
+    ListView listView1;  //전체리스트뷰
     TextView errorm;
     int num;
     String name, email;
@@ -63,7 +63,7 @@ public class whole_class_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whole_class_list);
-        listView1 = (ListView) findViewById(R.id.wholeClasslist);
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
@@ -161,23 +161,15 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
-        ClassListAdapter adapter = new ClassListAdapter();
-        listView1.setAdapter(adapter);
+        listView1 = (ListView) findViewById(R.id.wholeClasslist);
         // String name, String job, int num, String open
-        /*
         final List list = new ArrayList();
         for(int i=0; i<wclist.length; i++){
             list.add(wclist[i].classname);
         }
-         */
-        for(int i=0; i<wclist.length; i++){
-            if(wclist[i].open == 0){
-                state = "공개";
-            }else{
-                state="비공개";
-            }
-            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, state);
-        }
+        ArrayAdapter<String> adapterWCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                list);
+        listView1.setAdapter(adapterWCList);
 
 
         //클래스 검색
@@ -191,7 +183,7 @@ public class whole_class_list extends AppCompatActivity {
                 }else{
                     listView1.clearTextFilter();
                 }
-                ((ClassListAdapter)listView1.getAdapter()).getFilter().filter(filterText);
+                //((ClassListAdapter)listView1.getAdapter()).getFilter().filter(filterText);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
