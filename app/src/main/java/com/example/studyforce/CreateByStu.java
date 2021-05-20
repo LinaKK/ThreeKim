@@ -24,13 +24,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CreateByStu extends AppCompatActivity {
-    private String espw = "";
+    //private String espw = "";
     EditText Ename, Egoal, Esub;
     Button cAdd;
     int num;
     String name;
+    int state=0;
 
-    //1, 0으로 비교 -뭐가 공개인지 안정해진거같아서 0을 공개로 할게여..?
+    //1, 0으로 비교 -뭐가 공개인지 안정해진거같아서 0을 공개로 할게여..? => ok
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +62,12 @@ public class CreateByStu extends AppCompatActivity {
                 if(checkedId == R.id.open){//공개
                     editspw.setVisibility(View.INVISIBLE);
                     spw.setVisibility(View.INVISIBLE);
+                    state = 0;
                 }
                 else if(checkedId==R.id.secret){//비공개
                     editspw.setVisibility(View.VISIBLE);
-                    espw = editspw.getText().toString();
-                    spw.setVisibility(View.INVISIBLE);
+                    spw.setVisibility(View.VISIBLE);
+                    state = 1;
                 }
             }
         });
@@ -75,7 +77,19 @@ public class CreateByStu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //받은거 넣어주시면됩니당 open클래스는 pw 0으로 넣으면됑
-                createClassS("ThreeK2","C++","A",1,1234);
+                //createClassS("ThreeK2","C++","A",1,1234);
+                String ename= Ename.getText().toString();
+                String egoal = Egoal.getText().toString();
+                String esub = Esub.getText().toString();
+                int password = Integer.parseInt(editspw.getText().toString());
+
+                if(state == 0){//공개
+                    createClassS(ename,esub,egoal,state,0);
+                }else{//비공개
+                    createClassS(ename,esub,egoal,state,password);
+                }
+
+                Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
