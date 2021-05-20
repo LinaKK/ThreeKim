@@ -38,14 +38,16 @@
             android:layout_marginRight="5dp"
             android:onClick="reBack"
             android:background="@drawable/btn_re"
-            android:layout_width="195dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_gravity="left"
             android:text="취소"/>
 
         <Button
             android:background="@drawable/btn_ba"
-            android:layout_width="195dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginRight="3dp"
             android:layout_gravity="end"
