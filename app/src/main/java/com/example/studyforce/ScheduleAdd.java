@@ -15,6 +15,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -145,7 +151,7 @@ public class ScheduleAdd extends AppCompatActivity {
                 //값 잘 가져오는지 확인용
                 Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
                 //값 보내기
-                JSONObject wObject = new JSONObject();
+                JSONObject wObject = new JSONObject();//이거뭐야??
                 JSONArray jsonArray = new JSONArray();
                 try{
                     for(int i = 0; i < 10; i++){
@@ -163,11 +169,71 @@ public class ScheduleAdd extends AppCompatActivity {
                  //값 php로 보내기
                 /*
                 //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
-
                 */
+                updateSchedule("집","집에서 자기",21,5,26, 21,5,26);
+                //입력값 받은변수 적으면됑 지금은확인용
             }
         });
 
+    }
+
+    private void updateSchedule(String sTitle, String sCont, int sYear, int sMonth, int sDay, int eYear, int eMonth, int eDay){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num",num);
+            rj.put("st", sTitle);
+            rj.put("sc", sCont);
+            rj.put("sy", sYear);
+            rj.put("sm", sMonth);
+            rj.put("sd", sDay);
+            rj.put("ey", eYear);
+            rj.put("em", eMonth);
+            rj.put("ed", eDay);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/updateSchedule.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 0) print();//String- 출력->같음 ==->다름
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
+    private void print(){
+        Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void println(String data){
+        TextView a;
+        a = (TextView)findViewById(R.id.addScheduleE);
+        a.append(data);
     }
 
     //키보드
