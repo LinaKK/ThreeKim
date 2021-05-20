@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ import static java.sql.DriverManager.println;
 public class my_class_list extends AppCompatActivity {
     Button exit;
     Button plus_class;
+    ImageView classpl;
+    ImageView exit1;
     TextView username2;
     int id;
     int userid;
@@ -45,7 +48,10 @@ public class my_class_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_class_list);
         exit=findViewById(R.id.exit);
-        plus_class=findViewById(R.id.plus_class);
+        /*plus_class=findViewById(R.id.plus_class);*/
+        classpl=findViewById(R.id.classpl);
+        exit1=findViewById(R.id.exit1);
+
         myClassList = (ListView)findViewById(R.id.list_class);
         username2 = (TextView)findViewById(R.id.username2);
 
@@ -63,7 +69,18 @@ public class my_class_list extends AppCompatActivity {
         getMyclass();
 
         //나가기 버튼
-        exit.setOnClickListener(new OnClickListener() {
+        /*exit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(my_class_list.this, personal_page.class);
+                intent.putExtra("name",username);
+                intent.putExtra("num",userid);
+                intent.putExtra("email", usermail);
+                startActivity(intent);
+            }
+        });*/
+
+        exit1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(my_class_list.this, personal_page.class);
@@ -75,9 +92,21 @@ public class my_class_list extends AppCompatActivity {
         });
 
         //클래스 추가버튼
-        plus_class.setOnClickListener(new OnClickListener() {
+        /*plus_class.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent =new Intent (my_class_list.this, whole_class_list.class);
+                intent.putExtra("name",username);
+                intent.putExtra("num",userid);
+                intent.putExtra("email", usermail);
+                startActivity(intent);
+            }
+        });*/
+
+        //클래스추가 이미지버튼 -안되면 이거 주석 후 위해 주석이용용
+        classpl.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent =new Intent (my_class_list.this, whole_class_list.class);
                 intent.putExtra("name",username);
                 intent.putExtra("num",userid);

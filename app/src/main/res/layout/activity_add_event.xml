@@ -66,6 +66,7 @@
             android:layout_width="195dp"
             android:layout_height="50dp"
             android:layout_marginRight="3dp"
+            android:layout_marginBottom="@dimen/botex"
             android:layout_gravity="end"
             android:text="확인"/>
     </LinearLayout>

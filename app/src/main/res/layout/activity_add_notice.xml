@@ -81,6 +81,7 @@
             android:layout_height="50dp"
             android:layout_marginRight="3dp"
             android:layout_gravity="end"
+            android:layout_marginBottom="@dimen/botex"
             android:text="등록하기" />
 
     </LinearLayout>
