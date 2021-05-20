@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity android:name=".classInfo"></activity>
-        <activity android:name=".addTodo" />
+        <activity android:name=".addTodo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".InGoal" />
         <activity android:name=".A" />
         <activity android:name=".noticeD" />
@@ -26,6 +32,7 @@
         <activity android:name=".todoC" />
         <activity android:name=".addNotice" />
         <activity android:name=".addEvent" />
+
         <activity android:name=".nextEvent" />
         <activity android:name=".notice" />
         <activity android:name=".InClass" /> <!-- <activity android:name=".Sign_Request" /> -->
