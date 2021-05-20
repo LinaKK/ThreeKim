@@ -22,7 +22,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class todoC extends AppCompatActivity {
@@ -84,7 +86,8 @@ public class todoC extends AppCompatActivity {
                                 String name = jsonObject.getString("name");
                                 cTodoList[i] = new classTodo(id, num, classtodo, done, className, name);
 
-                            }showTodo(cTodoList);
+                            }
+                            showTodo(cTodoList);
 
 
                         } catch (JSONException e) {
@@ -103,12 +106,13 @@ public class todoC extends AppCompatActivity {
         AppHelper.requestQueue.add(jsonObjectRequest);
     }
 
-    private void showTodo(classTodo[] cTodo){
+    private void showTodo(final classTodo[] cTodo){
         final List todolist = new ArrayList();
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false)
-                todolist.add(cTodo[i].classtodo); //겹치는거 걸러서 넣어서 갯수 다르게 보일거야
+                todolist.add(cTodo[i].classtodo);//겹치는거 걸러서 넣어서 갯수 다르게 보일거야
         }
+
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
         shortTodolist.setAdapter(adapterClassTodo);
@@ -118,10 +122,32 @@ public class todoC extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //goal 번호 넘겨주기
                 Intent intent = new Intent(getApplicationContext(), InGoal.class);
-
                 String todo = todolist.get(position).toString();
+                ArrayList donename = new ArrayList();
+                ArrayList Ndonename = new ArrayList();
+                ArrayList a = new ArrayList();
+
+                HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+                for(int j = 0; j<cTodo.length; j++){
+                    if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 1){
+                        donename.add(cTodo[j].name);
+                    }
+                    else if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 0){
+                        Ndonename.add(cTodo[j].name);
+                    }
+                    if (todo.equals(cTodo[j].classtodo)){
+                        a.add(cTodo[j].num);
+                    }
+                }
+
+                int k = a.size();
                 intent.putExtra("todo", todo);
                 intent.putExtra("num", num);
+                intent.putExtra("classStuNum", a.size());
+                intent.putStringArrayListExtra("donename",donename);
+                intent.putStringArrayListExtra("Ndonename",Ndonename);
+                //intent.putExtra("map", map);
                 startActivity(intent);
             }
         });

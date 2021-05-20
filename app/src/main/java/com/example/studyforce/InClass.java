@@ -1,12 +1,17 @@
 package com.example.studyforce;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -39,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -65,7 +71,7 @@ public class InClass extends AppCompatActivity {
     String getMonth = cMonth.format(Date);
     String getYear = cYear.format(Date);
 
-    String name, email;
+    String names, email;
 
     boolean lastLoastState;
 
@@ -78,14 +84,16 @@ public class InClass extends AppCompatActivity {
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
         //sendRequest1();
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFF5FD4E3));
 
         //가입 후 값 받아오기 (whole_class_list 액티비티의 listview에서)
         Intent intent = getIntent();
         cname = intent.getStringExtra("cname");
-        name = intent.getStringExtra("name");
+        names = intent.getStringExtra("name");
         num = intent.getIntExtra("num",0);
         classname.setText(cname);
-        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용
+        //..넘겨줄 값이 또 있을려나?? 해당 클래스 리스트 클릭후 --->학번도 넘겨주세용 (완료)
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
@@ -138,6 +146,11 @@ public class InClass extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+            case R.id.cInfo:
+                intent= new Intent(this, classInfo.class);
+                intent.putExtra("classname", cname);
+                intent.putExtra("num",num);
+                startActivity(intent);
         }
 
 
@@ -272,8 +285,8 @@ public class InClass extends AppCompatActivity {
                                 String classtodo = jsonObject.getString("todo");
                                 String className = jsonObject.getString("classname");
                                 int done = jsonObject.getInt("done");
-                                String tname = jsonObject.getString("name");
-                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, tname);
+                                String name = jsonObject.getString("name");
+                                cTodoList[i] = new classTodo(id, num, classtodo, done, className, name);
 
                             }showTodo(cTodoList);
 
@@ -300,7 +313,7 @@ public class InClass extends AppCompatActivity {
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
-            glist.add(new Glist(cTodo[i].name, cTodo[i].done));
+            glist.add(new Glist(cTodo[i].classtodo, cTodo[i].name, cTodo[i].done));
         }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 todolist);
@@ -310,28 +323,77 @@ public class InClass extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String gTitle = todolist.get(position).toString();
-                int gnum=0;
-                for(int i=0; i<cTodo.length; i++){
-                    if(cTodo[i].classtodo == gTitle)
-                        gnum = cTodo[i].id;
-                }
+
                 Intent intent2 = getIntent();
                 cname = intent2.getStringExtra("cname");
-                name = intent2.getStringExtra("name");
+                names = intent2.getStringExtra("name");
                 num = intent2.getIntExtra("num",0);
-
-                Intent intent = new Intent(getApplicationContext(),InGoal.class);
+               /* Intent intent = new Intent(getApplicationContext(),InGoal.class);
                 intent.putExtra("classname", cname);
                 intent.putExtra("num",num);
                 intent.putExtra("todo", gTitle);
-                intent.putExtra("glist",glist);
-                startActivity(intent);
+                intent.putExtra("glist",glist);*/
+
+
+                /*Intent intent = new Intent(getApplicationContext(), InGoal.class);
+                String todo = todolist.get(position).toString();
+                startActivity(intent);ArrayList donename = new ArrayList();
+                ArrayList Ndonename = new ArrayList();
+                ArrayList a = new ArrayList();
+
+                HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+                for(int j = 0; j<cTodo.length; j++){
+                    if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 1){
+                        donename.add(cTodo[j].name);
+                    }
+                    else if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 0){
+                        Ndonename.add(cTodo[j].name);
+                    }
+                    if (todo.equals(cTodo[j].classtodo)){
+                        a.add(cTodo[j].num);
+                    }
+                }
+
+                int k = a.size();
+                println(Integer.toString(k));
+                intent.putExtra("todo", todo);
+                intent.putExtra("num", num);
+                intent.putExtra("classStuNum", a.size());
+                intent.putStringArrayListExtra("donename",donename);
+                intent.putStringArrayListExtra("Ndonename",Ndonename);
+                //intent.putExtra("map", map);
+                startActivity(intent);*/
             }
         });
 
     }
 
+    //메뉴 생성
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bottom_menu, menu);
+        return true;
+    }
 
+    //메뉴바 동작들
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //bgm메뉴
+        if(id == R.id.music1){
+            Intent intent= new Intent(getApplicationContext(), Music_p.class);
+            startActivity(intent);
+            //return true;
+        }
+        //클래스 정보
+        if(id == R.id.setting){
+            Intent intent= new Intent(getApplicationContext(), classInfo.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     //오류확인
     private void println(String data){

@@ -66,6 +66,7 @@ public class ClassListAdapter extends BaseAdapter implements Filterable {
         text3.setText(filteredItemList.get(position).getJob());
         text4.setText(filteredItemList.get(position).getOpen());
 
+
         return convertView;
     }
 

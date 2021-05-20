@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -45,6 +46,7 @@ public class personal_schedule extends AppCompatActivity {
     String getTime;
     private int num;
     private String name, email;
+    private static scheduleList[] slist;
 
     //db용 - 학번을 걸러서 가져오기
     int id2;
@@ -103,6 +105,7 @@ public class personal_schedule extends AppCompatActivity {
         email = intent.getStringExtra("email");
 
         //sendRequest();
+        getSchedule();
 
         //일정 예시
         adapter.addItem("과제1","2021/"+"04/09","2021/04/30","알고리즘 과제 빨리 끝내기");
@@ -146,8 +149,7 @@ public class personal_schedule extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //db에서 삭제해야함
-                        Toast.makeText(getApplicationContext(), "일정을 삭제했습니다.", Toast.LENGTH_SHORT).show();
-
+                        deleteSchedule("스케줄이름넣어주세요");//이건 서버확인용
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -161,8 +163,55 @@ public class personal_schedule extends AppCompatActivity {
         });
 
     }
-    //일정 db에서 가져오기(시작날짜, 종료날짜, 제목, 내용)
-    /*
+
+    public void deleteSchedule(String schedule){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num", num);
+            rj.put("todo", schedule);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/deleteSchedule.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 1) print();//String- 출력->같음 ==->다름
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
+
+    private void print(){
+        Toast.makeText(getApplicationContext(), "일정을 삭제했습니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    //일정 db에서 가져오기(시작날짜, 종료날짜, 제목, 내용) 학번은 이전페이지에서 인텐트로 받아서 db로 보내서 스케줄가져오는거라 따로 안가져왔어
+    /* 행번호는 어디쓰게?? 저거 가져와도 순서대로 아닐텐뎅..여러명꺼 다 섞여있던거 골라오는거라 cont??
     //num(학번), id(행번호), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
      JSONObject jsonObject = jsonArray.getJSONObject(i);
      id2 = jsonObject.getInt("id");
@@ -175,6 +224,73 @@ public class personal_schedule extends AppCompatActivity {
      schTitle = jsonObject.getString("title");
      schCont = jsonObject.getString("cont");
      */
+
+    public void getSchedule(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("num", num);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/getSchedule.php";
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // processResponse(response);
+                        // classname.setText(response);
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            slist = new scheduleList[jsonArray.length()];
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String todo = jsonObject.getString("todo");
+                                int syear = jsonObject.getInt("syear");
+                                int smonth = jsonObject.getInt("smonth");
+                                int sday = jsonObject.getInt("sday");
+                                int eyear = jsonObject.getInt("eyear");
+                                int emonth = jsonObject.getInt("emonth");
+                                int eday = jsonObject.getInt("eday");
+                                String con = jsonObject.getString("todocontext");
+                                slist[i] = new scheduleList(todo, syear, smonth, sday, eyear, emonth, eday, con);
+                                //도희야 이거내가 가져오느라 그냥 편하게 쓴거고 scheduleList에 있는거= 너가 위에 주석으로 적은거대로
+                                //쓰면돼 like eDay, scheCont ...
+                            }
+                            //showScheduleList(slist); 여기서 일정표시 리스트 함수 호출하면됑 + 가져온거 쓸 다른 필요한함수
+
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+
+    }
+    private void println(String data){
+        TextView a;
+        a = (TextView)findViewById(R.id.scheduleError);
+        a.append(data);
+    }
+
 
     //일정표시리스트뷰 (날짜계산해서 해당 날짜범위의 것만 표시)
    /* public void AddItem(){

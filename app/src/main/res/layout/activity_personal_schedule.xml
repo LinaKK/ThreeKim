@@ -9,6 +9,7 @@
     android:weightSum="6">
 
     <TextView
+        android:id="@+id/scheduleError"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Calendar"

@@ -55,7 +55,7 @@ public class whole_class_list extends AppCompatActivity {
     public static wholeclist[] wclist;
 
     private String jobs = "학생";
-    String opens;
+    String state;
 
     ImageButton aClass;
 
@@ -63,6 +63,7 @@ public class whole_class_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whole_class_list);
+        listView1 = (ListView) findViewById(R.id.wholeClasslist);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
@@ -87,7 +88,7 @@ public class whole_class_list extends AppCompatActivity {
                     intent.putExtra("email",email);
                     startActivity(intent);
                 }
-                else{//교수일때
+                else{//교수일때 -도희야 이거 그냥 학생일때 화면으로 넘기고 비공개 버튼 막을수 있어?? 할수있으면 그렇게부탁 ㅠ
                     Intent intent = new Intent(getApplicationContext(),CreateByT.class);
                     intent.putExtra("num",num);
                     intent.putExtra("name", name);
@@ -96,36 +97,6 @@ public class whole_class_list extends AppCompatActivity {
                 }
             }
         });
-
-       /*
-       listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
-                ad.setTitle("가입메시지");
-                ad.setMessage("해당 클래스에 가입하시겠습니까?");
-                ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //내부클래스 액티비티에 값 넘겨주기
-                        String names = ((ClassJob)adapter.getItem(i)).getTitle();
-                       Intent intent = new Intent(getApplicationContext(),InClass.class);
-                       intent.putExtra("name",names);
-                       startActivity(intent);
-                    }
-                });
-                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                ad.show();
-            }
-        });
-        */
-        //리스트뷰 클릭 시 가입 여부 알림창
-
 
     }
     //키보드
@@ -162,8 +133,9 @@ public class whole_class_list extends AppCompatActivity {
                                 String subject = jsonObject.getString("subject");
                                 String goal = jsonObject.getString("goal");
                                 int open = jsonObject.getInt("open");
+                                int pw = jsonObject.getInt("pw");
 
-                                wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open);
+                                wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open, pw);
 
                             }
                             //classname.setText(nList[1].notice);
@@ -189,15 +161,24 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
         //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
-        listView1 = (ListView) findViewById(R.id.wholeClasslist);
-
+        ClassListAdapter adapter = new ClassListAdapter();
+        listView1.setAdapter(adapter);
+        // String name, String job, int num, String open
+        /*
         final List list = new ArrayList();
         for(int i=0; i<wclist.length; i++){
             list.add(wclist[i].classname);
         }
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                list);
-        listView1.setAdapter(adapter);
+         */
+        for(int i=0; i<wclist.length; i++){
+            if(wclist[i].open == 0){
+                state = "공개";
+            }else{
+                state="비공개";
+            }
+            adapter.addItem(wclist[i].classname, wclist[i].subject, wclist[i].classnum, state);
+        }
+
 
         //클래스 검색
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
@@ -210,6 +191,7 @@ public class whole_class_list extends AppCompatActivity {
                 }else{
                     listView1.clearTextFilter();
                 }
+                ((ClassListAdapter)listView1.getAdapter()).getFilter().filter(filterText);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -251,11 +233,9 @@ public class whole_class_list extends AppCompatActivity {
                 ad.show();
             }
         });
-
     }
 
     private void println(String data){
-
         errorm = (TextView)findViewById(R.id.errorm);
         errorm.append(data);
     }
