@@ -15,16 +15,15 @@
         android:layout_margin="15dp"
         android:text="질문하기"/>
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="3"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:text="Q : "
             android:textSize="30dp" />
 
@@ -40,7 +39,7 @@
             android:layout_gravity="right"
             android:src="@drawable/imageg" />
 
-    </GridLayout>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/setQC"
@@ -48,7 +47,8 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_margin="10dp"
-        android:layout_height="400dp"
+        android:layout_weight="2.5"
+        android:layout_height="0dp"
         android:gravity="center"
         android:hint="내용을 입력하세요."/>
     <LinearLayout
@@ -57,24 +57,25 @@
         android:layout_weight="1"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
         <Button
             android:layout_marginLeft="3dp"
             android:layout_marginRight="5dp"
             android:onClick="reBack"
             android:background="@drawable/btn_re"
-            android:layout_width="195dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_gravity="left"
-            android:text="취소"/> //아니면 임시저장
+            android:text="취소"/>
 
         <Button
             android:background="@drawable/btn_ba"
-            android:layout_width="195dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="@dimen/botex"
             android:layout_gravity="end"
             android:onClick="updateQClick"
             android:text="확인" />
