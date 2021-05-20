@@ -41,7 +41,7 @@
             android:layout_width="195dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
-            android:text="취소"/> //아니면 임시저장
+            android:text="취소"/>
 
         <Button
             android:background="@drawable/btn_ba"
@@ -50,6 +50,7 @@
             android:layout_marginRight="3dp"
             android:layout_gravity="end"
             android:onClick="updateTDClick"
+            android:layout_marginBottom="@dimen/botex"
             android:text="확인" />
 
     </LinearLayout>
