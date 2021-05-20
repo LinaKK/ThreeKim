@@ -25,11 +25,14 @@ import org.json.JSONObject;
 
 public class CreateByStu extends AppCompatActivity {
     //private String espw = "";
-    EditText Ename, Egoal, Esub;
+    EditText Ename;
+    EditText Egoal;
+    EditText Esub;
     Button cAdd;
+    EditText editspw;
+    TextView spw;
     int num;
     String name;
-    int state=0;
 
     //1, 0으로 비교 -뭐가 공개인지 안정해진거같아서 0을 공개로 할게여..? => ok
 
@@ -42,52 +45,66 @@ public class CreateByStu extends AppCompatActivity {
         num = intent.getIntExtra("num", 0);
         name = intent.getStringExtra("name");
 
-        Ename = (EditText)findViewById(R.id.edCname);
-        Egoal = (EditText)findViewById(R.id.edCgoal);
-        Esub = (EditText)findViewById(R.id.edSub);
+        editspw = findViewById(R.id.edspw);
+        spw = findViewById(R.id.spw);
 
-        cAdd = (Button)findViewById(R.id.create);
-
-        final TextView spw = (TextView) findViewById(R.id.spw);
         spw.setVisibility(View.INVISIBLE);
-
-        RadioGroup jobs = findViewById(R.id.jobs);
-        final EditText editspw = (EditText)findViewById(R.id.edspw);
-
         editspw.setVisibility(View.INVISIBLE);
-
+        RadioGroup jobs = findViewById(R.id.jobs);
         jobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId == R.id.open){//공개
                     editspw.setVisibility(View.INVISIBLE);
                     spw.setVisibility(View.INVISIBLE);
-                    state = 0;
+                    createOC();
                 }
                 else if(checkedId==R.id.secret){//비공개
                     editspw.setVisibility(View.VISIBLE);
                     spw.setVisibility(View.VISIBLE);
-                    state = 1;
+                    createSC();
                 }
             }
         });
+    }
 
-        //class create
+    public void createOC(){
+        cAdd = findViewById(R.id.create);
+        Ename = findViewById(R.id.edCname);
+        Egoal = findViewById(R.id.edCgoal);
+        Esub = findViewById(R.id.edSub);
         cAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //받은거 넣어주시면됩니당 open클래스는 pw 0으로 넣으면됑
+                //createClassS("ThreeK2","C++","A",1,1234);
+                String ename= Ename.getText().toString();
+                String egoal = Egoal.getText().toString();
+                String esub = Esub.getText().toString();
+
+                createClassS(ename,esub,egoal,0,0);
+
+                Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void createSC(){
+        cAdd = findViewById(R.id.create);
+        Ename = findViewById(R.id.edCname);
+        Egoal = findViewById(R.id.edCgoal);
+        Esub = findViewById(R.id.edSub);
+        editspw = findViewById(R.id.edspw);
+        spw = findViewById(R.id.spw);
+        cAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 //createClassS("ThreeK2","C++","A",1,1234);
                 String ename= Ename.getText().toString();
                 String egoal = Egoal.getText().toString();
                 String esub = Esub.getText().toString();
                 int password = Integer.parseInt(editspw.getText().toString());
 
-                if(state == 0){//공개
-                    createClassS(ename,esub,egoal,state,0);
-                }else{//비공개
-                    createClassS(ename,esub,egoal,state,password);
-                }
+                createClassS(ename,esub,egoal,1,password);
 
                 Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
             }

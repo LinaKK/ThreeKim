@@ -46,7 +46,6 @@ import java.util.Locale;
 public class whole_class_list extends AppCompatActivity {
 
     String[] mClass = {"학생", "교수"};
-    ClassListAdapter adapter;
     ListView listView1;  //전체리스트뷰
     TextView errorm;
     int num;
@@ -89,7 +88,7 @@ public class whole_class_list extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{//교수일때 -도희야 이거 그냥 학생일때 화면으로 넘기고 비공개 버튼 막을수 있어?? 할수있으면 그렇게부탁 ㅠ
-                    Intent intent = new Intent(getApplicationContext(),CreateByT.class);
+                    Intent intent = new Intent(getApplicationContext(),CreateByStu.class);
                     intent.putExtra("num",num);
                     intent.putExtra("name", name);
                     intent.putExtra("email",email);
