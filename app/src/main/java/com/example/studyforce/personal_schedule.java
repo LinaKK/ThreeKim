@@ -245,6 +245,12 @@ public class personal_schedule extends AppCompatActivity {
         a.append(data);
     }
 
+    private ArrayList<scheduleList>schdata(){
+        ArrayList<scheduleList> data = new ArrayList<>();
+
+        return data;
+    }
+
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
         final List Schlist = new ArrayList();
@@ -282,11 +288,7 @@ public class personal_schedule extends AppCompatActivity {
         });
     }
 
-    private ArrayList<Schedule>schdata(){
-        ArrayList<Schedule> data = new ArrayList<>();
 
-        return data;
-    }
 
 
         public String setTitle(int year, int month, int day){
