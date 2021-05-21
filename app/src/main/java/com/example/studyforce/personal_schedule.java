@@ -287,10 +287,6 @@ public class personal_schedule extends AppCompatActivity {
             }
         });
     }
-
-
-
-
         public String setTitle(int year, int month, int day){
             String t="";
             return t;
