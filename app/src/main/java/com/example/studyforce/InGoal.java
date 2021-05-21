@@ -155,7 +155,7 @@ public class InGoal extends AppCompatActivity {
     }
     //리나야 이 코드 작동 안하는데 res== 0이 done==0을 말하는 거야 아님 뭐야?? 미완성이라고 했었나....?
     //res는 완료버튼 누른거 제대로 업데이트 됐는지 그냥 확인하는 코드여
-    //db 확인하려고 만든거라 신경안써도됩니당
+    //db 확인하려고 만든거라 신경안써도됩니당 => 확인완료
     private void toastM(){
         finishGoal.setText("이미 달성함!");
         finishGoal.setEnabled(false);

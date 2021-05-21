@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.data.PieEntry;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -40,8 +41,6 @@ import static java.sql.DriverManager.println;
 
 
 public class personal_schedule extends AppCompatActivity {
-
-
    scheduleList[] scheduleLists;
 
     TextView date;
@@ -281,8 +280,14 @@ public class personal_schedule extends AppCompatActivity {
                 ad.show();
             }
         });
-
     }
+
+    private ArrayList<Schedule>schdata(){
+        ArrayList<Schedule> data = new ArrayList<>();
+
+        return data;
+    }
+
 
         public String setTitle(int year, int month, int day){
             String t="";
