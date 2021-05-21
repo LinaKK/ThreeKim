@@ -8,6 +8,12 @@ public class Schedule {
     private String eDate;
     private String Title;
     private String Content;
+    private int eDay;
+    private int eMonth;
+    private int eYear;
+    private int sDay;
+    private int sMonth;
+    private int sYear;
 
 
     public void setSDate(String sdate){
@@ -42,5 +48,17 @@ public class Schedule {
         return this.eDate;
     }
 
+
+
+    public Schedule(String Title, int sYear, int sMonth, int sDay, int eYear, int eMonth, int eDay, String Content){
+        this.Title = Title;
+        this.sYear = sYear;
+        this.sMonth=sMonth;
+        this.sDay =sDay;
+        this.eYear = eYear;
+        this.eMonth=eMonth;
+        this.eDay = eDay;
+        this.Content=Content;
+    }
 
 }
