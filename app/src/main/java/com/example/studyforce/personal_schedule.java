@@ -38,7 +38,9 @@ import java.util.List;
 
 import static java.sql.DriverManager.println;
 
+
 public class personal_schedule extends AppCompatActivity {
+
 
    scheduleList[] scheduleLists;
 
@@ -93,6 +95,9 @@ public class personal_schedule extends AppCompatActivity {
         email = intent.getStringExtra("email");
 
 
+        //sendRequest();
+        getSchedule();
+
 
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
         materialCalendarView.setSelectedDate(CalendarDay.today());
@@ -106,7 +111,7 @@ public class personal_schedule extends AppCompatActivity {
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
                 //setCont에서 날짜 비교해서 일치하는 날짜의 일정만 출력
                 String cont = setCont(date.getYear(), (date.getMonth()+1),date.getDay());
-                String t= setTitle(date.getYear(), (date.getMonth()+1),date.getDay());
+
                 /*for (int i =0; i<Sslist.size(); i++){
                     if(Sslist[i].sYear<=date.getYear()<=Sslist[i].eYear&&Sslist[i].sMonth<=(date.getMonth()+1)<=Sslist[i].eMonth
                     &&Sslist[i].sDay<=date.getDay()<=Sslist[i].eDay){
@@ -126,9 +131,6 @@ public class personal_schedule extends AppCompatActivity {
             }
         });
 
-
-        //sendRequest();
-        getSchedule();
 
     }
 
@@ -302,9 +304,7 @@ public class personal_schedule extends AppCompatActivity {
         intent.putExtra("email",email);
         startActivity(intent);
     }
-
-
-
-
 }
+
+
 
