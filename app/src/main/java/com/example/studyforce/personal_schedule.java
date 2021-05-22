@@ -223,12 +223,6 @@ public class personal_schedule extends AppCompatActivity {
         a.append(data);
     }
 
-    private ArrayList<scheduleList>schdata(){
-        ArrayList<scheduleList> data = new ArrayList<>();
-
-        return data;
-    }
-
     //도희야 이거 할일 제목만 뜨는데 날짜기능 => 지금 추가해봤는데 안되면 얘기해줘
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
@@ -292,6 +286,7 @@ public class personal_schedule extends AppCompatActivity {
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
                 final String title = (String)parent.getAdapter().getItem(position);
+                //위에꺼 오류 날수도 있어여...잘모르겠다..ㅠㅠ
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
