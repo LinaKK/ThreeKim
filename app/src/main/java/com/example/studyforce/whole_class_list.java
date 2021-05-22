@@ -164,20 +164,35 @@ public class whole_class_list extends AppCompatActivity {
 
     //클래스리스트 출력
     //지금 리스트는 제대로 넘어오는거같아 이번에는 진짜
-    //도희야 문제가 같은 클래스가 가입한 사람수만큼 나와 걸러야해 -ctodolist에 내가 todo할때 쓴거 있는데 필요하면 참고용
+    //도희야 문제가 같은 클래스가 가입한 사람수만큼 나와 걸러야해 -ctodolist에 내가 todo할때 쓴거 있는데 필요하면 참고용 => 알았어!!
     private void showCList(wholeclist[] wclist){
         data = new ArrayList<HashMap<String, String>>();
         data1 = new HashMap<String, String>();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         // String name, String job, int num, String open
         for(int i=0; i<wclist.length; i++){
-            data1.put("Name", wclist[i].classname);
-            data1.put("Subject", wclist[i].subject);
+           if(data1.containsValue(wclist[i].classname)){//중복될때
+               if(wclist[i+1].open==0){
+                   data1.put("Open","공개");
+               }else{
+                   data1.put("Open","비공개");
+               }
+               data1.put("Name", wclist[i+1].classname);
+               data1.put("Subject", wclist[i+1].subject);
+           }else{//중복되지 않을때
+               if(wclist[i].open==0){
+                   data1.put("Open","공개");
+               }else{
+                   data1.put("Open","비공개");
+               }
+               data1.put("Name", wclist[i].classname);
+               data1.put("Subject", wclist[i].subject);
+           }
             data.add(data1);
         }
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
-                data,R.layout.activity_class_list, new String[]{"Name", "Subject"}
-                ,new int[]{R.id.class_name, R.id.class_job});
+                data,R.layout.activity_class_list, new String[]{"Name", "Subject","Open"}
+                ,new int[]{R.id.class_name, R.id.class_job, R.id.class_open});
         listView1.setAdapter(adapter);
 
 

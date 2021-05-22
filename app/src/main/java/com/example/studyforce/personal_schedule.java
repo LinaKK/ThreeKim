@@ -106,33 +106,7 @@ public class personal_schedule extends AppCompatActivity {
         materialCalendarView.setSelectedDate(CalendarDay.today());
         materialCalendarView.addDecorators(
                 new SundayDecorator(), new SaturdayDecorator());
-        //날짜 선택 시 팝업창 띄우기
-        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
-                ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
-                //setCont에서 날짜 비교해서 일치하는 날짜의 일정만 출력
-                String cont = setCont(date.getYear(), (date.getMonth()+1),date.getDay());
 
-                /*for (int i =0; i<Sslist.size(); i++){
-                    if(Sslist[i].sYear<=date.getYear()<=Sslist[i].eYear&&Sslist[i].sMonth<=(date.getMonth()+1)<=Sslist[i].eMonth
-                    &&Sslist[i].sDay<=date.getDay()<=Sslist[i].eDay){
-                    String t = Sslist[i].schTitle;
-                    String cont = Sslist[i].schCont;
-                    }
-                }*/
-                ad.setMessage("그 날의 할일"+"\n"+"할일의 내용 어쩌구저쩌구");
-                //ad.setMessage(t+"\n"+cont);
-                ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                ad.show();
-            }
-        });
 
 
     }
@@ -270,13 +244,43 @@ public class personal_schedule extends AppCompatActivity {
                 ,new int[]{android.R.id.text1, android.R.id.text2});
         listView1.setAdapter(adapter);
 
+        MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
+        //날짜 선택 시 팝업창 띄우기
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
+                ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
+                //날짜 비교해서 일치하는 날짜의 일정만 출력
+
+                ad.setMessage("그 날의 할일"+"\n"+"할일의 내용 어쩌구저쩌구");
+                //ad.setMessage(t+"\n"+cont);
+                ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+            }
+        });
+
+        //클릭시
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
+
+            }
+        });
+
+        //길게 클릭시
+        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
-                final String title = (String)parent.getAdapter().getItem(i);
+                final String title = (String)parent.getAdapter().getItem(position);
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -291,18 +295,9 @@ public class personal_schedule extends AppCompatActivity {
                     }
                 });
                 ad.show();
+                return false;
             }
         });
-    }
-        public String setTitle(int year, int month, int day){
-            String t="";
-            return t;
-        }
-
-
-    public String setCont(int year, int month, int day){
-        String cont="";
-        return cont;
     }
 
 
