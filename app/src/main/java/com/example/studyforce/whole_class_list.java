@@ -141,7 +141,7 @@ public class whole_class_list extends AppCompatActivity {
 
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open, pw);
 
-                            }println(wclist[1].name);
+                            }println(wclist[1].classname);
                             //classname.setText(nList[1].notice);
                             showCList(wclist);
                         }
@@ -163,6 +163,8 @@ public class whole_class_list extends AppCompatActivity {
     }
 
     //클래스리스트 출력
+    //지금 리스트는 제대로 넘어오는거같아 이번에는 진짜
+    //도희야 문제가 같은 클래스가 가입한 사람수만큼 나와 걸러야해 -ctodolist에 내가 todo할때 쓴거 있는데 필요하면 참고용
     private void showCList(wholeclist[] wclist){
         data = new ArrayList<HashMap<String, String>>();
         data1 = new HashMap<String, String>();
