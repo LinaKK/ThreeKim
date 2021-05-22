@@ -174,8 +174,8 @@ public class whole_class_list extends AppCompatActivity {
             data.add(data1);
         }
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
-                data,android.R.layout.simple_list_item_2, new String[]{"Name", "Subject"}
-                ,new int[]{android.R.id.text1, android.R.id.text2});
+                data,R.layout.activity_class_list, new String[]{"Name", "Subject"}
+                ,new int[]{R.id.class_name, R.id.class_job});
         listView1.setAdapter(adapter);
 
 
@@ -190,7 +190,7 @@ public class whole_class_list extends AppCompatActivity {
                 }else{
                     listView1.clearTextFilter();
                 }
-                //((ClassListAdapter)listView1.getAdapter()).getFilter().filter(filterText);
+                //
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
