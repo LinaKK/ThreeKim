@@ -52,7 +52,6 @@ import static java.sql.DriverManager.println;
 
 public class InClass extends AppCompatActivity {
     private TextView classname;
-    private TextView subject;
     private TextView goal;
     private ListView shortNoticeList;
     private ListView shortTodolist;
@@ -82,6 +81,8 @@ public class InClass extends AppCompatActivity {
         classname = (TextView) findViewById(R.id.InClassName);
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
+        goal =(TextView) findViewById(R.id.cFGoal);
+
         //sendRequest1();
 
         ActionBar actionBar = getSupportActionBar();
@@ -97,6 +98,7 @@ public class InClass extends AppCompatActivity {
         // 클래스이름만 넘겨주고 db에서 이름과 일치하는
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
+        classGoal(cname);
         sendRequest2("ThreeK");//(cname)
         sendRequest3("ThreeK");//(cname)
     }
@@ -176,6 +178,46 @@ public class InClass extends AppCompatActivity {
             ad.show();
         }
     };
+
+    private void classGoal(String classname){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("classname", classname);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/classinfo.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            String goalt = response.getString("goal");
+                            goal.setText(goalt);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
 
 
 
@@ -401,8 +443,8 @@ public class InClass extends AppCompatActivity {
     }
 
 
-    private void printlnn(){
-        Toast.makeText(this, "connect success",Toast.LENGTH_SHORT).show();
+    private void printlnn(String goal){
+        Toast.makeText(this, goal,Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -271,12 +271,11 @@ public class personal_schedule extends AppCompatActivity {
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
                 final String title = (String)parent.getAdapter().getItem(i);
-                final String t = title;
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //db에서 삭제해야함
-                        deleteSchedule(t);//title 바로쓰면 인식을 못해서
+                        deleteSchedule(title);
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {

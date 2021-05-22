@@ -72,16 +72,19 @@ import org.json.JSONObject;
       }
 
       public void btn_lo(View view){
-          String Sid = et_id.getText().toString();
-          int id = Integer.parseInt(Sid);
-          String pw = et_pw.getText().toString();
+          if (et_id.getText() == null || et_id.getText() == null)
+              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
           //입력안하면 종료됨
           //학번 or pw 틀리면 toast 필요 -지금있는건 에러섞임
 
-          if (Sid == null || pw == null)
-              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
-          else
+          /*if (Sid == null || pw == null)
+              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();*/
+          else {
+              String Sid = et_id.getText().toString();
+              int id = Integer.parseInt(Sid);
+              String pw = et_pw.getText().toString();
               loginsendRequest(id, pw);
+          }
       }
 
       private void loginsendRequest(final int ed_id, String ed_pw){
@@ -129,7 +132,8 @@ import org.json.JSONObject;
                   new Response.ErrorListener(){
                       @Override
                       public void onErrorResponse(VolleyError error) {
-                          println("error -> " + error.getMessage());
+                          //println("error -> " + error.getMessage());
+                          loginError();
                       }
                   }
           );
