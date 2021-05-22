@@ -41,6 +41,7 @@ public class addTodo extends AppCompatActivity {
             Toast.makeText(this, "내용을 입력하세요!",Toast.LENGTH_SHORT).show();
     }
 
+    //php작성중
     private void updateTD(String todo){
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
