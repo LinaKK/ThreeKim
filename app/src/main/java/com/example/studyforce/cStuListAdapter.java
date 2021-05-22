@@ -43,8 +43,8 @@ public class cStuListAdapter extends BaseAdapter {
         TextView d = (TextView) convertView.findViewById(R.id.done);
         TextView tdn = (TextView) convertView.findViewById(R.id.todon);
         sn.setText(cStu[position].name);
-        d.setText(cStu[position].doneNum);
-        tdn.setText(cStu[position].doneNum);
+       /* d.setText(cStu[position].doneNum);
+        tdn.setText(cStu[position].doneNum);*/
 
         return convertView;
     }

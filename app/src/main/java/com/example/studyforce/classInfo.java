@@ -144,7 +144,7 @@ public class classInfo extends AppCompatActivity {
 
     private void showStulist(classStu[] list){
         mAdapter = new cStuListAdapter(this, list);
-        cPList.setAdapter(mAdapter);//php만드는중 아직안나와요
+        cPList.setAdapter(mAdapter);
 
     }
 

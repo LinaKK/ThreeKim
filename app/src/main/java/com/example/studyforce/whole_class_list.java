@@ -130,7 +130,7 @@ public class whole_class_list extends AppCompatActivity {
 
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                int classnum = jsonObject.getInt("classnum");
+                                int classnum = jsonObject.getInt("id");
                                 String classname = jsonObject.getString("classname");
                                 int num = jsonObject.getInt("num"); //학번
                                 String name = jsonObject.getString("name");
@@ -141,7 +141,7 @@ public class whole_class_list extends AppCompatActivity {
 
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open, pw);
 
-                            }
+                            }println(wclist[1].name);
                             //classname.setText(nList[1].notice);
                             showCList(wclist);
                         }
@@ -236,7 +236,7 @@ public class whole_class_list extends AppCompatActivity {
 
     private void println(String data){
         errorm = (TextView)findViewById(R.id.errorm);
-        errorm.append(data);
+        errorm.setText(data);
     }
 
 
