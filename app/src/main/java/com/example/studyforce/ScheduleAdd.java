@@ -148,8 +148,10 @@ public class ScheduleAdd extends AppCompatActivity {
                 endM = eDay_M.getText().toString();
                 endD = eDay_D.getText().toString();
 
+                updateSchedule("집","집에서 자기",21,5,26, 21,5,26);
+                //입력값 받은변수 적으면됑 지금은확인용
                 //값 잘 가져오는지 확인용
-                Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
                 //값 보내기
                 JSONObject wObject = new JSONObject();//이거뭐야??
                 JSONArray jsonArray = new JSONArray();
@@ -170,8 +172,7 @@ public class ScheduleAdd extends AppCompatActivity {
                 /*
                 //num(행번호), id(학번), s_day, s_month, s_year, e_day, e_month, e_year, title, cont
                 */
-                updateSchedule("집","집에서 자기",21,5,26, 21,5,26);
-                //입력값 받은변수 적으면됑 지금은확인용
+
             }
         });
 

@@ -156,7 +156,7 @@ public class personal_schedule extends AppCompatActivity {
 
                         try {
                             int res = response.getInt("res");
-                            if (res == 1) print();//String- 출력->같음 ==->다름
+                            if (res == 1) print();
 
 
                         } catch (JSONException e) {
@@ -251,6 +251,7 @@ public class personal_schedule extends AppCompatActivity {
         return data;
     }
 
+    //도희야 이거 할일 제목만 뜨는데 날짜랑 내용보기가 없엉 아그리구 이건 완료기능 없는거??
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
         final List Schlist = new ArrayList();
@@ -270,11 +271,12 @@ public class personal_schedule extends AppCompatActivity {
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
                 final String title = (String)parent.getAdapter().getItem(i);
+                final String t = title;
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //db에서 삭제해야함
-                        deleteSchedule(title);//이건 서버확인용
+                        deleteSchedule(t);//title 바로쓰면 인식을 못해서
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
