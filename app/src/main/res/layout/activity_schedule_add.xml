@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleAdd"
+    android:background="#00ff0000"
     android:orientation="vertical"
     android:weightSum="6">
     <TextView
@@ -12,9 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:textSize="45dp"
+        android:textSize="20dp"
         android:text="일정 추가"
-        android:layout_weight="1"/>
+        android:layout_weight="0.4"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:src="@drawable/calendaradd"
+        android:layout_weight="0.5"/>
+
+    <EditText
+    android:id="@+id/scheduleTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:hint="일정 제목을 입력하시오."/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:text="일정 시작"/>
             <TextView
                 android:id="@+id/startDay"
@@ -59,13 +76,13 @@
                 android:layout_height="match_parent"
                 android:textSize="20dp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/startDate"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:scaleType="fitCenter"
+                android:layout_height="30dp"
                 android:layout_weight="0.5"
-                android:src="@drawable/calendar"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/date1" />
 
         </LinearLayout>
         <LinearLayout
@@ -78,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:text="일정 종료"/>
             <TextView
                 android:id="@+id/endDay"
@@ -102,13 +119,13 @@
                 android:layout_height="match_parent"
                 android:textSize="20dp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/endDate"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:scaleType="fitCenter"
                 android:layout_weight="0.5"
-                android:src="@drawable/calendar"/>
+                android:src="@drawable/date1"/>
 
         </LinearLayout>
 
@@ -118,14 +135,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="3">
-        <EditText
-            android:id="@+id/scheduleTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginLeft="5dp"
-            android:hint="일정 제목을 입력하시오."/>
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/border_layout"
+        android:layout_weight="0.5">
         <EditText
             android:id="@+id/scheduleContents"
             android:layout_width="match_parent"
@@ -138,14 +151,40 @@
             android:maxHeight="100dp"/>
     </LinearLayout>
 
-
-    <Button
-        android:layout_gravity="center"
-        android:id="@+id/scheduleAdd"
-        android:layout_weight="0.5"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="추가하기"/>
+        android:layout_weight="1.5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/addBack"
+            android:background="@drawable/btn_re"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:text="취소"/>
+
+        <Button
+            android:background="@drawable/btn_ba"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="end"
+            android:id="@+id/scheduleAdd"
+            android:text="추가" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

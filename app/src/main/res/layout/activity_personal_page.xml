@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".personal_page"
     android:orientation="vertical"
-    android:background="@color/orange"
+    android:padding="10dp"
+    android:background="@drawable/lay_back"
     android:weightSum="5">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/border"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +29,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="0dp">
         <TextView
@@ -30,17 +37,15 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="학생"
-            android:textSize="35dp" />
+            android:textSize="20dp" />
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="홍길동"
-            android:textSize="60dp" />
+            android:textSize="30dp" />
     </LinearLayout>
-
-
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -52,44 +57,44 @@
         android:layout_gravity="center">
         <ImageButton
             android:id="@+id/userinfo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_column="0"
             android:layout_row="0"
-            android:src="@drawable/person"
+            android:src="@drawable/puser"
             android:padding="0sp"
             android:scaleType="centerCrop" />
         <ImageButton
             android:id="@+id/schedule"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="5dp"
             android:layout_column="1"
             android:layout_row="0"
-            android:src="@drawable/schedule"
+            android:src="@drawable/pcalen"
             android:padding="0sp"
             android:scaleType="centerCrop" />
         <ImageButton
             android:id="@+id/userclasses"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="3dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:src="@drawable/classes"
+            android:src="@drawable/pclass"
             android:padding="0sp"
             android:scaleType="centerCrop" />
         <ImageButton
             android:id="@+id/timer"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="3dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:src="@drawable/studytime"
+            android:src="@drawable/ptimer"
             android:padding="0sp"
             android:scaleType="centerCrop" />
 
@@ -100,14 +105,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:layout_gravity="center">
-        <Button
+<!--        <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="로그아웃" />
+            android:text="로그아웃" />-->
         <Button
             android:id="@+id/exit"
+            android:background="@drawable/btn_re"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -115,5 +121,5 @@
     </LinearLayout>
 
 
-
+</LinearLayout>
 </LinearLayout>

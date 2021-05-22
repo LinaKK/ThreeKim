@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +36,8 @@ public class ScheduleAdd extends AppCompatActivity {
     EditText scheduleTitle;
     EditText scheduleCon;
     Button add;
-    ImageButton sDate;
-    ImageButton eDate;
+    ImageView sDate;
+    ImageView eDate;
     TextView sDay_Y;
     TextView sDay_M;
     TextView sDay_D;
@@ -98,8 +99,8 @@ public class ScheduleAdd extends AppCompatActivity {
         scheduleTitle = (EditText)findViewById(R.id.scheduleTitle);
         scheduleCon = (EditText)findViewById(R.id.scheduleContents);
         add = (Button)findViewById(R.id.scheduleAdd);
-        sDate = (ImageButton)findViewById(R.id.startDate);
-        eDate = (ImageButton)findViewById(R.id.endDate);
+        sDate = (ImageView) findViewById(R.id.startDate);
+        eDate = (ImageView)findViewById(R.id.endDate);
         sDay_Y = (TextView)findViewById(R.id.startDay);
         sDay_M =(TextView)findViewById(R.id.startDay_month);
         sDay_D =(TextView)findViewById(R.id.startDay_day);
