@@ -26,6 +26,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,10 +41,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class whole_class_list extends AppCompatActivity {
+
+    ArrayList<HashMap<String, String>> data;
+    HashMap<String, String> data1;
 
     String[] mClass = {"학생", "교수"};
     ListView listView1;  //전체리스트뷰
@@ -159,16 +164,19 @@ public class whole_class_list extends AppCompatActivity {
 
     //클래스리스트 출력
     private void showCList(wholeclist[] wclist){
-        //속도가 느무느림 -> classnum, 클래스이름, 팀원, 과목, 목표 인텐트로 inclass에 넘기는게 나을듯..
+        data = new ArrayList<HashMap<String, String>>();
+        data1 = new HashMap<String, String>();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         // String name, String job, int num, String open
-        final List list = new ArrayList();
         for(int i=0; i<wclist.length; i++){
-            list.add(wclist[i].classname);
+            data1.put("Name", wclist[i].classname);
+            data1.put("Subject", wclist[i].subject);
+            data.add(data1);
         }
-        ArrayAdapter<String> adapterWCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                list);
-        listView1.setAdapter(adapterWCList);
+        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
+                data,android.R.layout.simple_list_item_2, new String[]{"Name", "Subject"}
+                ,new int[]{android.R.id.text1, android.R.id.text2});
+        listView1.setAdapter(adapter);
 
 
         //클래스 검색

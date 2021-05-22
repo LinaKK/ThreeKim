@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,13 +36,16 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import static java.sql.DriverManager.println;
 
 
 public class personal_schedule extends AppCompatActivity {
-   scheduleList[] scheduleLists;
+
+    ArrayList<HashMap<String, String>> data;
+    HashMap<String, String> data1;
 
     TextView date;
     long Now = System.currentTimeMillis();;
@@ -254,15 +258,17 @@ public class personal_schedule extends AppCompatActivity {
     //도희야 이거 할일 제목만 뜨는데 날짜랑 내용보기가 없엉 아그리구 이건 완료기능 없는거??
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
-        final List Schlist = new ArrayList();
-        final List<Schedule> Sslist = new ArrayList<Schedule>();
+        data = new ArrayList<HashMap<String, String>>();
+        data1 = new HashMap<String, String>();
         for(int i=0; i<Slist.length; i++){
-            Schlist.add(slist[i].schTitle);
-            Sslist.add(new Schedule(slist[i].schTitle,slist[i].sYear,slist[i].sMonth,slist[i].sDay, slist[i].eYear,slist[i].eMonth, slist[i].eDay, slist[i].schCont));
+            data1.put("t",Slist[i].schTitle);
+            data1.put("c",Slist[i].schCont);
+            data.add(data1);
         }
-        ArrayAdapter<String> adapterSchedule = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                Schlist);
-        listView1.setAdapter(adapterSchedule);
+        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
+                data,android.R.layout.simple_list_item_2, new String[]{"t", "c"}
+                ,new int[]{android.R.id.text1, android.R.id.text2});
+        listView1.setAdapter(adapter);
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
