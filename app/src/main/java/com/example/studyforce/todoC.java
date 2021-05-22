@@ -127,7 +127,7 @@ public class todoC extends AppCompatActivity {
                 ArrayList Ndonename = new ArrayList();
                 ArrayList a = new ArrayList();
 
-                HashMap<String, Integer> map = new HashMap<String, Integer>();
+                //HashMap<String, Integer> map = new HashMap<String, Integer>();
 
                 for(int j = 0; j<cTodo.length; j++){
                     if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 1){

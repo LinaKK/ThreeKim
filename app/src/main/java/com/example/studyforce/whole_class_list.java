@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -76,6 +77,7 @@ public class whole_class_list extends AppCompatActivity {
         num = intent.getIntExtra("num",0);// 로그인후 학번
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
+
 
         sendRequest1();
 
@@ -141,9 +143,10 @@ public class whole_class_list extends AppCompatActivity {
 
                                 wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal, open, pw);
 
-                            }println(wclist[1].classname);
+                            }
                             //classname.setText(nList[1].notice);
                             showCList(wclist);
+                            signC("a");
                         }
                         catch (JSONException e){
                             e.printStackTrace();
@@ -165,12 +168,34 @@ public class whole_class_list extends AppCompatActivity {
     //클래스리스트 출력
     //지금 리스트는 제대로 넘어오는거같아 이번에는 진짜 => 확인완료
     //도희야 문제가 같은 클래스가 가입한 사람수만큼 나와 걸러야해 -ctodolist에 내가 todo할때 쓴거 있는데 필요하면 참고용 => 알았어!!
-    private void showCList(wholeclist[] wclist){
+    private void showCList(final wholeclist[] wclist){
+        //wclist 확인
+        ArrayList l = new ArrayList();
+        for(int k=0 ; k<wclist.length; k++){
+            l.add(wclist[k].classname);
+        }
+        println(l.toString());
+
+        //index오류나서 고치긴했는데 해시맵은 key 안겹쳐서 안해도되나??
+        //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아
         data = new ArrayList<HashMap<String, String>>();
         data1 = new HashMap<String, String>();
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         // String name, String job, int num, String open
-        for(int i=0; i<wclist.length; i++){
+        for (int i=0; i<wclist.length; i++){
+            if(data1.containsValue(wclist[i].classname)== false){
+                if(wclist[i].open==0){
+                    data1.put("Open","공개");
+                }else{
+                    data1.put("Open","비공개");
+                }
+                data1.put("Name", wclist[i+1].classname);
+                data1.put("Subject", wclist[i+1].subject);
+            }
+            data.add(data1);
+        }
+
+        /*for(int i=0; i<wclist.length; i++){
            if(data1.containsValue(wclist[i].classname)){//중복될때
                if(wclist[i+1].open==0){
                    data1.put("Open","공개");
@@ -189,7 +214,8 @@ public class whole_class_list extends AppCompatActivity {
                data1.put("Subject", wclist[i].subject);
            }
             data.add(data1);
-        }
+        }*/
+
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
                 data,R.layout.activity_class_list, new String[]{"Name", "Subject","Open"}
                 ,new int[]{R.id.class_name, R.id.class_job, R.id.class_open});
@@ -228,10 +254,13 @@ public class whole_class_list extends AppCompatActivity {
                 ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //error- java.util.HashMap cannot be cast to java.lang.String
                         //개인클래스리스트로 넘기기(db)
                         //클래스이름갯수
                         //내부클래스 액티비티에 값 넘겨주기
                         String cnames = (String)parent.getAdapter().getItem(i);
+                        signC(cnames);
+
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
                         intent.putExtra("num",num);
                         intent.putExtra("name", name);
@@ -249,6 +278,65 @@ public class whole_class_list extends AppCompatActivity {
                 ad.show();
             }
         });
+    }
+
+    private void signC(String cname){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("cname", cname);
+            rj.put("num", num);
+            rj.put("name", name);
+            /*for(int i=0; i<wclist.length; i++){
+                if (wclist[i].classname == cname){
+                    rj.put("goal", wclist[i].goal);
+                    rj.put("subject", wclist[i].subject);
+                    rj.put("pw", wclist[i].pw);
+                    rj.put("open", wclist[i].open);
+                }
+                break;
+            }*/
+
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/signC.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res==1) print();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void print(){
+        Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
     }
 
     private void println(String data){

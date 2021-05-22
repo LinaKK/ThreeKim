@@ -99,8 +99,8 @@ public class InClass extends AppCompatActivity {
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
         classGoal(cname);
-        sendRequest2("ThreeK");//(cname)
-        sendRequest3("ThreeK");//(cname)
+        sendRequest2(cname);//(cname)
+        sendRequest3(cname);//(cname)
     }
 
 
