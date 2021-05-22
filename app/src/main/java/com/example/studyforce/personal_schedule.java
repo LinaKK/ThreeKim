@@ -229,19 +229,29 @@ public class personal_schedule extends AppCompatActivity {
         return data;
     }
 
-    //도희야 이거 할일 제목만 뜨는데 날짜랑 내용보기가 없엉 아그리구 이건 완료기능 없는거??
+    //도희야 이거 할일 제목만 뜨는데 날짜기능 => 지금 추가해봤는데 안되면 얘기해줘
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
         data = new ArrayList<HashMap<String, String>>();
         data1 = new HashMap<String, String>();
         for(int i=0; i<Slist.length; i++){
+            String sDate1=String.valueOf(Slist[i].sYear);
+            String sDate2=String.valueOf(Slist[i].sMonth);
+            String sDate3=String.valueOf(Slist[i].sDay);
+            String eDate1=String.valueOf(Slist[i].eYear);
+            String eDate2=String.valueOf(Slist[i].eMonth);
+            String eDate3=String.valueOf(Slist[i].eDay);
+            String sDate = sDate1+"/"+sDate2+"/"+sDate3;
+            String eDate = eDate1+"/"+eDate2+"/"+eDate3;
             data1.put("t",Slist[i].schTitle);
             data1.put("c",Slist[i].schCont);
+            data1.put("s",sDate);
+            data1.put("e",eDate);
             data.add(data1);
         }
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
-                data,android.R.layout.simple_list_item_2, new String[]{"t", "c"}
-                ,new int[]{android.R.id.text1, android.R.id.text2});
+                data,R.layout.schedule_list, new String[]{"t", "c","s","e"}
+                ,new int[]{R.id.sTitle, R.id.sCont, R.id.sdate, R.id.edate});
         listView1.setAdapter(adapter);
 
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
@@ -252,7 +262,6 @@ public class personal_schedule extends AppCompatActivity {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
                 //날짜 비교해서 일치하는 날짜의 일정만 출력
-
                 ad.setMessage("그 날의 할일"+"\n"+"할일의 내용 어쩌구저쩌구");
                 //ad.setMessage(t+"\n"+cont);
                 ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
@@ -265,13 +274,15 @@ public class personal_schedule extends AppCompatActivity {
             }
         });
 
-        //클릭시
+        /*
+         //클릭시
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
 
             }
         });
+         */
 
         //길게 클릭시
         listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
