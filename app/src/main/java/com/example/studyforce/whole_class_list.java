@@ -249,7 +249,7 @@ public class whole_class_list extends AppCompatActivity {
                         //개인클래스리스트로 넘기기(db)
                         //클래스이름갯수
                         //내부클래스 액티비티에 값 넘겨주기
-                        String cnames = (String)parent.getAdapter().getItem(i);//이거 아무것도 안되는거같아
+                        String cnames = clist[i].classname;//이거 아무것도 안되는거같아
                         signC(cnames);
 
                         Intent intent = new Intent(getApplicationContext(),InClass.class);

@@ -83,7 +83,7 @@ import org.json.JSONObject;
               String Sid = et_id.getText().toString();
               int id = Integer.parseInt(Sid);
               String pw = et_pw.getText().toString();
-              loginsendRequest(20180644, "3333333");
+              loginsendRequest(id, pw);
           }
       }
 
