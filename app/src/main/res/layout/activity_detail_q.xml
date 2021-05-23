@@ -2,15 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lay_edge"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:background="@drawable/border"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="30dp"
         android:layout_margin="15dp"
         android:text="질문 상세"/>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        //if 작성자->삭제버튼
+        <!--//if 작성자->삭제버튼-->
 
     </LinearLayout>
 
@@ -33,7 +38,9 @@
 
     <Button
         android:onClick="updateA"
-        android:background="@drawable/btn_ba"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_re"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -43,6 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
+        android:layout_margin="10dp"
+        android:background="@drawable/border"
         android:orientation="vertical">
 
         <ListView
@@ -50,8 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-    //댓글아이콘
-    //답변리스트로+더보기버튼
-
+<!--    //댓글아이콘
+    //답변리스트로+더보기버튼-->
 </LinearLayout>

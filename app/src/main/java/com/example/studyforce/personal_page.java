@@ -29,9 +29,10 @@ public class personal_page extends AppCompatActivity {
     ImageButton timer;
     ImageButton schedule;
     ImageButton myclass;
+    ImageView logout;
     TextView Username;
     ImageView mp3;
-    Button exit, logout;
+    Button exit;
     private int num;
     private String name, email;
 
@@ -56,6 +57,7 @@ public class personal_page extends AppCompatActivity {
         myclass = (ImageButton)findViewById(R.id.userclasses);
         timer = (ImageButton)findViewById(R.id.timer);
         exit = (Button)findViewById(R.id.exit);
+        logout=(ImageView)findViewById(R.id.logout);
         Username = (TextView)findViewById(R.id.username);
 
         Username.setText(name);
@@ -109,7 +111,7 @@ public class personal_page extends AppCompatActivity {
             }
         });
 
-        /*
+
          //로그아웃
         logout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -136,7 +138,6 @@ public class personal_page extends AppCompatActivity {
                         alert.show();
                     }
                 });
-         */
 
 
         //앱종료

@@ -2,17 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BCE672"
+    android:padding="10dp"
     android:orientation="vertical">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/createbyS"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="클래스 만들기"/>
 
         <TableLayout
@@ -22,6 +30,7 @@
             android:stretchColumns="2">
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:text="클래스 이름"
                 android:layout_gravity="center"/>
             <EditText
@@ -43,6 +52,7 @@
                 android:inputType="text"/>
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:text="클래스 공개 여부"
                 android:layout_gravity="center"/>
             <TableRow
@@ -75,6 +85,8 @@
         </TableLayout>
 
         <Button
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_re"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -83,4 +95,5 @@
 
     </LinearLayout>
 
+</LinearLayout>
 </LinearLayout>

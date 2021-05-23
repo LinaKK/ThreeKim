@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lay_edge"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +13,7 @@
         android:layout_gravity="center"
         android:text="QnA"
         android:layout_weight="1"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:layout_margin="15dp"/>
 
     <LinearLayout
@@ -21,10 +23,12 @@
         android:layout_weight="1">
 
         <Button
+            android:layout_marginLeft="10dp"
             android:onClick="setQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:background="@drawable/btn_ba"
             android:text="질문하기"/>
 
 

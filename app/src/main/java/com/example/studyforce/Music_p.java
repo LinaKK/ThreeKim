@@ -22,7 +22,7 @@ public class Music_p extends AppCompatActivity {
 
         m_stop=(Button)findViewById(R.id.m_stop);
         m_1=(ImageView)findViewById(R.id.m_1);
-        m_2=(ImageView)findViewById(R.id.m_2);
+        //m_2=(ImageView)findViewById(R.id.m_2);
         m_3=(ImageView)findViewById(R.id.m_3);
         m_4=(ImageView)findViewById(R.id.m_4);
 

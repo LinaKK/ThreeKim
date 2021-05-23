@@ -65,10 +65,12 @@
             </LinearLayout>
 
             <Button
+                android:background="#2368a3"
                 android:id="@+id/date_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="일정 추가"
+                android:textColor="#ececec"
                 android:onClick="date_add"/>
         </LinearLayout>
 

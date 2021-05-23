@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".whole_class_list"
+    android:background="@drawable/lay_edge"
+    android:padding="10dp"
     android:orientation="vertical">
 
 
@@ -15,6 +17,7 @@
         android:weightSum="3">
 
         <EditText
+            android:layout_marginLeft="10dp"
             android:id="@+id/fClassname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -22,7 +25,9 @@
             android:ems="14"
             android:hint=" 클래스명을 입력하시오."/>
         <ImageButton
+            android:padding="10dp"
             android:id="@+id/addClass"
+            android:background="#00ff0000"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.5"
