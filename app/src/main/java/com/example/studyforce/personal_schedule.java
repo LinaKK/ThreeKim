@@ -227,8 +227,8 @@ public class personal_schedule extends AppCompatActivity {
     public void showScheduleList(scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
         data = new ArrayList<HashMap<String, String>>();
-        data1 = new HashMap<String, String>();
         for(int i=0; i<Slist.length; i++){
+            data1 = new HashMap<String, String>();
             String sDate1=String.valueOf(Slist[i].sYear);
             String sDate2=String.valueOf(Slist[i].sMonth);
             String sDate3=String.valueOf(Slist[i].sDay);

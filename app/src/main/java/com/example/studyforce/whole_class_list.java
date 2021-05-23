@@ -179,10 +179,11 @@ public class whole_class_list extends AppCompatActivity {
         //index오류나서 고치긴했는데 해시맵은 key 안겹쳐서 안해도되나??
         //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아
         data = new ArrayList<HashMap<String, String>>();
-        data1 = new HashMap<String, String>();
+
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         // String name, String job, int num, String open
         for (int i=0; i<wclist.length; i++){
+            data1 = new HashMap<String, String>();
             if(data1.containsValue(wclist[i].classname)== false){
                 if(wclist[i].open==0){
                     data1.put("Open","공개");
