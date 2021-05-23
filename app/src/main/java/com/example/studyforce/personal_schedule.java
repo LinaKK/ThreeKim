@@ -224,7 +224,7 @@ public class personal_schedule extends AppCompatActivity {
     }
 
     //도희야 이거 할일 제목만 뜨는데 날짜기능 => 지금 추가해봤는데 안되면 얘기해줘
-    public void showScheduleList(scheduleList[] Slist){
+    public void showScheduleList(final scheduleList[] Slist){
         listView1= (ListView)findViewById(R.id.today_todo);
         data = new ArrayList<HashMap<String, String>>();
         for(int i=0; i<Slist.length; i++){
@@ -256,7 +256,17 @@ public class personal_schedule extends AppCompatActivity {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
                 //날짜 비교해서 일치하는 날짜의 일정만 출력
-                ad.setMessage("그 날의 할일"+"\n"+"할일의 내용 어쩌구저쩌구");
+                for(int i=0; i<Slist.length; i++){
+                    if(Slist[i].sYear<=date.getYear()&&Slist[i].eYear>=date.getYear()
+                    &&Slist[i].sMonth<=(date.getMonth()+1)&&Slist[i].eMonth>=(date.getMonth()+1)&&
+                    Slist[i].sDay<=date.getDay()&&Slist[i].eDay>=date.getDay()){
+                        String cont = Slist[i].schCont;
+                        String title = Slist[i].schTitle;
+                        ad.setMessage(title+"\n"+cont);
+                    }else{
+                        ad.setMessage("일정 없습니다");
+                    }
+                }
                 //ad.setMessage(t+"\n"+cont);
                 ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
