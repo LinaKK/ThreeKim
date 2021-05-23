@@ -23,14 +23,17 @@ public class A extends AppCompatActivity {
     private EditText setA;
     public String  qtitle;
     TextView b;
+    TextView qt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a);
         setA = (EditText) findViewById(R.id.setA);
+        qt = (TextView) findViewById(R.id.qt);
         Intent intent = getIntent();
         qtitle = intent.getStringExtra("qtitle");
+        qt.setText(qtitle);
 
     }
     public void updateAClick(View v){

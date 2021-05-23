@@ -56,6 +56,8 @@ public class whole_class_list extends AppCompatActivity {
     TextView errorm;
     int num;
     String name, email;
+    private static clist[] clist;
+    private wclistAdapter mAdapter;
 
     public static wholeclist[] wclist;
 
@@ -145,7 +147,7 @@ public class whole_class_list extends AppCompatActivity {
 
                             }
                             //classname.setText(nList[1].notice);
-                            //showCList(wclist);
+                            showCList(wclist);
                             //signC("a");
                         }
                         catch (JSONException e){
@@ -170,58 +172,46 @@ public class whole_class_list extends AppCompatActivity {
     //도희야 문제가 같은 클래스가 가입한 사람수만큼 나와 걸러야해 -ctodolist에 내가 todo할때 쓴거 있는데 필요하면 참고용 => 알았어!!
     private void showCList(final wholeclist[] wclist){
         //wclist 확인
-        ArrayList l = new ArrayList();
+        /*ArrayList l = new ArrayList();
         for(int k=0 ; k<wclist.length; k++){
             l.add(wclist[k].classname);
         }
-        println(l.toString());
+        println(l.toString());*/
 
         //index오류나서 고치긴했는데 해시맵은 key 안겹쳐서 안해도되나??
         //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아 => 고쳐놨어
-        data = new ArrayList<HashMap<String, String>>();
+        //data = new ArrayList<HashMap<String, String>>();
 
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
-        // String name, String job, int num, String open
+        //clist = new clist[wclist.length];
+        List l1 = new ArrayList();
+        List l2 = new ArrayList();
+        List l3 = new ArrayList();
+        String open;
+
         for (int i=0; i<wclist.length; i++){
-            data1 = new HashMap<String, String>();
-            if(data1.containsValue(wclist[i].classname)== false){
-                if(wclist[i].open==0){
-                    data1.put("Open","공개");
-                }else{
-                    data1.put("Open","비공개");
-                }
-                data1.put("Name", wclist[i+1].classname);
-                data1.put("Subject", wclist[i+1].subject);
+            if (l1.contains(wclist[i].classname) == false){
+                l1.add(wclist[i].classname);
+                l2.add(wclist[i].subject);
+                l3.add(wclist[i].pw);
             }
-            data.add(data1);
         }
 
-        /*for(int i=0; i<wclist.length; i++){
-           if(data1.containsValue(wclist[i].classname)){//중복될때
-               if(wclist[i+1].open==0){
-                   data1.put("Open","공개");
-               }else{
-                   data1.put("Open","비공개");
-               }
-               data1.put("Name", wclist[i+1].classname);
-               data1.put("Subject", wclist[i+1].subject);
-           }else{//중복되지 않을때
-               if(wclist[i].open==0){
-                   data1.put("Open","공개");
-               }else{
-                   data1.put("Open","비공개");
-               }
-               data1.put("Name", wclist[i].classname);
-               data1.put("Subject", wclist[i].subject);
-           }
-            data.add(data1);
-        }*/
+        clist = new clist[l1.size()];
+        for (int i=0; i< l1.size(); i++){
+            if (wclist[i].open ==0) open = "open";
+            else open ="private";
+            clist[i]= new clist(l1.get(i).toString(),l2.get(i).toString() , open, Integer.parseInt(l3.get(i).toString()));
+        }
+        mAdapter = new wclistAdapter(this, clist);
+        listView1.setAdapter(mAdapter);
 
-        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(),
-                data,R.layout.activity_class_list, new String[]{"Name", "Subject","Open"}
-                ,new int[]{R.id.class_name, R.id.class_job, R.id.class_open});
-        listView1.setAdapter(adapter);
-
+        //전체클래스 확인
+        /*ArrayList l4 = new ArrayList();
+        for(int k=0 ; k<clist.length; k++){
+            l4.add(clist[k].classname);
+        }
+        println(l4.toString());*/
 
         //클래스 검색
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
@@ -259,7 +249,7 @@ public class whole_class_list extends AppCompatActivity {
                         //개인클래스리스트로 넘기기(db)
                         //클래스이름갯수
                         //내부클래스 액티비티에 값 넘겨주기
-                        String cnames = (String)parent.getAdapter().getItem(i);
+                        String cnames = (String)parent.getAdapter().getItem(i);//이거 아무것도 안되는거같아
                         signC(cnames);
 
                         Intent intent = new Intent(getApplicationContext(),InClass.class);
@@ -337,7 +327,7 @@ public class whole_class_list extends AppCompatActivity {
     }
 
     private void print(){
-        Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "가입되었습니다", Toast.LENGTH_SHORT).show();
     }
 
     private void println(String data){
