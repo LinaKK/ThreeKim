@@ -267,7 +267,6 @@ public class personal_schedule extends AppCompatActivity {
                         ad.setMessage("일정 없습니다");
                     }
                 }
-                //ad.setMessage(t+"\n"+cont);
                 ad.setPositiveButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -278,30 +277,22 @@ public class personal_schedule extends AppCompatActivity {
             }
         });
 
-        /*
+
          //클릭시
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
-
-            }
-        });
-         */
-
-        //길게 클릭시
-        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
-                final String title = (String)parent.getAdapter().getItem(position);
+                final String title = (String)parent.getAdapter().getItem(i);
                 //위에꺼 오류 날수도 있어여...잘모르겠다..ㅠㅠ
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                         //db에서 삭제해야함
-                        deleteSchedule(title);
+                       // deleteSchedule(title);
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -311,9 +302,11 @@ public class personal_schedule extends AppCompatActivity {
                     }
                 });
                 ad.show();
-                return false;
             }
         });
+
+
+        //길게 클릭시
     }
 
 
