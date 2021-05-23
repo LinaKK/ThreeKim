@@ -177,7 +177,7 @@ public class whole_class_list extends AppCompatActivity {
         println(l.toString());
 
         //index오류나서 고치긴했는데 해시맵은 key 안겹쳐서 안해도되나??
-        //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아
+        //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아 => 고쳐놨어
         data = new ArrayList<HashMap<String, String>>();
 
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
