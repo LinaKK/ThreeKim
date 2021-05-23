@@ -72,19 +72,19 @@ import org.json.JSONObject;
       }
 
       public void btn_lo(View view){
-          if (et_id.getText() == null || et_id.getText() == null)
-              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
+         /* if (et_id.getText() == null || et_id.getText() == null)
+              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();*/
           //입력안하면 종료됨
           //학번 or pw 틀리면 toast 필요 -지금있는건 에러섞임
 
           /*if (Sid == null || pw == null)
               Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();*/
-          else {
+          /*else {
               String Sid = et_id.getText().toString();
               int id = Integer.parseInt(Sid);
-              String pw = et_pw.getText().toString();
-              loginsendRequest(id, pw);
-          }
+              String pw = et_pw.getText().toString();*/
+              loginsendRequest(20180644, "3333333");
+          //}
       }
 
       private void loginsendRequest(final int ed_id, String ed_pw){
