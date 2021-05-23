@@ -146,7 +146,7 @@ public class whole_class_list extends AppCompatActivity {
                             }
                             //classname.setText(nList[1].notice);
                             //showCList(wclist);
-                            signC("a");
+                            //signC("a");
                         }
                         catch (JSONException e){
                             e.printStackTrace();
