@@ -49,31 +49,53 @@ public class Sign extends AppCompatActivity {
         si_id = (EditText) findViewById(R.id.si_id);
         si_pw = (EditText) findViewById(R.id.si_pw);
         si_email = (EditText) findViewById(R.id.si_email);
-
         btn1_sign = (Button) findViewById(R.id.btn1_sign);
         btn1_idc = (Button) findViewById(R.id.btn1_idc);
         /*btnLogin = (Button) findViewById(R.id.btnLoginScreen);*/
-
+        //체크박스로 둘 나뉘는 이벤트 추가예정 ->학생은 0 교수님 1
         CheckBox cb1 = (CheckBox) findViewById(R.id.chstu);
         CheckBox cb2 = (CheckBox) findViewById(R.id.chpro);
+        cb1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                btn1_sign.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Sign(0);
+                    }
+                });
+            }
+        });
+        cb2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                btn1_sign.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Sign(1);
+                    }
+                });
+            }
+        });
 
-        //체크박스로 둘 나뉘는 이벤트 추가예정 ->학생은 0 교수님 1
-
+        /*
         btn1_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Sign();
             }
         });
+         */
+
     }
 
-    private void Sign(){
+    private void Sign(int di){
         String Uname = si_n.getText().toString();
         int Uid = Integer.parseInt(si_id.getText().toString());
         //우리 id string이 아니라 num아니었나...?
         String Upw = si_pw.getText().toString();
         String Uemail = si_email.getText().toString();
-        int di = 0; //0 or 1
+        //int dis = di; //0 or 1
 
         if (AppHelper.requestQueue == null){
             AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());

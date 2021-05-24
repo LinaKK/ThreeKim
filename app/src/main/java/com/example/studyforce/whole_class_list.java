@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -48,8 +49,7 @@ import java.util.Locale;
 
 public class whole_class_list extends AppCompatActivity {
 
-    ArrayList<HashMap<String, String>> data;
-    HashMap<String, String> data1;
+    LinearLayout dialogView;
 
     String[] mClass = {"학생", "교수"};
     ListView listView1;  //전체리스트뷰
@@ -62,7 +62,8 @@ public class whole_class_list extends AppCompatActivity {
     public static wholeclist[] wclist;
 
     private String jobs = "학생";
-    String state;
+
+    TextView edpswd;
 
     ImageButton aClass;
 
@@ -239,34 +240,68 @@ public class whole_class_list extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
-                ad.setTitle("가입메시지");
-                ad.setMessage("해당 클래스에 가입하시겠습니까?");
-                ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //error- java.util.HashMap cannot be cast to java.lang.String
-                        //개인클래스리스트로 넘기기(db)
-                        //클래스이름갯수
-                        //내부클래스 액티비티에 값 넘겨주기
-                        String cnames = clist[i].classname;//이거 아무것도 안되는거같아
-                        signC(cnames);
+                String opens = clist[i].open;
+                if(opens=="open"){ //클래스 공개일때
+                    AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
+                    ad.setTitle("가입메시지");
+                    ad.setMessage("해당 클래스에 가입하시겠습니까?");
+                    ad.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //error- java.util.HashMap cannot be cast to java.lang.String
+                            //개인클래스리스트로 넘기기(db)//클래스이름갯수//내부클래스 액티비티에 값 넘겨주기
+                            String cnames = clist[i].classname;
+                            signC(cnames);
 
-                        Intent intent = new Intent(getApplicationContext(),InClass.class);
-                        intent.putExtra("num",num);
-                        intent.putExtra("name", name);
-                        intent.putExtra("email",email);
-                        intent.putExtra("cname",cnames);
-                        startActivity(intent);
-                    }
-                });
-                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                ad.show();
+                            Intent intent = new Intent(getApplicationContext(),InClass.class);
+                            intent.putExtra("num",num);
+                            intent.putExtra("name", name);
+                            intent.putExtra("email",email);
+                            intent.putExtra("cname",cnames);
+                            startActivity(intent);
+                        }
+                    });
+                    ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    ad.show();
+                }else{//클래스 비공개 일때
+                    dialogView = (LinearLayout) View.inflate(whole_class_list.this, R.layout.secretpw, null);
+                    AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
+                    ad.setView(dialogView);
+                    ad.setPositiveButton("가입", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            edpswd = (TextView)dialogView.findViewById(R.id.editspw);
+                            int password = clist[i].pw;
+                            int edpassword = Integer.parseInt(edpswd.getText().toString());
+                            if(password == edpassword){
+                                String cnames = clist[i].classname;
+                                signC(cnames);
+
+                                Intent intent = new Intent(getApplicationContext(),InClass.class);
+                                intent.putExtra("num",num);
+                                intent.putExtra("name", name);
+                                intent.putExtra("email",email);
+                                intent.putExtra("cname",cnames);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(getApplicationContext(), "비번이 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    ad.show();
+                }
+
             }
         });
     }

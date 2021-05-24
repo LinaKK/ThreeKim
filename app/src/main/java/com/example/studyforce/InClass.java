@@ -139,8 +139,8 @@ public class InClass extends AppCompatActivity {
                 int getYears = Integer.parseInt(getYear);
                 int getMonths = Integer.parseInt(getMonth);
                 int getDays = Integer.parseInt(getDay);
-                DatePickerDialog dialog = new DatePickerDialog(this, listener, getYears, getMonths-1, getDays);
-                dialog.show();
+                CustomDialog customDialog = new CustomDialog(InClass.this);
+                customDialog.callFunction();
                 break;
 
             case R.id.todo:
