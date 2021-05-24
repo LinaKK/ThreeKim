@@ -249,13 +249,11 @@ public class personal_schedule extends AppCompatActivity {
         listView1.setAdapter(adapter);
 
         MaterialCalendarView materialCalendarView = findViewById(R.id.calendar);
-        //날짜 선택 시 팝업창 띄우기
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle(date.getYear()+"/"+(date.getMonth()+1)+"/"+date.getDay());
-                //날짜 비교해서 일치하는 날짜의 일정만 출력
                 for(int i=0; i<Slist.length; i++){
                     if(Slist[i].sYear<=date.getYear()&&Slist[i].eYear>=date.getYear()
                     &&Slist[i].sMonth<=(date.getMonth()+1)&&Slist[i].eMonth>=(date.getMonth()+1)&&
@@ -285,14 +283,14 @@ public class personal_schedule extends AppCompatActivity {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
-                //final String title = (String)parent.getAdapter().getItem(i);
-                //위에꺼 오류 날수도 있어여...잘모르겠다..ㅠㅠ
+                //final String title = (String)parent.getItemAtPosition(i);
+                //위에꺼 오류 나서 주석 처리
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         //db에서 삭제해야함
-                       // deleteSchedule(title);
+                       //deleteSchedule(title);
                     }
                 });
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {

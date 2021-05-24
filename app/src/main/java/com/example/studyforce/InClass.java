@@ -122,6 +122,7 @@ public class InClass extends AppCompatActivity {
         switch (v.getId()){
             case R.id.notice:
                 intent = new Intent(this, notice.class);
+                intent.putExtra("name",names);
                 intent.putExtra("num",num);
                 intent.putExtra("classname", cname);
                 startActivity(intent);
@@ -130,6 +131,7 @@ public class InClass extends AppCompatActivity {
             case R.id.nextEvent:
                 intent = new Intent(this, nextEvent.class);
                 intent.putExtra("num",num);
+                intent.putExtra("name",names);
                 intent.putExtra("classname", cname);
                 startActivity(intent);
                 break;
@@ -146,6 +148,7 @@ public class InClass extends AppCompatActivity {
             case R.id.todo:
                 intent = new Intent(this, todoC.class);
                 intent.putExtra("num",num);
+                intent.putExtra("name",names);
                 intent.putExtra("classname", cname);
                 startActivity(intent);
                 break;
@@ -153,6 +156,7 @@ public class InClass extends AppCompatActivity {
             case R.id.qna:
                 intent = new Intent(this, qnaList.class);
                 intent.putExtra("classname", cname);
+                intent.putExtra("name",names);
                 intent.putExtra("num",num);
                 startActivity(intent);
                 break;
@@ -590,6 +594,18 @@ public class InClass extends AppCompatActivity {
     }
     private void printACSche(){
         Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
+    }
+    public void onBackPressed(){
+        Intent intent2 = getIntent();
+        cname = intent2.getStringExtra("cname");
+        names = intent2.getStringExtra("name");
+        num = intent2.getIntExtra("num",0);
+
+        Intent intent = new Intent(this, my_class_list.class);
+        intent.putExtra("num",num);
+        intent.putExtra("name", names);
+        intent.putExtra("email",email);
+        startActivity(intent);
     }
 
 }

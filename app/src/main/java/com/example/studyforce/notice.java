@@ -31,6 +31,7 @@ public class notice extends AppCompatActivity {
     private TextView TitleNotice;
     String classname;
     int num;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class notice extends AppCompatActivity {
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
         num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
 
         shortNoticeList = (ListView) findViewById(R.id.noticelist);
         sendRequest2(classname);
@@ -52,6 +54,7 @@ public class notice extends AppCompatActivity {
                 intent = new Intent(this, addNotice.class);
                 intent.putExtra("classname",classname);
                 intent.putExtra("num",num);
+                intent.putExtra("name",name);
                 startActivity(intent);
                 break;
         }
@@ -134,5 +137,16 @@ public class notice extends AppCompatActivity {
     private void println(String data){
         TitleNotice = (TextView)findViewById(R.id.TitleNotice);
         TitleNotice.append(data);
+    }
+    public void onBackPressed(){
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        final String name = intent.getStringExtra("name");
+        Intent intent2 = new Intent(this, InClass.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("cname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
     }
 }

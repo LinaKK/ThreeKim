@@ -369,6 +369,13 @@ public class whole_class_list extends AppCompatActivity {
         errorm = (TextView)findViewById(R.id.errorm);
         errorm.setText(data);
     }
+    public void onBackPressed(){
+        Intent intent = new Intent(this, my_class_list.class);
+        intent.putExtra("num",num);
+        intent.putExtra("name", name);
+        intent.putExtra("email",email);
+        startActivity(intent);
+    }
 
 
 }

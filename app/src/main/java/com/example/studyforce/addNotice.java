@@ -48,8 +48,15 @@ public class addNotice extends AppCompatActivity {
             else
                 Toast.makeText(this, "제목과 내용을 모두 입력하세요",Toast.LENGTH_SHORT).show();
         }
-
-
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",0);
+        final String name = intent.getStringExtra("name");
+        Intent intent2 = new Intent(getApplicationContext(), notice.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("classname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
     }
     private void addNotice(final String nTitle, String ncontext){
         if (AppHelper.requestQueue == null){
@@ -100,13 +107,6 @@ public class addNotice extends AppCompatActivity {
     private void print(){
         Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
         //자동 뒤로가기
-        Intent intent = getIntent();
-        classname = intent.getStringExtra("classname");
-        num = intent.getIntExtra("num",0);
-        Intent intent2 = new Intent(getApplicationContext(),InClass.class);
-        intent2.putExtra("classname",classname);
-        intent2.putExtra("num",num);
-        startActivity(intent2);
     }
 
     private void println(String data){

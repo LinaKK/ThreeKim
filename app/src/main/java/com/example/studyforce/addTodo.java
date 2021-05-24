@@ -39,6 +39,10 @@ public class addTodo extends AppCompatActivity {
             updateTD(TD);
         else
             Toast.makeText(this, "내용을 입력하세요!",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getApplicationContext(),InClass.class);
+        intent.putExtra("classname",cname);
+        startActivity(intent);
     }
 
     //php작성중

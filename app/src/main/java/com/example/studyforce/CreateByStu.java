@@ -33,6 +33,7 @@ public class CreateByStu extends AppCompatActivity {
     TextView spw;
     int num;
     String name;
+    String email;
 
     //1, 0으로 비교 -뭐가 공개인지 안정해진거같아서 0을 공개로 할게여..? => ok
 
@@ -44,6 +45,7 @@ public class CreateByStu extends AppCompatActivity {
         Intent intent = getIntent();
         num = intent.getIntExtra("num", 0);
         name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
 
         editspw = findViewById(R.id.edspw);
         spw = findViewById(R.id.spw);
@@ -73,6 +75,10 @@ public class CreateByStu extends AppCompatActivity {
         Ename = findViewById(R.id.edCname);
         Egoal = findViewById(R.id.edCgoal);
         Esub = findViewById(R.id.edSub);
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num", 0);
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
         cAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +90,10 @@ public class CreateByStu extends AppCompatActivity {
                 createClassS(ename,esub,egoal,0,0);
 
                 Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),whole_class_list.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name",name);
+                startActivity(intent);
             }
         });
     }
@@ -95,6 +105,10 @@ public class CreateByStu extends AppCompatActivity {
         Esub = findViewById(R.id.edSub);
         editspw = findViewById(R.id.edspw);
         spw = findViewById(R.id.spw);
+        Intent intent = getIntent();
+        num = intent.getIntExtra("num", 0);
+        name = intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
         cAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,10 +119,15 @@ public class CreateByStu extends AppCompatActivity {
                 int password = Integer.parseInt(editspw.getText().toString());
 
                 createClassS(ename,esub,egoal,1,password);
-
                 Toast.makeText(getApplicationContext(), "클래스를 생성했습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),whole_class_list.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name",name);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
         });
+
     }
 
     /*

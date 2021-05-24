@@ -242,14 +242,30 @@ public class my_class_list extends AppCompatActivity {
         myClassList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), InClass.class);
+                Intent intent = getIntent();
+                username = intent.getStringExtra("name");
+                userid = intent.getIntExtra("num",0);
+                final String usermail = intent.getStringExtra("email");
+
+                Intent intent2 = new Intent(getApplicationContext(), InClass.class);
                 String classname = mclist.get(position).toString();
-                intent.putExtra("num", userid);
-                intent.putExtra("cname", classname);
-                intent.putExtra("name",username);
-                startActivity(intent);
+                intent2.putExtra("num", userid);
+                intent2.putExtra("cname", classname);
+                intent2.putExtra("email", usermail);
+                intent2.putExtra("name",username);
+                startActivity(intent2);
             }
         });
 
         }
+    public void onBackPressed(){
+        Intent intent2 = getIntent();
+        username = intent2.getStringExtra("name");
+        userid = intent2.getIntExtra("num",0);
+
+        Intent intent = new Intent(this, personal_page.class);
+        intent.putExtra("num",userid);
+        intent.putExtra("name", username);
+        startActivity(intent);
+    }
     }
