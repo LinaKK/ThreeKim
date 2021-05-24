@@ -60,6 +60,15 @@ public class InClass extends AppCompatActivity {
     private static classTodo[] cTodoList;
     private String cname;
     private int num;
+    private static cschedulelist[] cslist;
+    int sDay;
+    int sMonth;
+    int sYear;
+    int eDay;
+    int eMonth;
+    int eYear;
+    String schTitle;
+    String schCont;
 
     long Now = System.currentTimeMillis();;
     java.util.Date Date = new Date(Now);
@@ -99,8 +108,9 @@ public class InClass extends AppCompatActivity {
         // 클래스 정보들을 끌어당겨서 보여주는게 낫겠지?? yes!!
 
         classGoal(cname);
-        sendRequest2(cname);//(cname)
-        sendRequest3(cname);//(cname)
+        sendRequest2(cname);
+        sendRequest3(cname);
+        getCSchedule(); // 스케줄관련함수 맨 밑에
     }
 
 
@@ -131,7 +141,6 @@ public class InClass extends AppCompatActivity {
                 int getDays = Integer.parseInt(getDay);
                 DatePickerDialog dialog = new DatePickerDialog(this, listener, getYears, getMonths-1, getDays);
                 dialog.show();
-
                 break;
 
             case R.id.todo:
@@ -150,8 +159,8 @@ public class InClass extends AppCompatActivity {
 
             case R.id.cInfo:
                 intent= new Intent(this, classInfo.class);
-                intent.putExtra("classname", cname);
-                intent.putExtra("num",num);
+                intent.putExtra("cname", cname);
+                //intent.putExtra("num",num);
                 startActivity(intent);
         }
 
@@ -172,7 +181,8 @@ public class InClass extends AppCompatActivity {
             ad.setNegativeButton("일정 추가", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
+                    //날짜입력
+                    updateCSchedule("a","b",2021,6,4,2021,7,1);
                 }
             });
             ad.show();
@@ -370,42 +380,6 @@ public class InClass extends AppCompatActivity {
                 cname = intent2.getStringExtra("cname");
                 names = intent2.getStringExtra("name");
                 num = intent2.getIntExtra("num",0);
-               /* Intent intent = new Intent(getApplicationContext(),InGoal.class);
-                intent.putExtra("classname", cname);
-                intent.putExtra("num",num);
-                intent.putExtra("todo", gTitle);
-                intent.putExtra("glist",glist);*/
-
-
-                /*Intent intent = new Intent(getApplicationContext(), InGoal.class);
-                String todo = todolist.get(position).toString();
-                startActivity(intent);ArrayList donename = new ArrayList();
-                ArrayList Ndonename = new ArrayList();
-                ArrayList a = new ArrayList();
-
-                HashMap<String, Integer> map = new HashMap<String, Integer>();
-
-                for(int j = 0; j<cTodo.length; j++){
-                    if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 1){
-                        donename.add(cTodo[j].name);
-                    }
-                    else if (todo.equals(cTodo[j].classtodo) & cTodo[j].done == 0){
-                        Ndonename.add(cTodo[j].name);
-                    }
-                    if (todo.equals(cTodo[j].classtodo)){
-                        a.add(cTodo[j].num);
-                    }
-                }
-
-                int k = a.size();
-                println(Integer.toString(k));
-                intent.putExtra("todo", todo);
-                intent.putExtra("num", num);
-                intent.putExtra("classStuNum", a.size());
-                intent.putStringArrayListExtra("donename",donename);
-                intent.putStringArrayListExtra("Ndonename",Ndonename);
-                //intent.putExtra("map", map);
-                startActivity(intent);*/
             }
         });
 
@@ -440,11 +414,182 @@ public class InClass extends AppCompatActivity {
     //오류확인
     private void println(String data){
         classname.append(data);
+        Toast.makeText(this, data, Toast.LENGTH_LONG).show();
     }
 
 
     private void printlnn(String goal){
         Toast.makeText(this, goal,Toast.LENGTH_SHORT).show();
+    }
+
+    public void getCSchedule(){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("cname", cname);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/getCSchedule.php";
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // processResponse(response);
+                        // classname.setText(response);
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("res");
+                            cslist = new cschedulelist[jsonArray.length()];
+
+                            for(int i=0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                schTitle = jsonObject.getString("todo");
+                                sYear = jsonObject.getInt("syear");
+                                sMonth = jsonObject.getInt("smonth");
+                                sDay = jsonObject.getInt("sday");
+                                eYear = jsonObject.getInt("eyear");
+                                eMonth = jsonObject.getInt("emonth");
+                                eDay = jsonObject.getInt("eday");
+                                schCont = jsonObject.getString("todocontext");
+                                cslist[i] = new cschedulelist(schTitle, sYear, sMonth, sDay, eYear, eMonth, eDay, schCont);
+
+                            }
+                            showCScheduleList(cslist); //일단 넣어두긴했는데 필요한대로 바꿔서쓰면됩니당
+                            //printlnn(cslist[0].schTitle); //getschedule 확인용
+
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+
+    }
+    //getCSchedule 확인용
+    private void printlnnn(String data){
+        Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+    }
+
+    //일단 넣어두긴했는데 필요한대로 바꿔서쓰면됩니당
+    public void showCScheduleList(final cschedulelist[] cslist){
+
+
+    }
+
+    public void deleteCSchedule(String schedule){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("cname", cname);
+            rj.put("todo", schedule);
+        }
+        catch (JSONException e){}
+
+        String url = "http://118.33.132.221/php/deleteCSchedule.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 1) printDCSche();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
+
+    private void printDCSche(){
+        Toast.makeText(getApplicationContext(), "일정을 삭제했습니다.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateCSchedule(String sTitle, String sCont, int sYear, int sMonth, int sDay, int eYear, int eMonth, int eDay){
+        if (AppHelper.requestQueue == null){
+            AppHelper.requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+        JSONObject rj = new JSONObject();
+        try {
+            rj.put("cname",cname);
+            rj.put("st", sTitle);
+            rj.put("sc", sCont);
+            rj.put("sy", sYear);
+            rj.put("sm", sMonth);
+            rj.put("sd", sDay);
+            rj.put("ey", eYear);
+            rj.put("em", eMonth);
+            rj.put("ed", eDay);
+        }
+        catch (JSONException e){}
+        //contextQ.setText(rj.toString());
+
+        String url = "http://118.33.132.221/php/updateCSchedule.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                rj,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            int res = response.getInt("res");
+                            if (res == 0) printACSche();//String- 출력->같음 ==->다름
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("error -> " + error.getMessage());
+                    }
+                }
+        );
+        AppHelper.requestQueue.add(jsonObjectRequest);
+    }
+    private void printACSche(){
+        Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
     }
 
 }

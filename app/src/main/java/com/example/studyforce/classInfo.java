@@ -20,6 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class classInfo extends AppCompatActivity {
     TextView cSub;
     ListView cPList;
@@ -27,6 +30,7 @@ public class classInfo extends AppCompatActivity {
     String cname;
     String sub;
     private static classStu[] cStu;
+    private static stulist[] stulist;
     private cStuListAdapter mAdapter;
 
     @Override
@@ -37,11 +41,10 @@ public class classInfo extends AppCompatActivity {
         cSub = (TextView)findViewById(R.id.cSubject);
         cPList = (ListView)findViewById(R.id.cPersonList);
 
-        Intent intent = new Intent();
-        String cname = intent.getStringExtra("cname");
+        Intent intent = getIntent();
+        cname = intent.getStringExtra("cname");
 
         getSub();
-        cSub.setText(sub);
         getStu();
 
 
@@ -79,7 +82,7 @@ public class classInfo extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }//cSub.setText(sub);
 
                     }
                 },
@@ -99,11 +102,11 @@ public class classInfo extends AppCompatActivity {
         }
         JSONObject rj = new JSONObject();
         try {
-            rj.put("classname", cname);
+            rj.put("cname", cname);
         }
         catch (JSONException e){}
 
-        String url = "http://118.33.132.221/php/noticeTitle.php";
+        String url = "http://118.33.132.221/php/getStu.php";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -114,17 +117,16 @@ public class classInfo extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
+                            //int tdnum = response.getInt("ress");
                             JSONArray jsonArray = response.getJSONArray("res");
                             cStu = new classStu[jsonArray.length()];
-
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String stuName = jsonObject.getString("name");
-                                int dnum = jsonObject.getInt("dnum");
-                                int tdnum = jsonObject.getInt("tdnum");
-                                cStu[i] = new classStu(stuName, dnum, tdnum);
-
+                                int dnum = jsonObject.getInt("done");
+                                cStu[i] = new classStu(stuName, dnum, 3);
                             }showStulist(cStu);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -143,8 +145,32 @@ public class classInfo extends AppCompatActivity {
     }
 
     private void showStulist(classStu[] list){
-        mAdapter = new cStuListAdapter(this, list);
-        cPList.setAdapter(mAdapter);
+        List l1 = new ArrayList();
+        List l2 = new ArrayList();
+        List l3 = new ArrayList();
+        int dn=0 ;
+
+        for (int i=0; i<list.length; i++){
+            if (l1.contains(list[i].name) == false){
+                l1.add(list[i].name);
+            }
+        }
+        for (int i = 0; i<l1.size();i++){
+            for(int j=0; j<list.length; j++){
+                if(l1.get(i) == list[j].name & list[j].doneNum == 1) dn++;
+            }
+            l2.add(dn);
+            l3.add(list[i].todoNum);
+        }
+
+        stulist = new stulist[l1.size()];
+        for (int i=0; i< l1.size(); i++){
+            stulist[i]= new stulist(l1.get(i).toString(), Integer.parseInt(l2.get(i).toString()), Integer.parseInt(l3.get(i).toString()));
+        }
+        cSub.setText(l1.toString());
+
+        mAdapter = new cStuListAdapter(this, stulist);
+       // cPList.setAdapter(mAdapter);
 
     }
 

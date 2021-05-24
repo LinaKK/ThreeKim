@@ -148,7 +148,7 @@ public class whole_class_list extends AppCompatActivity {
                             }
                             //classname.setText(nList[1].notice);
                             showCList(wclist);
-                            //signC("a");
+                            //signC("a");//signC 확인
                         }
                         catch (JSONException e){
                             e.printStackTrace();
@@ -334,13 +334,6 @@ public class whole_class_list extends AppCompatActivity {
         errorm = (TextView)findViewById(R.id.errorm);
         errorm.setText(data);
     }
-
-
-    /*모른척부탁
-    private wholeclist[] make (int i, int classnum, String classname, int num, String name, String subject, String goal ){
-        wclist[i] = new wholeclist(classnum, classname, num, name, subject, goal);
-        return wclist;
-    }*/
 
 
 }

@@ -143,7 +143,6 @@ public class CreateByStu extends AppCompatActivity {
             rj.put("pw", pw);
             rj.put("num",num);
             rj.put("name", name);
-            //작성자 이름 넘기기
         }
         catch (JSONException e){}
 
