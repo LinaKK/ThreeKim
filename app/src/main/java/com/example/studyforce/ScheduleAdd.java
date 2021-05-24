@@ -210,7 +210,7 @@ public class ScheduleAdd extends AppCompatActivity {
 
                         try {
                             int res = response.getInt("res");
-                            if (res == 0) print();//String- 출력->같음 ==->다름
+                            if (res == 1) print();//String- 출력->같음 ==->다름
 
 
                         } catch (JSONException e) {
@@ -247,38 +247,38 @@ public class ScheduleAdd extends AppCompatActivity {
 
     //날짜 입력
     void update(){
-        String myFormat = " yyyy";
+        String myFormat = "yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         sDay_Y = (TextView)findViewById(R.id.startDay);
         sDay_Y.setText(sdf.format(calendar.getTime()));
     }
     void updateM(){
-        String myFormat = " MM";
+        String myFormat = "MM";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         sDay_M =(TextView)findViewById(R.id.startDay_month);
         sDay_M.setText(sdf.format(calendar.getTime()));
     }
     void updateD(){
-        String myFormat = " dd";
+        String myFormat = "dd";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         sDay_D = (TextView)findViewById(R.id.startDay_day);
         sDay_D.setText(sdf.format(calendar.getTime()));
     }
 
     void update2(){
-        String myFormat = " yyyy";
+        String myFormat = "yyyy";
         SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
         eDay_Y = (TextView)findViewById(R.id.endDay);
         eDay_Y.setText(sdf2.format(calendar2.getTime()));
     }
     void update2M(){
-        String myFormat = " MM";
+        String myFormat = "MM";
         SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
         eDay_M = (TextView)findViewById(R.id.endDay_month);
         eDay_M.setText(sdf2.format(calendar2.getTime()));
     }
     void update2D(){
-        String myFormat = " dd";
+        String myFormat = "dd";
         SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat, Locale.KOREA);
         eDay_D = (TextView)findViewById(R.id.endDay_day);
         eDay_D.setText(sdf2.format(calendar2.getTime()));
