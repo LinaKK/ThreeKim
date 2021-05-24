@@ -316,6 +316,14 @@ public class personal_schedule extends AppCompatActivity {
         intent.putExtra("email",email);
         startActivity(intent);
     }
+    long pressTime;
+    public void onBackPressed(){
+        Intent intent = new Intent(this, personal_page.class);
+        intent.putExtra("num",num);
+        intent.putExtra("name", name);
+        intent.putExtra("email",email);
+        startActivity(intent);
+    }
 }
 
 

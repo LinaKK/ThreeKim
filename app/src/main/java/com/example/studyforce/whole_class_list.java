@@ -214,7 +214,7 @@ public class whole_class_list extends AppCompatActivity {
         }
         println(l4.toString());*/
 
-        //클래스 검색
+        //클래스 검색 => 지금 검색 기능 오류 나서 모든게 안나와...
         EditText classSearch = (EditText)findViewById(R.id.fClassname);
         classSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -225,7 +225,7 @@ public class whole_class_list extends AppCompatActivity {
                 }else{
                     listView1.clearTextFilter();
                 }
-                //
+                ((wclistAdapter)listView1.getAdapter()).getFilter().filter(filterText);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

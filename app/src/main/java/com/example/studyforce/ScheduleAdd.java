@@ -150,6 +150,12 @@ public class ScheduleAdd extends AppCompatActivity {
                 endD = Integer.parseInt(eDay_D.getText().toString());
 
                 updateSchedule(title,content,startY,startM,startD, endY, endM, endD);
+
+                Intent intent = new Intent(getApplicationContext(),personal_schedule.class);
+                intent.putExtra("num",num);
+                intent.putExtra("name",name);
+                intent.putExtra("email",email);
+                startActivity(intent);
                 //입력값 받은변수 적으면됑 지금은확인용
                 //값 잘 가져오는지 확인용
                 //Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();
