@@ -132,8 +132,8 @@ import org.json.JSONObject;
                   new Response.ErrorListener(){
                       @Override
                       public void onErrorResponse(VolleyError error) {
-                          //println("error -> " + error.getMessage());
-                          loginError();
+                          println("error -> " + error.getMessage());
+                          //loginError();
                       }
                   }
           );
@@ -141,9 +141,7 @@ import org.json.JSONObject;
 
       }
       private void println(String data){
-          TextView a;
-          a = (TextView)findViewById(R.id.error);
-          a.append(data);
+          Toast.makeText(this,data,Toast.LENGTH_SHORT).show();
       }
 
       private void start(int num, String name, String email){
