@@ -39,6 +39,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/pchardata"/>
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.7"
+        android:id="@+id/donepiechart"/>
+
 
 
 </LinearLayout>

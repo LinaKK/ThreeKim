@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -82,7 +83,7 @@ public class classInfo extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }//cSub.setText(sub);
+                        }cSub.setText(sub);
 
                     }
                 },
@@ -145,21 +146,35 @@ public class classInfo extends AppCompatActivity {
     }
 
     private void showStulist(classStu[] list){
-        List l1 = new ArrayList();
+        final List slist = new ArrayList();
+        for(int i=0; i<list.length; i++){
+            if (slist.contains(list[i].name) == false)
+                slist.add(list[i].name);//겹치는거 걸러서 넣어서 갯수 다르게 보일거야
+        }
+
+        ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                slist);
+        cPList.setAdapter(adapterClassTodo);
+       /* List l1 = new ArrayList();
         List l2 = new ArrayList();
         List l3 = new ArrayList();
-        int dn=0 ;
-
+        int dn=0;
         for (int i=0; i<list.length; i++){
             if (l1.contains(list[i].name) == false){
                 l1.add(list[i].name);
+                //l2.add(list[i].doneNum);
+                //l2.add(list[i].todoNum);
             }
         }
         for (int i = 0; i<l1.size();i++){
-            for(int j=0; j<list.length; j++){
-                if(l1.get(i) == list[j].name & list[j].doneNum == 1) dn++;
+            int j=0;
+            while(j<list.length){
+                if(l1.get(i) == list[j].name ){
+                    if (list[j].doneNum == 1) {dn++;}}
+                j++;
             }
             l2.add(dn);
+            dn =0;
             l3.add(list[i].todoNum);
         }
 
@@ -167,10 +182,11 @@ public class classInfo extends AppCompatActivity {
         for (int i=0; i< l1.size(); i++){
             stulist[i]= new stulist(l1.get(i).toString(), Integer.parseInt(l2.get(i).toString()), Integer.parseInt(l3.get(i).toString()));
         }
-        cSub.setText(l1.toString());
+        String a = String.valueOf(l1.size());
+        cSub.setText(a);
 
         mAdapter = new cStuListAdapter(this, stulist);
-       // cPList.setAdapter(mAdapter);
+        cPList.setAdapter(mAdapter);*/
 
     }
 

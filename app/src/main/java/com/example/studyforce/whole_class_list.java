@@ -188,19 +188,21 @@ public class whole_class_list extends AppCompatActivity {
         List l1 = new ArrayList();
         List l2 = new ArrayList();
         List l3 = new ArrayList();
+        List l4 = new ArrayList();
         String open;
 
         for (int i=0; i<wclist.length; i++){
             if (l1.contains(wclist[i].classname) == false){
                 l1.add(wclist[i].classname);
                 l2.add(wclist[i].subject);
+                l4.add(wclist[i].open);
                 l3.add(wclist[i].pw);
             }
         }
 
         clist = new clist[l1.size()];
         for (int i=0; i< l1.size(); i++){
-            if (wclist[i].open ==0) open = "open";
+            if (Integer.parseInt(l4.get(i).toString()) ==0) open = "open";
             else open ="private";
             clist[i]= new clist(l1.get(i).toString(),l2.get(i).toString() , open, Integer.parseInt(l3.get(i).toString()));
         }

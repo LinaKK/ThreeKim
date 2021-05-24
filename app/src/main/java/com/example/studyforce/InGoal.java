@@ -77,6 +77,8 @@ public class InGoal extends AppCompatActivity {
         Gtitle.setText(todo);
         stateDone();
         setChart();
+        setChartD();
+
 
 
         finishGoal.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +233,7 @@ public class InGoal extends AppCompatActivity {
         //data.add(new PieEntry(num2, name));
         //자꾸 오류남...
 
-        double persent = donename.size()/(double)classStuNum*100;
+        double persent = 1/(double)classStuNum*100;
 
         for (int i = 0; i<donename.size(); i++){
             data.add(new PieEntry((float) persent, donename.get(i).toString()));
@@ -239,18 +241,10 @@ public class InGoal extends AppCompatActivity {
         for (int i = 0; i<Ndonename.size(); i++){
             data.add(new PieEntry(0, Ndonename.get(i).toString()));
         }
-/*
-        for(int i =0; i<glists.size(); i++){
-            if(glists.get(i).title == todo){
-                num++;
-                num2 = (1/num)*100;
-                if(glists.get(i).done == 0)
-                    data.add(new PieEntry(num2, glists.get(i).name));
-            }
-        }*/
-        println(data.toString());
+
+       /* println(data.toString());
         println(donename.toString());
-        println(Integer.toString(classStuNum));
+        println(Integer.toString(classStuNum));*/
         //println(Integer.toString(persent));
         return data;
     }
@@ -267,6 +261,50 @@ public class InGoal extends AppCompatActivity {
         int pink = ContextCompat.getColor(this, R.color.pink);
 
         PieDataSet dataSet = new PieDataSet(piedata(), "");
+        //dataSet.setColors(ColorTemplate.MATERIAL_COLORS); => 색 테마
+        dataSet.setColors(new int[] {Color.RED,orange, Color.YELLOW,Color.GREEN,skyblue, Color.BLUE, pink});
+        pieChart.animateXY(200, 200);
+
+
+        PieData data = new PieData(dataSet);
+        data.setValueTextSize(8f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChart.setData(data);
+
+    }
+
+    private ArrayList<PieEntry>piedataD(){
+        Intent intent = new Intent();
+        todo = intent.getStringExtra("todo");
+
+        ArrayList<Glist> glists = (ArrayList<Glist>)getIntent().getSerializableExtra("glist");
+        ArrayList<PieEntry> data = new ArrayList<>();
+
+        double persent = 1/(double)classStuNum*100;
+
+        for (int i = 0; i<donename.size(); i++){
+            data.add(new PieEntry((float) persent, donename.get(i).toString()));
+        }
+        for (int i = 0; i<Ndonename.size(); i++){
+            data.add(new PieEntry((float) persent, Ndonename.get(i).toString()));
+        }
+
+        return data;
+    }
+
+    public void setChartD(){
+
+        pieChart = (PieChart)findViewById(R.id.donepiechart);
+        Description des = new Description();
+        des.setText("StudyForCE");
+        pieChart.setDescription(des);
+
+        int orange = ContextCompat.getColor(this, R.color.orange);
+        int skyblue = ContextCompat.getColor(this,R.color.skyblue);
+        int pink = ContextCompat.getColor(this, R.color.pink);
+
+        PieDataSet dataSet = new PieDataSet(piedataD(), "");
         //dataSet.setColors(ColorTemplate.MATERIAL_COLORS); => 색 테마
         dataSet.setColors(new int[] {Color.RED,orange, Color.YELLOW,Color.GREEN,skyblue, Color.BLUE, pink});
         pieChart.animateXY(200, 200);

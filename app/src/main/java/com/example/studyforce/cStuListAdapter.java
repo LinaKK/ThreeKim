@@ -7,18 +7,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class cStuListAdapter extends BaseAdapter {
 
     private Context ctx;
-    private stulist[] cStu;
-    public cStuListAdapter(Context ctx, stulist[] cStu){
+    private stulist[] stulist;
+
+    public cStuListAdapter(Context ctx, stulist[] stulist){
         this.ctx = ctx;
-        this.cStu =cStu;
+        this.stulist =stulist;
     }
 
     @Override
     public int getCount() {
-        return cStu.length;
+        return stulist.length;
     }
 
     @Override
@@ -41,9 +45,9 @@ public class cStuListAdapter extends BaseAdapter {
         TextView sn = (TextView) convertView.findViewById(R.id.stuname);
         TextView d = (TextView) convertView.findViewById(R.id.done);
         TextView tdn = (TextView) convertView.findViewById(R.id.todon);
-        sn.setText(cStu[position].name);
-        d.setText(cStu[position].doneNum);
-        tdn.setText(cStu[position].doneNum);
+        sn.setText(stulist[position].name);
+        d.setText(stulist[position].doneNum);
+        tdn.setText(stulist[position].doneNum);
 
         return convertView;
     }
