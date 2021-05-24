@@ -52,12 +52,12 @@ public class ScheduleAdd extends AppCompatActivity {
     public String content;
     //public int startD;
     //public String endD;
-    public String startY;
-    public String startM;
-    public String startD;
-    public String endY;
-    public String endM;
-    public String endD;
+    public int startY;
+    public int startM;
+    public int startD;
+    public int endY;
+    public int endM;
+    public int endD;
 
     //시작날짜용
     Calendar calendar = Calendar.getInstance();
@@ -142,14 +142,14 @@ public class ScheduleAdd extends AppCompatActivity {
                 title = scheduleTitle.getText().toString();
                 content = scheduleCon.getText().toString();
                 //string -> int로 변경 예정
-                startY = sDay_Y.getText().toString();
-                startM = sDay_M.getText().toString();
-                startD = sDay_D.getText().toString();
-                endY = eDay_Y.getText().toString();
-                endM = eDay_M.getText().toString();
-                endD = eDay_D.getText().toString();
+                startY = Integer.parseInt(sDay_Y.getText().toString());
+                startM = Integer.parseInt(sDay_M.getText().toString());
+                startD = Integer.parseInt(sDay_D.getText().toString());
+                endY = Integer.parseInt(eDay_Y.getText().toString());
+                endM = Integer.parseInt(eDay_M.getText().toString());
+                endD = Integer.parseInt(eDay_D.getText().toString());
 
-                updateSchedule("집","집에서 자기",21,5,26, 21,5,26);
+                updateSchedule(title,content,startY,startM,startD, endY, endM, endD);
                 //입력값 받은변수 적으면됑 지금은확인용
                 //값 잘 가져오는지 확인용
                 //Toast.makeText(getApplicationContext(), "일정을 추가했습니다.", Toast.LENGTH_SHORT).show();

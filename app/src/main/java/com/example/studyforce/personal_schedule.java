@@ -285,7 +285,7 @@ public class personal_schedule extends AppCompatActivity {
                 AlertDialog.Builder ad = new AlertDialog.Builder(personal_schedule.this);
                 ad.setTitle("일정삭제");
                 ad.setMessage("해당 일정을 삭제하시겠습니까?");
-                final String title = (String)parent.getAdapter().getItem(i);
+                //final String title = (String)parent.getAdapter().getItem(i);
                 //위에꺼 오류 날수도 있어여...잘모르겠다..ㅠㅠ
                 ad.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
@@ -304,8 +304,6 @@ public class personal_schedule extends AppCompatActivity {
                 ad.show();
             }
         });
-
-
         //길게 클릭시
     }
 
