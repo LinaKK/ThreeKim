@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:text="개인정보설정"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginTop="50dp"
         android:layout_weight="1"/>
 
@@ -27,7 +27,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
-            android:src="@drawable/student"/>
+            android:src="@drawable/infoperson"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.4"
                 android:layout_marginLeft="20dp"
                 android:text="이름: "
                 android:textSize="25sp"/>
@@ -45,7 +45,7 @@
                 android:id="@+id/uname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:textSize="25sp" />
         </LinearLayout>
 
@@ -58,14 +58,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="학번:"
+                android:layout_weight="1.4"
+                android:text="학번(사번) :"
                 android:textSize="25sp"/>
             <TextView
                 android:id="@+id/uid"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:textSize="25sp"/>
         </LinearLayout>
 
@@ -78,14 +78,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
+                android:layout_weight="1.4"
                 android:text="이메일:"
                 android:textSize="25sp"/>
             <TextView
                 android:id="@+id/umail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:textSize="25sp"/>
 
         </LinearLayout>

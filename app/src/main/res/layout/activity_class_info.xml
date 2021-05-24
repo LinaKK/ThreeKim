@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".classInfo"
     android:orientation="vertical"
+    android:background="@drawable/lay_edge"
     android:weightSum="5">
 
     <TextView
@@ -14,20 +15,23 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:textSize="45dp"
+        android:textSize="20dp"
         android:text="Info"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="과목"/>
     <TextView
         android:id="@+id/cSubject"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:text="과목 내용이 들어갑니다."/>
     <TextView
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="클래스 참여자"/>
@@ -35,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:layout_margin="10dp"
         android:fillViewport="true">
         <ListView
             android:id="@+id/cPersonList"

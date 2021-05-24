@@ -25,7 +25,7 @@
             android:ems="14"
             android:hint=" 클래스명을 입력하시오."/>
         <ImageButton
-            android:padding="10dp"
+            android:padding="20dp"
             android:id="@+id/addClass"
             android:background="#00ff0000"
             android:layout_width="0dp"

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".InGoal"
     android:orientation="vertical"
+    android:background="@drawable/lay_edge"
     android:weightSum="6">
 
     <TextView
@@ -15,14 +16,16 @@
         android:layout_height="0dp"
         android:layout_weight="0.7"
         android:text="목표01"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:id="@+id/GoalTitle"/>
     <Button
+        android:background="#2368a3"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:text="목표 달성 전"
+        android:textColor="#ececec"
         android:id="@+id/goalfinish"/>
 
     <com.github.mikephil.charting.charts.PieChart

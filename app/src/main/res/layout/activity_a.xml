@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_margin="15dp"
         android:text="답변하기"/>
 
@@ -20,15 +20,20 @@
 
         <TextView
             android:id="@+id/qt"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:textSize="20dp"
             android:text="질문제목"/>
 
     </LinearLayout>
-    //사진파일 추가버튼?
 
     <EditText
         android:id="@+id/setA"
+        android:layout_margin="10dp"
+
+        android:background="@drawable/e_round"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:hint="내용을 입력하세요."/>
