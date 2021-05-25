@@ -111,8 +111,8 @@ public class Q extends AppCompatActivity {
 
     private void print(){
         Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, qnaList.class);
-        startActivity(intent);// 뒤로가기하면 Inclass나오게 -지금은 질문하기로 돌아감
+        //Intent intent = new Intent(this, qnaList.class);
+        //startActivity(intent);// 뒤로가기하면 Inclass나오게 -지금은 질문하기로 돌아감
 
     }
 

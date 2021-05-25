@@ -59,7 +59,7 @@
             android:layout_gravity="left"
             android:text="취소"/>
         <Button
-            android:id="@+id/updateAClick"
+            android:onClick="updateAClick"
             android:background="@drawable/btn_ba"
             android:layout_width="0dp"
             android:layout_weight="1"
