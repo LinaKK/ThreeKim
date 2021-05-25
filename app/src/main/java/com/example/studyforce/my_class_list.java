@@ -42,6 +42,7 @@ public class my_class_list extends AppCompatActivity {
     ListView myClassList;
     myClist[] myClist;
     String username;
+    String usermail;
 
     public static wholeclist[] wclist;
 
@@ -59,7 +60,7 @@ public class my_class_list extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("name");
         userid = intent.getIntExtra("num",0);
-        final String usermail = intent.getStringExtra("email");
+        usermail = intent.getStringExtra("email");
         username2.setText(username);
 
         ActionBar actionBar = getSupportActionBar();
@@ -107,7 +108,7 @@ public class my_class_list extends AppCompatActivity {
             }
         });*/
 
-        //클래스추가 이미지버튼 -안되면 이거 주석 후 위해 주석이용용
+        /*
         classpl.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +119,9 @@ public class my_class_list extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+         */
+        //클래스추가 이미지버튼 -안되면 이거 주석 후 위해 주석이용용
+
 
         };
 
@@ -232,15 +236,29 @@ public class my_class_list extends AppCompatActivity {
         final String username3 = intent.getStringExtra("name");*/
 
         myClassList = (ListView)findViewById(R.id.list_class);
+        final ArrayList<myClist> myClists = new ArrayList<myClist>();
 
         final List mclist = new ArrayList();
         for(int i=0; i<list.length; i++){
              mclist.add(list[i].classname);
+             myClists.add(new myClist(list[i].classname, list[i].subject, list[i].goal, list[i].open));
         }
          ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 mclist);
         myClassList.setAdapter(adapterMCList);
 
+        classpl=findViewById(R.id.classpl);
+        classpl.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent (my_class_list.this, whole_class_list.class);
+                intent.putExtra("name",username);
+                intent.putExtra("num",userid);
+                intent.putExtra("email", usermail);
+                intent.putExtra("myClist",myClists);
+                startActivity(intent);
+            }
+        });
 
         myClassList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -248,7 +266,7 @@ public class my_class_list extends AppCompatActivity {
                 Intent intent = getIntent();
                 username = intent.getStringExtra("name");
                 userid = intent.getIntExtra("num",0);
-                final String usermail = intent.getStringExtra("email");
+                usermail = intent.getStringExtra("email");
 
                 Intent intent2 = new Intent(getApplicationContext(), InClass.class);
                 String classname = mclist.get(position).toString();

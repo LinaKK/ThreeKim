@@ -29,6 +29,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.ScatterChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -496,6 +498,8 @@ public class InClass extends AppCompatActivity {
 
 
     }
+
+
 
     public void deleteCSchedule(String schedule){
         if (AppHelper.requestQueue == null){

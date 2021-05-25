@@ -133,9 +133,6 @@
             android:layout_weight="1"
             android:text="목표달성 그래프"/>
 
-
-
-
     </LinearLayout>
 
     <LinearLayout
