@@ -63,7 +63,7 @@ public class qnaList extends AppCompatActivity {
         }
         JSONObject rj = new JSONObject();
         try {
-            rj.put("classname", "ThreeK");
+            rj.put("classname", classname);
         }
         catch (JSONException e){}
 

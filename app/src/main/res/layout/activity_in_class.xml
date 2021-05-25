@@ -120,7 +120,7 @@
     </GridLayout>
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/border"
@@ -128,10 +128,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 진행도"/>
+
+        <ProgressBar
+            android:id="@+id/mProgStatus"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text=""/>
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            />
 
     </LinearLayout>
 

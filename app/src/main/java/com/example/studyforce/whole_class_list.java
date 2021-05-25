@@ -234,11 +234,12 @@ public class whole_class_list extends AppCompatActivity {
                 final String cnames = ((clist)adpater.getItem(i)).getClassname();
 
                 for(int m =0; m<myClists.size(); m++){//myclasslist에 없을 때
-                    if(cnames != myClists.get(m).classname)
+                    if(myClists.get(m).classname.contains(cnames) == false)
                         state=1;
+                    else state =0;
                 }
                 if(state==1){
-                    if(opens=="open"){ //클래스 공개일때
+                    if(opens=="open"){ //클래스 공개일때 첫번째클래스 무조건 가입메시지 뜸
                         AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
                         ad.setTitle("가입메시지");
                         ad.setMessage("해당 클래스에 가입하시겠습니까?");
@@ -264,7 +265,7 @@ public class whole_class_list extends AppCompatActivity {
                             }
                         });
                         ad.show();
-                    }else{//클래스 비공개 일때
+                    }else if(opens != "open") {//클래스 비공개 일때 가입한 클래스에서도 실행됨
                         dialogView = (LinearLayout) View.inflate(whole_class_list.this, R.layout.secretpw, null);
                         AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
                         ad.setView(dialogView);
@@ -272,7 +273,7 @@ public class whole_class_list extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 edpswd = (TextView)dialogView.findViewById(R.id.editspw);
-                                int password = clist[i].pw;
+                                int password = clist[i].pw;//clist== null -clist 사용안했음
                                 int edpassword = Integer.parseInt(edpswd.getText().toString());
                                 if(password == edpassword){
                                     signC(cnames);
@@ -284,7 +285,7 @@ public class whole_class_list extends AppCompatActivity {
                                     intent.putExtra("cname",cnames);
                                     startActivity(intent);
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "비번이 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

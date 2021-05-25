@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +72,7 @@ public class InClass extends AppCompatActivity {
     int eYear;
     String schTitle;
     String schCont;
+    private ProgressBar mProgStatus;
 
     long Now = System.currentTimeMillis();;
     java.util.Date Date = new Date(Now);
@@ -93,6 +95,7 @@ public class InClass extends AppCompatActivity {
         shortNoticeList = (ListView) findViewById(R.id.shortNoticeList);
         shortTodolist = (ListView) findViewById(R.id.shortTodoList);
         goal =(TextView) findViewById(R.id.cFGoal);
+        mProgStatus =(ProgressBar) findViewById(R.id.mProgStatus);
 
         //sendRequest1();
 
@@ -291,18 +294,23 @@ public class InClass extends AppCompatActivity {
 
     public void showNotiList(noticeList[] notice){
         final List nolist = new ArrayList();
+        final List enolist = new ArrayList();
         for(int i=0; i<notice.length; i++){
             nolist.add(nList[i].title);
         }
+
+        for(int i = nolist.size()-1; i>=0; i--){
+            enolist.add(nolist.get(i));
+        }
         ArrayAdapter<String> adapterNotice = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                nolist);
+                enolist);
         shortNoticeList.setAdapter(adapterNotice);
 
         shortNoticeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), noticeD.class);
-                String noticeTitle = nolist.get(position).toString();
+                String noticeTitle = enolist.get(position).toString();
                 intent.putExtra("ntitle", noticeTitle);
                 intent.putExtra("classname",cname);
                 startActivity(intent);
@@ -347,6 +355,7 @@ public class InClass extends AppCompatActivity {
                                 cTodoList[i] = new classTodo(id, num, classtodo, done, className, name);
 
                             }showTodo(cTodoList);
+                            p(cTodoList);
 
 
                         } catch (JSONException e) {
@@ -367,14 +376,18 @@ public class InClass extends AppCompatActivity {
 
     private void showTodo(final classTodo[] cTodo){
         final List todolist = new ArrayList();
+        List etodolist = new ArrayList();
         final ArrayList<Glist> glist = new ArrayList<Glist>();
         for(int i=0; i<cTodo.length; i++){
             if (todolist.contains(cTodo[i].classtodo) == false) // 겹치는거 걸러서 넘겨서 개수 다르게 보일거야
                 todolist.add(cTodo[i].classtodo);
             glist.add(new Glist(cTodo[i].classtodo, cTodo[i].name, cTodo[i].done));
         }
+        for(int i = todolist.size()-1; i>=0; i--){
+            etodolist.add(todolist.get(i));
+        }
         ArrayAdapter<String> adapterClassTodo = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                todolist);
+                etodolist);
         shortTodolist.setAdapter(adapterClassTodo);
         shortTodolist.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         shortTodolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -610,6 +623,18 @@ public class InClass extends AppCompatActivity {
         intent.putExtra("name", names);
         intent.putExtra("email",email);
         startActivity(intent);
+    }
+
+    private void p(final classTodo[] cTodo) {
+        int doneN = 0;
+        for(int i=0; i<cTodo.length; i++){
+            if(cTodo[i].done==1){
+                doneN ++;
+            }
+        }
+       double per = doneN/(double)cTodo.length*100;
+        mProgStatus.setProgress((int)per);
+
     }
 
 }
