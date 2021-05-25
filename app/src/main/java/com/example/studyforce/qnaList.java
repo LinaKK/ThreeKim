@@ -32,6 +32,7 @@ public class qnaList extends AppCompatActivity {
     public TextView qnatitle;
     private String classname;
     private int num;
+    private String name;
 
 
     @Override
@@ -41,7 +42,8 @@ public class qnaList extends AppCompatActivity {
         qlist = (ListView) findViewById(R.id.qlist);
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
-        num = intent.getIntExtra("num",0);
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
         sendRequest2(classname);
 
     }
@@ -49,6 +51,7 @@ public class qnaList extends AppCompatActivity {
         Intent intent = new Intent(this, Q.class);
         intent.putExtra("classname", classname);
         intent.putExtra("num",num);
+        intent.putExtra("name",name);
         startActivity(intent);
     }
 
@@ -193,5 +196,17 @@ public class qnaList extends AppCompatActivity {
         qnatitle.append(data);
     }
 
+    public void onBackPressed(){
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
+
+        Intent intent2 = new Intent(this, InClass.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("cname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
+    }
 
 }

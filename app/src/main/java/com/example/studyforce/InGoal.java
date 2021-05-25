@@ -256,6 +256,8 @@ public class InGoal extends AppCompatActivity {
         des.setText("StudyForCE");
         pieChart.setDescription(des);
 
+        pieChart.setHoleColor(Color.WHITE);
+
         int orange = ContextCompat.getColor(this, R.color.orange);
         int skyblue = ContextCompat.getColor(this,R.color.skyblue);
         int pink = ContextCompat.getColor(this, R.color.pink);
@@ -297,8 +299,10 @@ public class InGoal extends AppCompatActivity {
 
         pieChart = (PieChart)findViewById(R.id.donepiechart);
         Description des = new Description();
-        des.setText("StudyForCE");
+        des.setText("");
         pieChart.setDescription(des);
+
+        pieChart.setHoleColor(Color.WHITE);
 
         int orange = ContextCompat.getColor(this, R.color.orange);
         int skyblue = ContextCompat.getColor(this,R.color.skyblue);
@@ -309,10 +313,10 @@ public class InGoal extends AppCompatActivity {
         dataSet.setColors(new int[] {Color.RED,orange, Color.YELLOW,Color.GREEN,skyblue, Color.BLUE, pink});
         pieChart.animateXY(200, 200);
 
-
         PieData data = new PieData(dataSet);
         data.setValueTextSize(8f);
         data.setValueTextColor(Color.BLACK);
+        pieChart.getLegend().setEnabled(false);
 
         pieChart.setData(data);
 

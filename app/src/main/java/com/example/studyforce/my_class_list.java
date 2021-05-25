@@ -229,13 +229,12 @@ public class my_class_list extends AppCompatActivity {
 
         myClassList = (ListView)findViewById(R.id.list_class);
 
-        //학번 구분 or 이름 구분 -> 서버에서 걸러서 가져와서 안해도됩니당
         final List mclist = new ArrayList();
         for(int i=0; i<list.length; i++){
              mclist.add(list[i].classname);
         }
          ArrayAdapter<String> adapterMCList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                mclist); //layout 수정해야함.
+                mclist);
         myClassList.setAdapter(adapterMCList);
 
 

@@ -26,6 +26,7 @@ public class Q extends AppCompatActivity {
     private TextView a;
     private String classname;
     private int num;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class Q extends AppCompatActivity {
         setQC = (EditText) findViewById(R.id.setQC);
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
-        num = intent.getIntExtra("num",0);
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
     }
 
     public void updateQClick(View v){
@@ -47,6 +49,11 @@ public class Q extends AppCompatActivity {
             Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
         }
         else sendRequest(qt, q);
+        Intent intent2 = new Intent(getApplicationContext(), qnaList.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("classname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
 
     }
 
