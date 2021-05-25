@@ -131,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="목표달성 그래프"/>
+            android:text=""/>
 
     </LinearLayout>
 
