@@ -41,8 +41,6 @@ import org.json.JSONObject;
           setContentView(R.layout.activity_login);
           setTitle("로그인");
 
-          ActionBar actionBar = getSupportActionBar();
-          actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
           //설정값 불러오기
           appData = getSharedPreferences("appData", MODE_PRIVATE);

@@ -45,8 +45,6 @@ public class Sign extends AppCompatActivity {
         ActionBar ac = getSupportActionBar();
         ac.setTitle("회원가입");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         //값찾기 이름,학번,비번
         si_n = (EditText) findViewById(R.id.si_n);
