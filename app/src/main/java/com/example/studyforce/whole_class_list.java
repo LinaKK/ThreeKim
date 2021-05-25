@@ -178,37 +178,25 @@ public class whole_class_list extends AppCompatActivity {
             l.add(wclist[k].classname);
         }
         println(l.toString());*/
-
-        //index오류나서 고치긴했는데 해시맵은 key 안겹쳐서 안해도되나??
-        //이거 계속 다 a로 나오는것도 key값 같아서 그런것같아 => 고쳐놨어
-        //data = new ArrayList<HashMap<String, String>>();
-
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         //clist = new clist[wclist.length];
-        List l1 = new ArrayList();
-        List l2 = new ArrayList();
-        List l3 = new ArrayList();
-        List l4 = new ArrayList();
-        String open;
 
+        wclistAdapter adpater;
+        adpater = new wclistAdapter();
+        listView1.setAdapter(adpater);
+        List l1 = new ArrayList();
         for (int i=0; i<wclist.length; i++){
-            if (l1.contains(wclist[i].classname) == false){
+            if(l1.contains(wclist[i].classname)==false){
                 l1.add(wclist[i].classname);
-                l2.add(wclist[i].subject);
-                l4.add(wclist[i].open);
-                l3.add(wclist[i].pw);
+                if(wclist[i].open==0){
+                    adpater.addItem(wclist[i].classname, wclist[i].subject, "open");
+                }else{
+                    adpater.addItem(wclist[i].classname, wclist[i].subject, "private");
+                }
             }
         }
 
-        clist = new clist[l1.size()];
-        for (int i=0; i< l1.size(); i++){
-            if (Integer.parseInt(l4.get(i).toString()) ==0) open = "open";
-            else open ="private";
-            clist[i]= new clist(l1.get(i).toString(),l2.get(i).toString() , open, Integer.parseInt(l3.get(i).toString()));
-        }
-        mAdapter = new wclistAdapter(this, clist);
-        listView1.setAdapter(mAdapter);
-
+        listView1.setAdapter(adpater);
         //전체클래스 확인
         /*ArrayList l4 = new ArrayList();
         for(int k=0 ; k<clist.length; k++){

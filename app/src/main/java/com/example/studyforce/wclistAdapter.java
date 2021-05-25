@@ -13,28 +13,21 @@ import java.util.ArrayList;
 
 public class wclistAdapter extends BaseAdapter implements Filterable {
     private Context ctx;
-    private clist[] clist;
     Filter listFilter;
-    private clist[] fclist = clist;//<- 무슨역할이야?? 여기에 아무것도 안들어가서 오류나길래 일단 clist로 바꿔놨는데 => 이게 걸러낸거를 리스트로 만든거야.
+    private ArrayList<clist> cList = new ArrayList<clist>();
+    private ArrayList<clist> fcList = cList;
 
-
-    public wclistAdapter(Context ctx, clist[] clist){
-        this.ctx = ctx;
-        this.clist = clist;
+    public wclistAdapter(){
     }
 
     @Override
     public int getCount() {
-        if(fclist==null){
-            return clist.length;
-        }else{
-            return fclist.length;
-        }
+       return fcList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return fclist[position];
+        return fcList.get(position);
     }
 
     @Override
@@ -44,8 +37,9 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ctx = parent.getContext();
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(ctx);
+            LayoutInflater inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.wclistlay, parent, false);
         }
 
@@ -53,17 +47,20 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
         TextView sub = (TextView) convertView.findViewById(R.id.sub);
         TextView op = (TextView) convertView.findViewById(R.id.op);
 
-        if(fclist==null){
-            cname.setText(clist[position].classname);
-            sub.setText(clist[position].subject);
-            op.setText(clist[position].open);
-        }else{
-            cname.setText(fclist[position].classname);
-            sub.setText(fclist[position].subject);
-            op.setText(fclist[position].open);
-        }
-
+        clist cItem = fcList.get(position);
+            cname.setText(cItem.getClassname());
+            sub.setText(cItem.getSubject());
+            op.setText(cItem.getOpen());
         return convertView;
+    }
+
+    public void addItem(String classname, String subject, String open){
+        clist item= new clist();
+        item.setClassname(classname);
+        item.setSubject(subject);
+        item.setOpen(open);
+
+        cList.add(item);
     }
 
     @Override
@@ -75,32 +72,28 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
     }
 
     public class ListFilter extends Filter{
-
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             if(constraint == null || constraint.length() == 0){
-                results.values = clist;
-                results.count = clist.length;
+                results.values = cList;
+                results.count = cList.size();
             }else{
-                int num=0;
-                final clist[] cclist = new clist[clist.length];
-                for (clist item: clist){
-                    if(item.classname.toUpperCase().contains(constraint.toString().toUpperCase())){
-                        for(int i=0; i<clist.length; i++){
-                            cclist[i]=item;
-                        }
+                ArrayList<clist> itemList = new ArrayList<clist>();
+                for (clist item: cList){
+                    if(item.getClassname().toUpperCase().contains(constraint.toString().toUpperCase())){
+                        itemList.add(item);
                     }
                 }
-                results.values = cclist;
-                results.count = cclist.length;
+                results.values = itemList;
+                results.count = itemList.size();
             }
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            fclist = (clist[])results.values;
+            fcList = (ArrayList<clist>) results.values;
             if(results.count>0){
                 notifyDataSetChanged();
             }else{
