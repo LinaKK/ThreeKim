@@ -36,7 +36,7 @@
         <Button
             android:layout_marginLeft="3dp"
             android:layout_marginRight="5dp"
-            android:onClick="reBack"
+            android:onClick="aBack"
             android:background="@drawable/btn_re"
             android:layout_width="0dp"
             android:layout_weight="1"

@@ -1,10 +1,12 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -38,6 +40,9 @@ import org.json.JSONObject;
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_login);
           setTitle("로그인");
+
+          ActionBar actionBar = getSupportActionBar();
+          actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
           //설정값 불러오기
           appData = getSharedPreferences("appData", MODE_PRIVATE);

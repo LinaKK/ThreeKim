@@ -6,7 +6,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,15 +60,6 @@ public class study_time extends AppCompatActivity {
         num = intent.getIntExtra("num",0);// 로그인후 학번
         name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
-
-        //그래프페이지로 이동
-        graph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Timegraph.class);
-                startActivity(intent);
-            }
-        });
 
 
         //나가기

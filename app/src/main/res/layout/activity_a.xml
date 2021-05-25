@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:orientation="vertical">
 
     <TextView
@@ -37,12 +39,35 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:hint="내용을 입력하세요."/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <Button
-        android:onClick="updateAClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="확인"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
+            android:onClick="aRe"
+            android:background="@drawable/btn_re"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:text="취소"/>
+        <Button
+            android:id="@+id/updateAClick"
+            android:background="@drawable/btn_ba"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="@dimen/botex"
+            android:layout_gravity="end"
+            android:text="확인"/>
+    </LinearLayout>
 
 </LinearLayout>

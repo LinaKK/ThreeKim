@@ -6,14 +6,22 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:padding="15dp"
+    android:background="@drawable/lay_back"
     tools:context=".Sign">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border"
+        android:orientation="vertical">
 
     <TextView
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
+        android:textSize="20sp"
         android:padding="10dp"
+        android:text="회원가입"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         />
@@ -53,7 +61,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
         android:layout_marginBottom="10dp"
         android:padding="10dp">
 
@@ -66,14 +73,14 @@
             android:hint="학번/사번"
             android:inputType="textPersonName" />
 
-        <Button
+<!--        <Button
             android:id="@+id/btn1_idc"
             android:layout_width="85dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:background="@drawable/btnbl"
             android:text="중복체크"
-            android:textColor="#52a3cc" />
+            android:textColor="#BCE672" />-->
     </LinearLayout>
 
     <EditText
@@ -102,23 +109,12 @@
 
     <Button
         android:id="@+id/btn1_sign"
-        android:layout_width="170dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:textColor="@color/white"
-        android:background="@drawable/button_b"
+        android:background="@drawable/btn_ba"
         android:text="가입하기" />
-
-   <!-- &lt;!&ndash; Link to Login Screen &ndash;&gt;
-    <Button
-        android:id="@+id/btnLoginScreen"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:text="btn_link_to_login"
-        android:textAllCaps="false"
-        android:textSize="15dp" />-->
 
 
     <TextView
@@ -131,6 +127,7 @@
         android:padding="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
-        android:textColor="#7ea1e5"
+        android:textColor="#808080"
         />
+    </LinearLayout>
 </LinearLayout>

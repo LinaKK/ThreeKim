@@ -1,7 +1,9 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.content.Intent;
@@ -10,9 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class Music_p extends AppCompatActivity {
-    Button m_stop;
-    ImageView m_1,m_2,m_3,m_4;
-    private static MediaPlayer mp;
+
+    MediaPlayer mediaPlayer;
+    ImageView mrain, mjazz, mpiano, mfire, msound;
+    Button mstop;
 
 
     @Override
@@ -20,55 +23,69 @@ public class Music_p extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_p);
 
-        m_stop=(Button)findViewById(R.id.m_stop);
-        m_1=(ImageView)findViewById(R.id.m_1);
-        //m_2=(ImageView)findViewById(R.id.m_2);
-        m_3=(ImageView)findViewById(R.id.m_3);
-        m_4=(ImageView)findViewById(R.id.m_4);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
-        //멈춤
-        m_stop.setOnClickListener(new View.OnClickListener() {
+        mrain=(ImageView)findViewById(R.id.mrain);
+        mjazz=(ImageView)findViewById(R.id.mjazz);
+        mpiano=(ImageView)findViewById(R.id.mpiano);
+        mfire=(ImageView)findViewById(R.id.mfire);
+        msound=(ImageView)findViewById(R.id.msound);
+        mstop=findViewById(R.id.mstop);
+
+        mrain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-               Intent intent =new Intent (getApplicationContext(), m_service.class);
-               stopService(intent);
+            public void onClick(View view) {
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.rain);
+                mediaPlayer.start();
+            }
+        });
+        mjazz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.Downpour);
+                mediaPlayer.start();
+            }
+        });
+        mpiano.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.Pianom);
+                mediaPlayer.start();
+            }
+        });
+        mfire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.bonfire);
+                mediaPlayer.start();
+            }
+        });
+        msound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.s_river);
+                mediaPlayer.start();
             }
         });
 
-        //빗소리
-        m_1.setOnClickListener(new View.OnClickListener() {
+        mstop.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                startService(new Intent(getApplicationContext(),m_service.class));
+            public void onClick(View view){
+                mediaPlayer.stop();
+                mediaPlayer.reset();
             }
         });
 
+    }
 
-        //풀벌레
-        m_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startService(new Intent(getApplicationContext(),m_night.class));
-            }
-        });
-/*
-        //시냇물
-        m_3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startService(new Intent(getApplicationContext(),m_service.class));
-            }
-        });
-*/
-
-        /*//실험용
-        m_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startService(new Intent(getApplicationContext(),m_service.class));
-            }
-        });*/
-
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        //플레이어 해지
+        if(mediaPlayer !=null){
+            mediaPlayer.release();
+            mediaPlayer =null;
         }
-
-    };
+    }
+}

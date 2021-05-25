@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -43,6 +44,9 @@ public class Sign extends AppCompatActivity {
         setContentView(R.layout.activity_sign);
         ActionBar ac = getSupportActionBar();
         ac.setTitle("회원가입");
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         //값찾기 이름,학번,비번
         si_n = (EditText) findViewById(R.id.si_n);

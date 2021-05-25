@@ -1,8 +1,10 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,6 +47,8 @@ public class notice extends AppCompatActivity {
         shortNoticeList = (ListView) findViewById(R.id.noticelist);
         sendRequest2(classname);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
     }
 
     public void OnClick(View v){

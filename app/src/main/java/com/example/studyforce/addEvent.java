@@ -1,8 +1,10 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -25,6 +27,9 @@ public class addEvent extends AppCompatActivity {
         setContentView(R.layout.activity_add_event);
         updateResult();
         Data = (EditText) findViewById(R.id.eData);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
     }
 
     private void updateResult(){

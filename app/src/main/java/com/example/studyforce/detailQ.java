@@ -1,8 +1,10 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,6 +48,9 @@ public class detailQ extends AppCompatActivity {
         Dqnatitle.setText(qtitle);
         contextQ = (TextView)findViewById(R.id.contextQ);
         al = (ListView) findViewById(R.id.alist);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         sendRequest();
         sendRequest1();

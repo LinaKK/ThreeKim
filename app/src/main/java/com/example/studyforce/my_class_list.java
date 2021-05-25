@@ -1,8 +1,10 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +50,6 @@ public class my_class_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_class_list);
         exit=findViewById(R.id.exit);
-        /*plus_class=findViewById(R.id.plus_class);*/
         classpl=findViewById(R.id.classpl);
         exit1=findViewById(R.id.exit1);
 
@@ -60,6 +61,9 @@ public class my_class_list extends AppCompatActivity {
         userid = intent.getIntExtra("num",0);
         final String usermail = intent.getStringExtra("email");
         username2.setText(username);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
         /*
         본인 클래스 리스트 db에서 받아오기

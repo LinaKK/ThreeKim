@@ -1,8 +1,10 @@
 package com.example.studyforce;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +35,9 @@ public class addTodo extends AppCompatActivity {
         num = intent.getIntExtra("num", num);
         name = intent.getStringExtra("name");
         contextTD = findViewById(R.id.setTodo);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
 
     }
     public void updateTDClick(View view){

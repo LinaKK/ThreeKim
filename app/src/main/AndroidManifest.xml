@@ -36,7 +36,6 @@
         <activity android:name=".InGoal" />
         <activity android:name=".A" />
         <activity android:name=".noticeD" />
-        <activity android:name=".Timegraph" />
         <activity android:name=".study_time" />
         <activity android:name=".Music_p" />
         <activity android:name=".ScheduleAdd" />

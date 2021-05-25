@@ -25,7 +25,7 @@
             android:ems="14"
             android:hint=" 클래스명을 입력하시오."/>
         <ImageButton
-            android:padding="20dp"
+            android:padding="15dp"
             android:id="@+id/addClass"
             android:background="#00ff0000"
             android:layout_width="0dp"
@@ -47,6 +47,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:id="@+id/list_scroll"
         android:fillViewport="true">
         <ListView
