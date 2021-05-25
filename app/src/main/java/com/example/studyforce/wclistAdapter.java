@@ -15,7 +15,7 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
     private Context ctx;
     private clist[] clist;
     Filter listFilter;
-    private clist[] fclist;//<- 무슨역할이야?? 여기에 아무것도 안들어가서 오류나길래 일단 clist로 바꿔놨는데 => 이게 걸러낸거를 리스트로 만든거야.
+    private clist[] fclist = clist;//<- 무슨역할이야?? 여기에 아무것도 안들어가서 오류나길래 일단 clist로 바꿔놨는데 => 이게 걸러낸거를 리스트로 만든거야.
 
 
     public wclistAdapter(Context ctx, clist[] clist){
@@ -25,12 +25,16 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public int getCount() {
-        return fclist.length;
+        if(fclist==null){
+            return clist.length;
+        }else{
+            return fclist.length;
+        }
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return fclist[position];
     }
 
     @Override
@@ -49,9 +53,15 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
         TextView sub = (TextView) convertView.findViewById(R.id.sub);
         TextView op = (TextView) convertView.findViewById(R.id.op);
 
-        cname.setText(fclist[position].classname);
-        sub.setText(fclist[position].subject);
-        op.setText(fclist[position].open);
+        if(fclist==null){
+            cname.setText(clist[position].classname);
+            sub.setText(clist[position].subject);
+            op.setText(clist[position].open);
+        }else{
+            cname.setText(fclist[position].classname);
+            sub.setText(fclist[position].subject);
+            op.setText(fclist[position].open);
+        }
 
         return convertView;
     }
@@ -73,6 +83,7 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
                 results.values = clist;
                 results.count = clist.length;
             }else{
+                int num=0;
                 final clist[] cclist = new clist[clist.length];
                 for (clist item: clist){
                     if(item.classname.toUpperCase().contains(constraint.toString().toUpperCase())){
