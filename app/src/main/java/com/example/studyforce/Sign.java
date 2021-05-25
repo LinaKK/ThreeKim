@@ -54,7 +54,7 @@ public class Sign extends AppCompatActivity {
         si_pw = (EditText) findViewById(R.id.si_pw);
         si_email = (EditText) findViewById(R.id.si_email);
         btn1_sign = (Button) findViewById(R.id.btn1_sign);
-        btn1_idc = (Button) findViewById(R.id.btn1_idc);
+/*        btn1_idc = (Button) findViewById(R.id.btn1_idc);*/
         /*btnLogin = (Button) findViewById(R.id.btnLoginScreen);*/
         //체크박스로 둘 나뉘는 이벤트 추가예정 ->학생은 0 교수님 1
         CheckBox cb1 = (CheckBox) findViewById(R.id.chstu);

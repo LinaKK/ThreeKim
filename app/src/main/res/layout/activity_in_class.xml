@@ -95,6 +95,7 @@
 
         <Button
             android:id="@+id/todo"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btnbl"
             android:layout_rowSpan="1"
             android:layout_column="0"

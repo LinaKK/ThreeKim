@@ -43,14 +43,14 @@ public class Music_p extends AppCompatActivity {
         mjazz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.Downpour);
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.downpour);
                 mediaPlayer.start();
             }
         });
         mpiano.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.Pianom);
+                mediaPlayer =MediaPlayer.create(Music_p.this, R.raw.sadpi);
                 mediaPlayer.start();
             }
         });

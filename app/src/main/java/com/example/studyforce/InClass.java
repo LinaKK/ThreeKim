@@ -128,13 +128,13 @@ public class InClass extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
-            case R.id.nextEvent:
+/*            case R.id.nextEvent:
                 intent = new Intent(this, nextEvent.class);
                 intent.putExtra("num",num);
                 intent.putExtra("name",names);
                 intent.putExtra("classname", cname);
                 startActivity(intent);
-                break;
+                break;*/
 
             case R.id.cal:
                 //달력추가, 이벤트 표시가능?
