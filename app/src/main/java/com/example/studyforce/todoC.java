@@ -31,7 +31,7 @@ public class todoC extends AppCompatActivity {
     private static classTodo[] cTodoList;
     private ListView shortTodolist;
     TextView todolistinclass;
-    String classname;
+    String classname, name;
     int num;
 
     Button AddTodoC;
@@ -42,7 +42,8 @@ public class todoC extends AppCompatActivity {
         setContentView(R.layout.activity_todo_c);
         Intent intent = getIntent();
         classname = intent.getStringExtra("classname");
-        num = intent.getIntExtra("num",0);
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
         shortTodolist = (ListView) findViewById(R.id.todoc);
         sendRequest2();
 
@@ -164,10 +165,24 @@ public class todoC extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), addTodo.class);
                 intent.putExtra("cname", classname);
+                intent.putExtra("num",num);
+                intent.putExtra("name",name);
                 startActivity(intent);
             }
         });
 
+    }
+    public void onBackPressed(){
+        Intent intent = getIntent();
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
+
+        Intent intent2 = new Intent(this, InClass.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("cname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
     }
 
 }

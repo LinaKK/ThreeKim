@@ -19,7 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class addTodo extends AppCompatActivity {
-    String cname;
+    String cname, name;
+    int num;
     EditText contextTD;
     TextView TD;
 
@@ -29,7 +30,8 @@ public class addTodo extends AppCompatActivity {
         setContentView(R.layout.activity_add_todo);
         Intent intent = getIntent();
         cname = intent.getStringExtra("cname");
-
+        num = intent.getIntExtra("num", num);
+        name = intent.getStringExtra("name");
         contextTD = findViewById(R.id.setTodo);
 
     }
@@ -40,9 +42,11 @@ public class addTodo extends AppCompatActivity {
         else
             Toast.makeText(this, "내용을 입력하세요!",Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(getApplicationContext(),InClass.class);
-        intent.putExtra("classname",cname);
-        startActivity(intent);
+        Intent intent2 = new Intent(getApplicationContext(), todoC.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("classname",cname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
     }
 
     //php작성중

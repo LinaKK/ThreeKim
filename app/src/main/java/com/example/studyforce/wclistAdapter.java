@@ -15,7 +15,7 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
     private Context ctx;
     private clist[] clist;
     Filter listFilter;
-    private clist[] fclist;//<- 무슨역할이야?? 여기에 아무것도 안들어가서 오류나길래 일단 clist로 바꿔놨는데
+    private clist[] fclist;//<- 무슨역할이야?? 여기에 아무것도 안들어가서 오류나길래 일단 clist로 바꿔놨는데 => 이게 걸러낸거를 리스트로 만든거야.
 
 
     public wclistAdapter(Context ctx, clist[] clist){
@@ -25,7 +25,7 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public int getCount() {
-        return clist.length;
+        return fclist.length;
     }
 
     @Override
@@ -49,9 +49,9 @@ public class wclistAdapter extends BaseAdapter implements Filterable {
         TextView sub = (TextView) convertView.findViewById(R.id.sub);
         TextView op = (TextView) convertView.findViewById(R.id.op);
 
-        cname.setText(clist[position].classname);
-        sub.setText(clist[position].subject);
-        op.setText(clist[position].open);
+        cname.setText(fclist[position].classname);
+        sub.setText(fclist[position].subject);
+        op.setText(fclist[position].open);
 
         return convertView;
     }
