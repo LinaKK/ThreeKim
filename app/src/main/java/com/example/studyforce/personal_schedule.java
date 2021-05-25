@@ -276,7 +276,8 @@ public class personal_schedule extends AppCompatActivity {
         });
 
 
-         //클릭시
+        /*
+        //클릭시
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
@@ -302,7 +303,7 @@ public class personal_schedule extends AppCompatActivity {
                 ad.show();
             }
         });
-        //길게 클릭시
+         */
     }
 
 

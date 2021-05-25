@@ -181,7 +181,7 @@ public class whole_class_list extends AppCompatActivity {
         listView1 = (ListView) findViewById(R.id.wholeClasslist);
         //clist = new clist[wclist.length];
 
-        wclistAdapter adpater;
+        final wclistAdapter adpater;
         adpater = new wclistAdapter();
         listView1.setAdapter(adpater);
         List l1 = new ArrayList();
@@ -230,7 +230,7 @@ public class whole_class_list extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, View view, final int i, long id) {
-                String opens = clist[i].open;
+                String opens = ((clist)adpater.getItem(i)).getOpen();
                 if(opens=="open"){ //클래스 공개일때
                     AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
                     ad.setTitle("가입메시지");
@@ -240,7 +240,7 @@ public class whole_class_list extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             //error- java.util.HashMap cannot be cast to java.lang.String
                             //개인클래스리스트로 넘기기(db)//클래스이름갯수//내부클래스 액티비티에 값 넘겨주기
-                            String cnames = clist[i].classname;
+                            String cnames = ((clist)adpater.getItem(i)).getClassname();
                             signC(cnames);
 
                             Intent intent = new Intent(getApplicationContext(),InClass.class);
@@ -269,7 +269,7 @@ public class whole_class_list extends AppCompatActivity {
                             int password = clist[i].pw;
                             int edpassword = Integer.parseInt(edpswd.getText().toString());
                             if(password == edpassword){
-                                String cnames = clist[i].classname;
+                                String cnames = ((clist)adpater.getItem(i)).getClassname();
                                 signC(cnames);
 
                                 Intent intent = new Intent(getApplicationContext(),InClass.class);
