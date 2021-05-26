@@ -108,7 +108,7 @@ public class my_class_list extends AppCompatActivity {
             }
         });*/
 
-        /*
+
         classpl.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +119,7 @@ public class my_class_list extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-         */
+
         //클래스추가 이미지버튼 -안되면 이거 주석 후 위해 주석이용용
 
 
