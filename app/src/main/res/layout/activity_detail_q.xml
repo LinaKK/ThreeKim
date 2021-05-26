@@ -16,7 +16,6 @@
         android:text="질문 상세"/>
 
 
-
     <LinearLayout
         android:background="@drawable/border"
         android:layout_width="match_parent"
