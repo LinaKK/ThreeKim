@@ -101,7 +101,7 @@ public class qnaList extends AppCompatActivity {
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
+                        //println("error -> " + error.getMessage());
                     }
                 }
         );
@@ -150,7 +150,7 @@ public class qnaList extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
+                       // println("error -> " + error.getMessage());
                     }
                 }
 
