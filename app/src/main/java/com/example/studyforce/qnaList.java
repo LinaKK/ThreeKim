@@ -174,6 +174,9 @@ public class qnaList extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), detailQ.class);
                 String qtitle = qnal.get(position).toString();
                 intent.putExtra("qtitle", qtitle);
+                intent.putExtra("classname", classname);
+                intent.putExtra("num",num);
+                intent.putExtra("name",name);
                 startActivity(intent);
             }
         });

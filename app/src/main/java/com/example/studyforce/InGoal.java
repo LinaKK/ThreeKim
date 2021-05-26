@@ -153,7 +153,7 @@ public class InGoal extends AppCompatActivity {
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
+                        //println("error -> " + error.getMessage());
                     }
                 }
         );
@@ -171,7 +171,7 @@ public class InGoal extends AppCompatActivity {
     }
 
     private void print(){
-        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -219,7 +219,7 @@ public class InGoal extends AppCompatActivity {
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        println("error -> " + error.getMessage());
+                       // println("error -> " + error.getMessage());
                     }
                 }
         );

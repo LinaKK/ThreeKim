@@ -37,6 +37,9 @@ public class detailQ extends AppCompatActivity {
     private TextView contextQ;
     private ListView al;
     private answerListAdapter mAdapter;
+    String classname;
+    String name;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class detailQ extends AppCompatActivity {
         setContentView(R.layout.activity_detail_q);
         Intent intent = getIntent();
         qtitle = intent.getStringExtra("qtitle");
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
         Dqnatitle = (TextView)findViewById(R.id.Dqnatitle);
         Dqnatitle.setText(qtitle);
         contextQ = (TextView)findViewById(R.id.contextQ);
@@ -60,6 +66,9 @@ public class detailQ extends AppCompatActivity {
     public void updateA(View view){
         Intent intent = new Intent(this, A.class);
         intent.putExtra("qtitle", qtitle);
+        intent.putExtra("num",num);
+        intent.putExtra("classname",classname);
+        intent.putExtra("name",name);
         startActivity(intent);
     }
 
@@ -187,4 +196,19 @@ public class detailQ extends AppCompatActivity {
         al.setAdapter(adapter);*/
 
     }
+
+    public void onBackPressed(){
+        Intent intent = getIntent();
+        qtitle = intent.getStringExtra("qtitle");
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
+
+        Intent intent2 = new Intent(this, qnaList.class);
+        intent2.putExtra("num",num);
+        intent2.putExtra("classname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
+    }
+
 }

@@ -26,6 +26,9 @@ public class A extends AppCompatActivity {
     public String  qtitle;
     TextView b;
     TextView qt;
+    String classname;
+    String name;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,14 @@ public class A extends AppCompatActivity {
         qt = (TextView) findViewById(R.id.qt);
         Intent intent = getIntent();
         qtitle = intent.getStringExtra("qtitle");
+        classname = intent.getStringExtra("classname");
+        num = intent.getIntExtra("num",num);
+        name = intent.getStringExtra("name");
         qt.setText(qtitle);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFC107));
+
 
     }
     public void updateAClick(View v){
@@ -49,6 +56,12 @@ public class A extends AppCompatActivity {
             Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
         }
         else sendRequest(qtitle, a);
+        Intent intent2 = new Intent(getApplicationContext(), detailQ.class);
+        intent2.putExtra("qtitle",qtitle);
+        intent2.putExtra("num",num);
+        intent2.putExtra("classname",classname);
+        intent2.putExtra("name",name);
+        startActivity(intent2);
 
     }
 
@@ -108,8 +121,5 @@ public class A extends AppCompatActivity {
         b = (TextView)findViewById(R.id.b);
         b.append(data);
     }
-
-
-
 }
 
