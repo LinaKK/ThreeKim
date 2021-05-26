@@ -47,8 +47,8 @@ import org.json.JSONObject;
 
           et_id = findViewById(R.id.et_id);
           et_pw = findViewById(R.id.et_pw);
-          //btn_lo = findViewById(R.id.btn_lo);
-          //btn_sign = findViewById(R.id.btn1_sign);
+         // btn_lo = findViewById(R.id.btn_lo);
+         // btn_sign = findViewById(R.id.btn1_sign);
 
           //회원가입페이지 이동
          /* btn_sign.setOnClickListener(new View.OnClickListener() {
@@ -75,19 +75,19 @@ import org.json.JSONObject;
       }
 
       public void btn_lo(View view){
-         /* if (et_id.getText() == null || et_id.getText() == null)
-              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();*/
+          if (et_id.getText() == null || et_id.getText() == null)
+              Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();
           //입력안하면 종료됨
           //학번 or pw 틀리면 toast 필요 -지금있는건 에러섞임
 
-          /*if (Sid == null || pw == null)
+        /*  if (Sid == null || pw == null)
               Toast.makeText(this, "please enter all", Toast.LENGTH_SHORT).show();*/
-          /*else {
+          else {
               String Sid = et_id.getText().toString();
               int id = Integer.parseInt(Sid);
-              String pw = et_pw.getText().toString();*/
-              loginsendRequest(20180638, "2222222");
-          //}
+              String pw = et_pw.getText().toString();
+              loginsendRequest(id, pw);
+          }
       }
 
       private void loginsendRequest(final int ed_id, String ed_pw){

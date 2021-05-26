@@ -233,12 +233,6 @@ public class whole_class_list extends AppCompatActivity {
                 String opens = ((clist)adpater.getItem(i)).getOpen();
                 final String cnames = ((clist)adpater.getItem(i)).getClassname();
 
-                for(int m =0; m<myClists.size(); m++){//myclasslist에 없을 때
-                    if(myClists.get(m).classname.contains(cnames) == false)
-                        state=1;
-                    else state =0;
-                }
-                if(state==1){
                     if(opens=="open"){ //클래스 공개일때 첫번째클래스 무조건 가입메시지 뜸
                         AlertDialog.Builder ad = new AlertDialog.Builder(whole_class_list.this);
                         ad.setTitle("가입메시지");
@@ -249,7 +243,6 @@ public class whole_class_list extends AppCompatActivity {
                                 //error- java.util.HashMap cannot be cast to java.lang.String
                                 //개인클래스리스트로 넘기기(db)//클래스이름갯수//내부클래스 액티비티에 값 넘겨주기
                                 signC(cnames);
-
                                 Intent intent = new Intent(getApplicationContext(),InClass.class);
                                 intent.putExtra("num",num);
                                 intent.putExtra("name", name);
@@ -273,7 +266,12 @@ public class whole_class_list extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 edpswd = (TextView)dialogView.findViewById(R.id.editspw);
-                                int password = clist[i].pw;//clist== null -clist 사용안했음
+                                //int password = clist[i].pw;//clist== null -clist 사용안했음
+                                int password = 0;
+                                for (int j =0; j< wclist.length; j++){
+                                    if (wclist[j].classname == cnames)
+                                        password = wclist[j].pw;
+                                }
                                 int edpassword = Integer.parseInt(edpswd.getText().toString());
                                 if(password == edpassword){
                                     signC(cnames);
@@ -297,9 +295,7 @@ public class whole_class_list extends AppCompatActivity {
                         });
                         ad.show();
                     }//else까지....
-                }else{
-                    Toast.makeText(getApplicationContext(),"이미 가입한 클래스 입니다.",Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }
