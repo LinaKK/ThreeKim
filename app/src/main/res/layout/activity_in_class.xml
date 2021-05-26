@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
@@ -26,14 +26,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="20dp"
                 android:text="목표: " />
 
             <TextView
+                android:textSize="20dp"
                 android:id="@+id/cFGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/border"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="현재 진행도"/>
+
+            <ProgressBar
+                android:id="@+id/mProgStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleHorizontal"
+                />
+
+        </LinearLayout>
     </LinearLayout>
 
     <GridLayout
@@ -80,9 +103,18 @@
             android:layout_rowSpan="1"
             android:layout_columnSpan="1"
             android:layout_gravity="center"
-            android:text="다음 이벤트 내용" />
+            android:text=" " />
 
 
+        <Button
+            android:id="@+id/qna"
+            android:background="@drawable/btnbl"
+            android:onClick="btnClick"
+            android:layout_rowSpan="1"
+            android:layout_column="2"
+            android:layout_columnSpan="1"
+            android:layout_gravity="center"
+            android:text="QnA"/>
 <!--        <Button
             android:id="@+id/nextEvent"
             android:background="@drawable/btnbl"
@@ -103,6 +135,7 @@
             android:layout_gravity="center"
             android:onClick="btnClick"
             android:text="체크리스트" />
+
         <ScrollView
             android:layout_rowSpan="2"
             android:layout_column="0"
@@ -119,27 +152,7 @@
 
     </GridLayout>
 
-    <LinearLayout
-        android:layout_weight="0.5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/border"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="현재 진행도"/>
-
-        <ProgressBar
-            android:id="@+id/mProgStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyleHorizontal"
-            />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_margin="15dp"
@@ -148,14 +161,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/qna"
-            android:background="@drawable/btn_ba"
-            android:onClick="btnClick"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="QnA"/>
+
 
         <Button
             android:id="@+id/cInfo"
