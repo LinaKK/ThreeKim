@@ -73,7 +73,7 @@ public class A extends AppCompatActivity {
         try {
             rj.put("qtitle", qtitle);
             rj.put("a", a);
-            //작성자 이름 넘기기
+            rj.put("name", name);//작성자 이름 넘기기
         }
         catch (JSONException e){}
         //contextQ.setText(rj.toString());
